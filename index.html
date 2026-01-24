@@ -207,6 +207,12 @@
                         <h3 id="score-text" style="margin-top:0;"></h3>
                         <p id="feedback-text"></p>
                     </div>
+                    <div id="next-step" style="display:none; text-align:center; margin-top: 20px;">
+                        <p>Ottimo! Sei pronto per il prossimo esercizio? (Отлично! Вы готовы к следующему упражнению?)</p>
+                        <a href="dialogo2.html" class="btn-check" style="text-decoration:none; display:inline-block; background-color: var(--secondary);">
+                        VAI AL DIALOGO 2 (PEREITI K DIALOGU 2) ➔
+                        </a>
+                    </div>
                 </div> </div> </div> </div> <script>
         function check() {
             const p = document.getElementById("pass").value;
@@ -243,7 +249,7 @@
                     }
                 });
             });
-
+            
             const scorePercent = Math.round((correctCount / totalQuestions) * 100);
             const resultContainer = document.getElementById('result-container');
             const scoreText = document.getElementById('score-text');
@@ -261,6 +267,7 @@
             }
             
             resultContainer.scrollIntoView({ behavior: 'smooth' });
+            document.getElementById('next-step').style.display = 'block';
         }
 
         document.getElementById("pass").addEventListener("keyup", function(event) {
@@ -269,3 +276,4 @@
     </script>
 </body>
 </html>
+
