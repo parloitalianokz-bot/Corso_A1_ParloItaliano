@@ -3,127 +3,148 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lezione - Parlo Italiano</title>
+    <title>Area Riservata - Parlo Italiano</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #008C45;
             --secondary: #CD212A;
-            --bg: #f4f7f6;
+            --text: #2c3e50;
         }
 
         body {
             font-family: 'Montserrat', sans-serif;
-            background-color: var(--bg);
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             margin: 0;
-            padding: 20px;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
+            align-items: center;
+        }
+
+        /* --- SCHERMATA LOGIN --- */
+        #login-overlay {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            border-top: 8px solid var(--primary);
+        }
+
+        .login-logo { font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 20px; }
+        
+        input[type="password"] {
+            width: 80%;
+            padding: 12px;
+            margin: 20px 0;
+            border: 2px solid #eee;
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        input[type="password"]:focus { border-color: var(--primary); }
+
+        .btn-login {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .btn-login:hover { transform: scale(1.05); }
+
+        /* --- CONTENUTO LEZIONE (NASCOSTO) --- */
+        #main-content {
+            display: none;
+            width: 100%;
+            max-width: 900px;
+            margin: 40px 20px;
         }
 
         .card {
             background: white;
-            max-width: 850px;
-            width: 100%;
             border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
             overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
             border-top: 10px solid var(--primary);
         }
 
-        header {
-            padding: 30px;
-            text-align: center;
-            background: #fff;
-        }
-
-        .badge {
-            background: #e8f5e9;
-            color: var(--primary);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: bold;
-            letter-spacing: 1px;
-        }
-
-        h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            margin: 15px 0 5px 0;
-            color: #1a1a1a;
-        }
-
-        .author { color: #888; font-size: 0.9rem; margin-bottom: 20px; }
-
-        .content { padding: 0 40px 40px 40px; }
-
+        header { padding: 30px; text-align: center; }
+        .content { padding: 0 40px 40px; }
         .instruction {
-            background: #f9f9f9;
+            background: #f0f7f4;
             padding: 15px;
             border-radius: 10px;
-            border-left: 4px solid var(--secondary);
+            border-left: 4px solid var(--primary);
             margin-bottom: 25px;
             font-weight: 600;
         }
-
-        /* Container per risolvere l'errore di visualizzazione */
         .video-container {
             position: relative;
             padding-bottom: 56.25%;
             height: 0;
-            overflow: hidden;
             border-radius: 12px;
+            overflow: hidden;
             background: #000;
         }
-
         .video-container iframe {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        .fallback-link {
-            display: block;
-            text-align: center;
-            margin-top: 15px;
-            color: var(--secondary);
-            text-decoration: none;
-            font-size: 0.85rem;
+            top: 0; left: 0; width: 100%; height: 100%;
         }
     </style>
 </head>
 <body>
 
-<div class="card">
-    <header>
-        <span class="badge">LA SCUOLA "PARLO ITALIANO"</span> [cite: 1]
-        <h1>Benvenuti a Parlo Italiano</h1> [cite: 2]
-        <div class="author">Di Antonio Marini</div> [cite: 3]
-    </header>
-
-    <div class="content">
-        <div class="instruction">
-            🎧 A. Ascoltate i dialoghi e rispondete alle domande: 
-        </div>
-
-        <div class="video-container">
-            <iframe 
-                src="https://www.youtube.com/embed/rHOLaCCyw0I" 
-                title="Video Lezione" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                allowfullscreen>
-            </iframe>
-        </div>
-        
-        <a href="https://youtu.be/rHOLaCCyw0I" target="_blank" class="fallback-link">
-            Problemi con il video? Clicca qui per aprirlo su YouTube
-        </a>
+    <div id="login-overlay">
+        <div class="login-logo">Parlo Italiano</div>
+        <p>Benvenuto! Inserisci la password fornita dal tuo insegnante per accedere alla lezione.</p>
+        <input type="password" id="pass" placeholder="Password di accesso">
+        <br>
+        <button class="btn-login" onclick="check()">ENTRA NELL'AREA STUDENTI</button>
+        <p id="err" style="color: var(--secondary); display: none; margin-top: 15px; font-size: 0.9rem;">❌ Password errata, riprova.</p>
     </div>
-</div>
+
+    <div id="main-content">
+        <div class="card">
+            <header>
+                <h1 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; margin: 0;">Benvenuti a Parlo Italiano</h1>
+                <p style="color: #888;">Corso di Antonio Marini</p>
+            </header>
+            <div class="content">
+                <div class="instruction">🎧 A. Ascoltate i dialoghi e rispondete alle domande:</div>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/rHOLaCCyw0I" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function check() {
+            const p = document.getElementById("pass").value;
+            // SCEGLI QUI LA TUA PASSWORD
+            if (p === "ITALIA2026") { 
+                document.getElementById("login-overlay").style.display = "none";
+                document.getElementById("main-content").style.display = "block";
+                document.body.style.alignItems = "flex-start"; // Sposta il contenuto in alto
+            } else {
+                document.getElementById("err").style.display = "block";
+            }
+        }
+        // Permette di premere "Invio" per entrare
+        document.getElementById("pass").addEventListener("keyup", function(event) {
+            if (event.key === "Enter") { check(); }
+        });
+    </script>
 
 </body>
 </html>
