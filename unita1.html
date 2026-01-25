@@ -59,7 +59,7 @@
         .content { padding: 40px; color: var(--text); line-height: 1.6; }
 
         /* Blocchi di testo */
-        .welcome-text { font-size: 1.1rem; text-align: center; margin-bottom: 30px; color: var(--text); }
+        .welcome-text { font-size: 1.1rem; text-align: center; margin-bottom: 20px; color: var(--text); }
         
         .competencies-box {
             background: #f0f7f4; padding: 25px; border-radius: 15px; margin-bottom: 30px;
@@ -82,13 +82,19 @@
 
         /* Pulsante Start */
         .btn-start {
-            display: block; width: 100%; max-width: 300px; margin: 40px auto 0;
+            display: block; width: 100%; max-width: 300px; margin: 20px auto 40px;
             background: linear-gradient(to right, var(--primary), #2ecc71);
             color: white; padding: 18px; border: none; border-radius: 50px;
             font-size: 1.2rem; font-weight: bold; text-align: center; text-decoration: none;
             box-shadow: 0 5px 15px rgba(0,140,69,0.3); transition: transform 0.2s;
         }
         .btn-start:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,140,69,0.4); }
+
+        /* Link testuale finale */
+        .btn-text-link {
+            display: inline-block; color: var(--primary); font-weight: bold; text-decoration: none; 
+            border-bottom: 2px solid var(--primary); margin-top: 10px;
+        }
 
         /* Overlay menu */
         .overlay-bg { display: none; position: fixed; width: 100%; height: 100%; top: 0; left: 0; background: rgba(0,0,0,0.5); z-index: 1000; }
@@ -112,45 +118,46 @@
             <header>
                 <div class="header-course">Corso di Italiano A1</div>
                 <h1 class="header-main-title">Unità 1: "La scuola Parlo Italiano"</h1>
-                <div class="ru-subtitle">Добро пожаловать на урок</div>
+                <div class="ru-subtitle">Добро пожаловать</div>
             </header>
 
             <div class="content">
                 
                 <div class="welcome-text">
-                    <p><strong>Дорогие студенты!</strong> Я очень рад видеть вас.<br>
-                    Сегодня мы начинаем наше путешествие в мир итальянского языка.<br>
-                    Помните: ошибки — это нормально! Самое главное — это ваше желание говорить.</p>
+                    <p><strong>Дорогие студенты!</strong> Начинаем наше путешествие в мир итальянского.<br>
+                    Помните: ошибки — это нормально, главное — ваше желание говорить!</p>
                 </div>
+
+                <a href="dialogo1.html" class="btn-start">
+                    VAI ALLA LEZIONE ➔
+                    <br><span style="font-size: 0.8rem; font-weight: normal;">(ПЕРЕЙТИ К УРОКУ)</span>
+                </a>
+
+                <hr style="border: 0; border-top: 1px solid #eee; margin-bottom: 30px;">
 
                 <div class="competencies-box">
                     <h3>🎯 Наши ключевые компетенции:<br><span style="font-size:0.9rem; font-weight:normal;">Чему мы научимся?</span></h3>
                     <ul>
-                        <li><strong>Начинать знакомство и представляться (Кто ты?):</strong><br>Вы освоите базовые фразы для приветствия, знакомства и сможете спросить/рассказать о своем имени и месте жительства.</li>
-                        <li><strong>Рассказывать о себе (Кем ты работаешь?):</strong><br>Вы сможете называть свою профессию (студент, повар, программист и т.д.) и национальность.</li>
-                        <li><strong>Использовать самый главный глагол (Глагол Essere):</strong><br>Мы освоим спряжение ключевого глагола <em>essere</em> (быть) в настоящем времени. Это фундамент, на котором строятся все простые предложения.</li>
-                        <li><strong>Выражать причину (Почему?):</strong><br>Вы научитесь объяснять, почему вы изучаете итальянский (для работы, для путешествий, из-за любви к кухне и т.д.).</li>
-                        <li><strong>Понимать и реагировать (Аудирование):</strong><br>Через прослушивание диалогов вы начнете улавливать темп и интонацию итальянской речи.</li>
+                        <li><strong>Знакомство (Кто ты?):</strong><br>Usare frasi base per il saluto e la presentazione (nome, luogo).</li>
+                        <li><strong>О себе (Кем ты работаешь?):</strong><br>Parlare della propria professione e nazionalità.</li>
+                        <li><strong>Глагол Essere:</strong><br>Imparare la coniugazione del verbo fondamentale <em>essere</em> (essere).</li>
+                        <li><strong>Причина (Почему?):</strong><br>Spiegare il motivo per cui studiate l'italiano (lavoro, viaggi, ecc.).</li>
+                        <li><strong>Аудирование:</strong><br>Iniziare a cogliere il ritmo e l'intonazione della lingua italiana.</li>
                     </ul>
                 </div>
 
                 <div class="tips-box">
-                    <h3>💡 Советы для эффективного обучения:<br><span style="font-size:0.9rem; font-weight:normal;">Учимся с удовольствием!</span></h3>
+                    <h3>💡 Советы для учебы:<br><span style="font-size:0.9rem; font-weight:normal;">Учимся с удовольствием!</span></h3>
                     <ul>
-                        <li><strong>Не бойтесь ошибок (Говорите без страха):</strong><br>Ошибки — это часть прогресса! Главная цель — это общение. Используйте язык для самовыражения.</li>
-                        <li><strong>Активируйте свои эмоции (Учитесь сердцем):</strong><br>Находите личную связь и свою страсть к итальянскому (любовь к кухне, мечты о Риме). Слушайте с вниманием.</li>
-                        <li><strong>Практикуйте ежедневно (Небольшие шаги):</strong><br>Повторяйте фразы вслух. Даже 5 минут ежедневной практики принесут большую пользу.</li>
+                        <li><strong>Не бойтесь ошибок (Говорите без страха):</strong><br>L'obiettivo principale è comunicare. Usate la lingua per esprimervi.</li>
+                        <li><strong>Учитесь сердцем (Активируйте эмоции):</strong><br>Trovate una connessione personale e una passione per l'italiano (la cucina, Roma, ecc.).</li>
+                        <li><strong>Практикуйте ежедневно (Небольшие шаги):</strong><br>Ripetete a voce alta le frasi. Anche solo 5 minuti al giorno sono utili.</li>
                     </ul>
                 </div>
 
                 <div style="text-align: center; margin-top: 40px;">
                     <h2 style="color: var(--primary); font-family: 'Playfair Display', serif;">Iniziamo! (Начинаем!)</h2>
-                    <p style="color: #666;">Помните, мы здесь, чтобы учиться, общаться и вдохновляться. Удачи!</p>
-                    
-                    <a href="dialogo1.html" class="btn-start">
-                        VAI ALLA LEZIONE ➔
-                        <br><span style="font-size: 0.8rem; font-weight: normal;">(ПЕРЕЙТИ К УРОКУ)</span>
-                    </a>
+                    <a href="dialogo1.html" class="btn-text-link">Iniziamo la lezione (Начать урок) ➔</a>
                 </div>
 
             </div>
