@@ -497,9 +497,12 @@
         }
 
         function showSection(sectionId) {
+            // Nascondi tutte le sezioni
             document.querySelectorAll('.section-block').forEach(sec => sec.classList.remove('active'));
+            // Mostra quella richiesta
             document.getElementById(sectionId).classList.add('active');
             
+            // Aggiorna menu (evidenzia la voce corrente)
             document.querySelectorAll('.sidebar a').forEach(link => link.classList.remove('active'));
             if(sectionId === 'sec-pres') document.getElementById('link-pres').classList.add('active');
             if(sectionId === 'sec-dial' || sectionId === 'sec-dial2') document.getElementById('link-dial').classList.add('active');
@@ -507,7 +510,14 @@
             if(sectionId === 'sec-gramm') document.getElementById('link-gramm').classList.add('active');
             if(sectionId === 'sec-eser') document.getElementById('link-eser').classList.add('active');
 
-            if (window.innerWidth < 800) toggleMenu();
+            // --- CORREZIONE QUI ---
+            // Chiudi il menu SOLO se è aperto (style.left === "0px")
+            // Se è già chiuso, non fare nulla.
+            const sidebar = document.getElementById("mySidebar");
+            if (window.innerWidth < 800 && sidebar.style.left === "0px") {
+                toggleMenu();
+            }
+
             window.scrollTo(0,0);
         }
 
@@ -521,27 +531,27 @@
                 const correct = container.getAttribute('data-correct');
                 const options = container.querySelectorAll('.option');
                 
-                options.forEach(opt => {
-                    opt.classList.remove('correct', 'incorrect');
-                    const val = opt.querySelector('input').value;
-                    
-                    if(val === correct) {
-                        if(selected && selected.value === correct) opt.classList.add('correct');
-                    }
-                    if(selected && selected.value === val) {
-                        if(val === correct) opt.classList.add('correct');
-                        else opt.classList.add('incorrect');
-                    }
-                });
+                // Reset classi
+                options.forEach(opt => opt.classList.remove('correct', 'incorrect'));
                 
-                // Evidenzia sempre la risposta corretta se l'utente ha sbagliato
-                options.forEach(opt => {
-                   if(opt.querySelector('input').value === correct && selected) {
-                       opt.classList.add('correct');
-                   } 
-                });
-
-                if(selected && selected.value === correct) correctCount++;
+                // Se l'utente ha selezionato qualcosa
+                if (selected) {
+                    if (selected.value === correct) {
+                        // Risposta giusta -> Verde
+                        selected.parentElement.classList.add('correct');
+                        correctCount++;
+                    } else {
+                        // Risposta sbagliata -> Rossa
+                        selected.parentElement.classList.add('incorrect');
+                        
+                        // Mostra anche quale era quella giusta
+                        options.forEach(opt => {
+                            if (opt.querySelector('input').value === correct) {
+                                opt.classList.add('correct');
+                            }
+                        });
+                    }
+                }
             });
 
             const score = Math.round((correctCount / containers.length) * 100);
@@ -553,5 +563,8 @@
             res.style.borderColor = score === 100 ? "var(--primary)" : "var(--secondary)";
         }
     </script>
+
+
+
 </body>
 </html>
