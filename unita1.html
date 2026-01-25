@@ -1,169 +1,70 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unità 1 - Parlo Italiano</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #27ae60; /* Verde Smeraldo più acceso */
-            --primary-dark: #219150; /* Verde scuro per l'ombra 3D */
-            --secondary: #e74c3c; /* Rosso */
-            --secondary-dark: #c0392b; /* Rosso scuro per l'ombra 3D */
-            --text: #2c3e50;
-            --grey: #95a5a6;
-            --light-bg: #f9f9f9;
-            --accent: #f1c40f; /* Giallo per evidenziare */
-        }
-
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background: #f0f3f5; /* Sfondo grigio chiarissimo riposante */
-            margin: 0;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-        }
-
-        /* --- MENU LATERALE --- */
-        .menu-btn {
-            position: fixed; top: 20px; left: 20px; font-size: 1.5rem; cursor: pointer; z-index: 1000;
-            color: white; background: var(--text); padding: 10px 15px; border-radius: 12px;
-            box-shadow: 0 4px 0 rgba(0,0,0,0.2); transition: 0.1s; 
-        }
-        .menu-btn:active { transform: translateY(4px); box-shadow: none; }
-
-        .sidebar {
-            height: 100%; width: 280px; position: fixed; z-index: 1001; top: 0; left: -280px;
-            background-color: white; overflow-x: hidden; transition: 0.4s; padding-top: 60px;
-            box-shadow: 4px 0 15px rgba(0,0,0,0.1);
-        }
-        .sidebar .close-btn { position: absolute; top: 10px; right: 20px; font-size: 2.5rem; color: var(--secondary); cursor: pointer; }
-        
-        .sidebar h3 { padding: 0 20px; color: var(--primary); font-family: 'Playfair Display', serif; margin-bottom: 5px; }
-        .sidebar p { padding: 0 20px; color: #888; font-size: 0.8rem; margin-top: 0; margin-bottom: 20px; }
-
-        .sidebar a {
-            padding: 15px 25px; text-decoration: none; font-size: 0.95rem; color: var(--text); display: block;
-            transition: 0.2s; border-left: 5px solid transparent; cursor: pointer;
-            font-weight: 600;
-        }
-        .sidebar a:hover, .sidebar a.active { background-color: #f0f7f4; color: var(--primary); border-left: 5px solid var(--primary); }
-        .ru-menu { display: block; font-size: 0.75rem; color: #999; font-weight: normal; margin-top: 3px; }
-
-        /* --- CONTENUTO PRINCIPALE --- */
-        #main-wrapper { width: 100%; max-width: 900px; margin: 80px 20px 40px; }
-        
-        .section-block { display: none; animation: fadeIn 0.4s; }
-        .section-block.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        .card { 
-            background: white; border-radius: 20px; overflow: hidden; 
-            box-shadow: 0 8px 0 #e0e0e0; /* Ombra solida stile card */
-            border: 2px solid #eee;
-            margin-bottom: 40px; 
-        }
-        
-        header { padding: 40px 30px; text-align: center; border-bottom: 2px solid #f0f0f0; background: #fff; }
-        .header-course { font-size: 0.9rem; color: var(--grey); font-weight: bold; text-transform: uppercase; letter-spacing: 2px; }
-        .header-main-title { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--primary); margin: 10px 0; line-height: 1.2; }
-        .ru-block { display: block; color: #999; font-size: 0.6em; font-weight: normal; margin-top: 5px; font-family: 'Montserrat', sans-serif; }
-
-        .content { padding: 40px; color: var(--text); line-height: 1.6; }
-        .instruction { background: #e8f8f5; padding: 20px; border-radius: 15px; color: var(--primary-dark); margin-bottom: 30px; font-weight: 600; border: 2px solid #d1f2eb; }
-
-        /* Stili specifici Presentazione */
-        .competencies-box { background: white; padding: 25px; border-radius: 15px; margin-bottom: 30px; border: 2px solid #eee; box-shadow: 0 4px 0 #eee; }
-        .competencies-box h3 { color: var(--primary); margin-top: 0; }
-        
-        .tips-box { background: white; padding: 25px; border-radius: 15px; margin-bottom: 30px; border: 2px solid #eee; box-shadow: 0 4px 0 #eee; }
-        .tips-box h3 { color: var(--secondary); margin-top: 0; }
-        
-        ul { list-style: none; padding: 0; }
-        li { margin-bottom: 15px; position: relative; padding-left: 25px; }
-        li::before { content: "•"; color: var(--primary); font-weight: bold; font-size: 1.5rem; position: absolute; left: 0; top: -5px; }
-
-        /* Video & Quiz */
-        .video-container { position: relative; padding-bottom: 56.25%; height: 0; border-radius: 20px; overflow: hidden; border: 2px solid #eee; margin-bottom: 30px; }
-        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-        
-        .question { font-weight: bold; margin-bottom: 15px; font-size: 1.1rem; color: var(--text); margin-top: 30px; }
-        
-        /* Opzioni Quiz Stile Card */
-        .option { 
-            display: block; background: #fff; padding: 15px; margin: 10px 0; border-radius: 15px; cursor: pointer; 
-            border: 2px solid #eee; transition: all 0.2s; font-weight: 500;
-        }
-        .option:hover { border-color: var(--primary); background: #f0fdf4; transform: translateX(5px); }
-        .correct { background-color: #d4edda !important; border-color: var(--primary) !important; color: #155724; }
-        .incorrect { background-color: #f8d7da !important; border-color: var(--secondary) !important; color: #721c24; }
-        
-        .result-container { 
-            margin-top: 30px; padding: 20px; border-radius: 15px; text-align: center; 
-            background: #fff; border: 2px solid #eee; display: none; 
-        }
-
-        /* Testi e Grammatica */
-        .text-box { background: white; padding: 25px; border-radius: 15px; border: 2px solid #eee; margin-bottom: 20px; box-shadow: 0 4px 0 #eee; }
-        .text-box h3 { color: var(--text); margin-top: 0; border-bottom: 2px solid var(--accent); display: inline-block; padding-bottom: 5px; }
-        .highlight { background-color: #fef9e7; padding: 2px 8px; border-radius: 6px; font-weight: bold; border-bottom: 2px solid #f1c40f; }
-        
-        .grammar-table { width: 100%; border-collapse: separate; border-spacing: 0; border: 2px solid #eee; border-radius: 15px; overflow: hidden; margin: 20px 0; }
-        .grammar-table th { background: var(--primary); color: white; padding: 15px; text-align: left; }
-        .grammar-table td { padding: 15px; border-bottom: 1px solid #eee; background: white; }
-        .grammar-table tr:last-child td { border-bottom: none; }
-
-        /* --- NUOVI PULSANTI 3D GAMIFIED --- */
+/* --- STILE PULSANTI RESPONSIVE (CORRETTO) --- */
         .btn-nav {
             display: inline-flex;
             align-items: center;
             justify-content: center;
             background-color: var(--primary);
             color: white;
+            
+            /* Dimensioni Desktop */
             padding: 18px 30px;
-            border-radius: 16px; /* Quadrato arrotondato */
+            font-size: 1rem;
+            
+            border-radius: 16px;
             text-decoration: none;
             font-weight: 800;
-            font-size: 1rem;
             border: none;
             cursor: pointer;
-            
-            /* L'effetto 3D è dato dal bordo inferiore */
-            border-bottom: 5px solid var(--primary-dark); 
+            border-bottom: 5px solid var(--primary-dark);
             transition: all 0.1s;
             text-transform: uppercase;
             letter-spacing: 1px;
-            width: 100%; /* Su mobile occupa tutto lo spazio */
-            max-width: 100%;
+            
+            /* Gestione Mobile Fondamentale */
+            width: 100%; /* Occupa tutta la larghezza disponibile */
+            max-width: 100%; /* Non esce mai dal contenitore */
+            box-sizing: border-box; /* Il padding non allarga il pulsante */
+            white-space: normal; /* Permette al testo di andare a capo */
+            text-align: center; /* Centra il testo se va su due righe */
+            line-height: 1.2; /* Spazio tra le righe se va a capo */
+            margin-top: 15px;
+        }
+
+        /* Regole specifiche per Cellulari (schermi piccoli) */
+        @media (max-width: 600px) {
+            .btn-nav {
+                padding: 15px 10px; /* Meno spazio ai lati */
+                font-size: 0.9rem; /* Testo un po' più piccolo */
+                border-bottom-width: 4px; /* Bordo 3D un po' più sottile */
+            }
         }
         
-        /* Su desktop i pulsanti non devono essere enormi */
-        @media (min-width: 600px) {
-            .btn-nav { width: auto; }
+        /* Regole per Desktop (schermi grandi) */
+        @media (min-width: 601px) {
+            .btn-nav { 
+                width: auto; /* Su PC il pulsante è largo quanto serve */
+                min-width: 200px; /* Ma non troppo stretto */
+            }
         }
 
         .btn-nav:hover {
-            filter: brightness(110%); /* Diventa leggermente più chiaro */
+            filter: brightness(110%);
             transform: translateY(-2px);
         }
 
         .btn-nav:active {
-            border-bottom-width: 0px; /* Toglie il bordo 3D */
-            transform: translateY(5px); /* Sposta giù il pulsante */
-            margin-top: 5px; /* Compensa lo spostamento */
+            border-bottom-width: 0px;
+            transform: translateY(5px);
+            margin-top: 20px; /* Compensa lo spostamento */
         }
 
         /* Pulsante Start Gigante */
         .btn-start {
             background-color: #2980b9;
             border-bottom-color: #1a5276;
-            font-size: 1.2rem;
-            padding: 25px 40px;
+            padding: 20px; /* Padding uniforme */
             width: 100%;
-            max-width: 400px;
+            max-width: 400px; /* Limite massimo larghezza */
         }
 
         /* Pulsante Dashboard Rosso */
@@ -172,369 +73,8 @@
             border-bottom-color: var(--secondary-dark);
         }
 
-        /* Pulsante Verifica (Giallo/Arancio per distinguersi) */
+        /* Pulsante Verifica (Giallo) */
         .btn-check {
             background-color: #f39c12;
             border-bottom-color: #d35400;
         }
-
-        .overlay-bg { display: none; position: fixed; width: 100%; height: 100%; top: 0; left: 0; background: rgba(0,0,0,0.5); z-index: 1000; }
-    </style>
-</head>
-<body>
-
-    <div id="menuBtn" class="menu-btn" onclick="toggleMenu()">☰</div>
-    <div id="overlayBg" class="overlay-bg" onclick="toggleMenu()"></div>
-
-    <div id="mySidebar" class="sidebar">
-        <a href="javascript:void(0)" class="close-btn" onclick="toggleMenu()">×</a>
-        
-        <a href="index.html" style="background-color: #f1f1f1; border-bottom: 1px solid #ddd;">
-            ⬅ Torna alla Dashboard
-        </a>
-
-        <h3>UNITA' 1</h3>
-        <p>Indice lezione / План урока</p>
-        
-        <a onclick="showSection('sec-pres')" id="link-pres" class="active">
-            👋 Presentazione <span class="ru-menu">Введение</span>
-        </a>
-        <a onclick="showSection('sec-dial')" id="link-dial">
-            🎬 Dialoghi <span class="ru-menu">Диалоги</span>
-        </a>
-        <a onclick="showSection('sec-testo')" id="link-testo">
-            📖 Testo <span class="ru-menu">Текст</span>
-        </a>
-        <a onclick="showSection('sec-gramm')" id="link-gramm">
-            📐 Grammatica <span class="ru-menu">Грамматика</span>
-        </a>
-        <a onclick="showSection('sec-eser')" id="link-eser">
-            🗣️ Esercizi <span class="ru-menu">Упражнения</span>
-        </a>
-    </div>
-
-    <div id="main-wrapper">
-        
-        <div id="sec-pres" class="section-block active">
-            <div class="card">
-                <header>
-                    <div class="header-course">Corso di Italiano A1</div>
-                    <h1 class="header-main-title">Unità 1: Introduzione</h1>
-                    <div class="ru-block">Добро пожаловать</div>
-                </header>
-                <div class="content">
-                    
-                    <div class="welcome-text" style="text-align: center; margin-bottom: 30px;">
-                        <p><strong>Дорогие студенты!</strong> Погружение в итальянский стартует прямо сейчас.<br>
-                        <strong>Помните:</strong> ошибки — это нормально, главное — ваше желание говорить!</p>
-                    </div>
-
-                    <div style="text-align: center; margin-bottom: 40px;">
-                        <a onclick="showSection('sec-dial')" class="btn-nav btn-start">
-                            INIZIA LA LEZIONE ➔
-                            <br><span style="font-size: 0.8rem; font-weight: normal;">(НАЧАТЬ УРОК)</span>
-                        </a>
-                    </div>
-
-                    <div class="competencies-box">
-                        <h3>🎯 Cosa impareremo: <span style="font-size:0.9rem; font-weight:normal;">(Чему мы научимся?)</span></h3>
-                        <ul>
-                            <li><strong>Знакомство (Saluti):</strong><br>Как здороваться и представляться.</li>
-                            <li><strong>Профессии (Lavoro):</strong><br>Слова и фразы, чтобы рассказать о своей работе.</li>
-                            <li><strong>Verbo Essere (Глагол Essere):</strong><br>Главный глагол "быть" и его основные формы.</li>
-                        </ul>
-                    </div>
-
-                    <div class="tips-box">
-                        <h3>💡 Consigli: <span style="font-size:0.9rem; font-weight:normal;">(Советы для учебы)</span></h3>
-                        <ul>
-                            <li><strong>Говорите без страха:</strong><br>Не бойтесь делать ошибки.</li>
-                            <li><strong>Учитесь с душой:</strong><br>Найдите то, что вам нравится в языке.</li>
-                            <li><strong>Практикуйте ежедневно:</strong><br>Даже 5 минут в день имеют значение.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="sec-dial" class="section-block">
-            <div class="card">
-                <header>
-                    <div class="header-course">Dialoghi</div>
-                    <h1 class="header-main-title">Dialogo 1 <span class="ru-block">(Диалог 1)</span></h1>
-                </header>
-                <div class="content">
-                    <div class="instruction">🎧 Guarda il video e fai il test<br>(Посмотрите видео и пройдите тест):</div>
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/UT5tYRPrMoY?rel=0&modestbranding=1&iv_load_policy=3" frameborder="0" allowfullscreen></iframe>
-                    </div>
-                    
-                    <div class="quiz-container" id="quiz1">
-                        <div class="question">1. Chi è Antonio?</div>
-                        <div class="options" data-correct="b">
-                            <label class="option"><input type="radio" name="q1" value="a"> Uno studente.</label>
-                            <label class="option"><input type="radio" name="q1" value="b"> L'insegnante.</label>
-                            <label class="option"><input type="radio" name="q1" value="c"> Il direttore.</label>
-                        </div>
-                        
-                        <div class="question">2. Che lavoro fa Aigerim?</div>
-                        <div class="options" data-correct="b">
-                            <label class="option"><input type="radio" name="q2" value="a"> Programmatrice.</label>
-                            <label class="option"><input type="radio" name="q2" value="b"> Casalinga.</label>
-                            <label class="option"><input type="radio" name="q2" value="c"> Cuoca.</label>
-                        </div>
-                        <div class="question">3. Di dov'è Aigerim?</div>
-                        <div class="options" data-correct="b">
-                             <label class="option"><input type="radio" name="q3" value="a"> Almaty.</label>
-                             <label class="option"><input type="radio" name="q3" value="b"> Astana.</label>
-                             <label class="option"><input type="radio" name="q3" value="c"> Mosca.</label>
-                        </div>
-                        <div class="question">4. Perché Aigerim studia l'italiano?</div>
-                        <div class="options" data-correct="b">
-                            <label class="option"><input type="radio" name="q4" value="a"> Per lavoro.</label>
-                            <label class="option"><input type="radio" name="q4" value="b"> Ama la cucina.</label>
-                            <label class="option"><input type="radio" name="q4" value="c"> Per viaggiare.</label>
-                        </div>
-                        <div class="question">5. Che lavoro fa Kirill?</div>
-                        <div class="options" data-correct="c">
-                            <label class="option"><input type="radio" name="q5" value="a"> Cuoco.</label>
-                            <label class="option"><input type="radio" name="q5" value="b"> Insegnante.</label>
-                            <label class="option"><input type="radio" name="q5" value="c"> Programmatore.</label>
-                        </div>
-                        <div class="question">6. Perché Kirill studia l'italiano?</div>
-                        <div class="options" data-correct="a">
-                            <label class="option"><input type="radio" name="q6" value="a"> Per lavoro.</label>
-                            <label class="option"><input type="radio" name="q6" value="b"> Per visitare Roma.</label>
-                            <label class="option"><input type="radio" name="q6" value="c"> Ama il cibo.</label>
-                        </div>
-                        <div class="question">7. Nazionalità di Kirill?</div>
-                        <div class="options" data-correct="b">
-                            <label class="option"><input type="radio" name="q7" value="a"> Kazako.</label>
-                            <label class="option"><input type="radio" name="q7" value="b"> Russo.</label>
-                            <label class="option"><input type="radio" name="q7" value="c"> Italiano.</label>
-                        </div>
-
-                        <div style="text-align: center; margin-top: 30px;">
-                            <button class="btn-nav btn-check" onclick="checkQuiz('quiz1', 'res1')">Verifica (Проверить) ✓</button>
-                        </div>
-                        <div id="res1" class="result-container">
-                            <h3 class="score-text"></h3>
-                            <p class="feedback-text"></p>
-                        </div>
-                    </div>
-                    
-                    <div style="text-align: right; margin-top: 40px;">
-                        <button class="btn-nav" onclick="showSection('sec-dial2')">Vai al Dialogo 2 (Диалог 2) ➔</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="sec-dial2" class="section-block">
-            <div class="card">
-                <header>
-                    <div class="header-course">Dialoghi</div>
-                    <h1 class="header-main-title">Dialogo 2 <span class="ru-block">(Диалог 2)</span></h1>
-                </header>
-                <div class="content">
-                    <div class="instruction">🎧 Guarda il video e fai il test<br>(Посмотрите видео и пройдите тест):</div>
-                    
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/UT5tYRPrMoY?rel=0&modestbranding=1&iv_load_policy=3" frameborder="0" allowfullscreen></iframe>
-                    </div>
-                    
-                    <div class="quiz-container" id="quiz2">
-                        <div class="question">1. Domanda Dialogo 2?</div>
-                        <div class="options" data-correct="a">
-                            <label class="option"><input type="radio" name="d2_q1" value="a"> Risposta A</label>
-                            <label class="option"><input type="radio" name="d2_q1" value="b"> Risposta B</label>
-                        </div>
-
-                        <div style="text-align: center; margin-top: 30px;">
-                            <button class="btn-nav btn-check" onclick="checkQuiz('quiz2', 'res2')">Verifica (Проверить) ✓</button>
-                        </div>
-                        <div id="res2" class="result-container">
-                            <h3 class="score-text"></h3>
-                            <p class="feedback-text"></p>
-                        </div>
-                    </div>
-                    
-                    <div style="text-align: right; margin-top: 40px;">
-                        <button class="btn-nav" onclick="showSection('sec-testo')">Avanti: Testo (Далее: Текст) ➔</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="sec-testo" class="section-block">
-            <div class="card">
-                <header>
-                    <div class="header-course">Lettura</div>
-                    <h1 class="header-main-title">La scuola "Parlo Italiano"<span class="ru-block">(Текст: Школа итальянского)</span></h1>
-                </header>
-                <div class="content">
-                    <div class="instruction">📖 Leggi il testo (Прочитайте текст):</div>
-                    
-                    <div class="text-box">
-                        <h3>La Scuola</h3>
-                        <p>La scuola "Parlo Italiano" è ad <span class="highlight">Almaty</span>, in Kazakhstan. È una scuola moderna, perfetta per studenti russofoni perché è online.</p>
-                    </div>
-
-                    <div class="text-box">
-                        <h3>Gli Studenti</h3>
-                        <p><strong>Aigerim</strong> è kazaka ed è <span class="highlight">casalinga</span>. Studia l'italiano perché ama la cucina italiana.</p>
-                        <p><strong>Kirill</strong> è russo ed è <span class="highlight">programmatore</span>. Studia l'italiano perché lavora in una compagnia italiana.</p>
-                        <p><strong>Zarina</strong> è uzbeka ed è <span class="highlight">infermiera</span>. Sogna di visitare Roma.</p>
-                        <p><strong>Bekzat</strong> è kazako ed è <span class="highlight">cuoco</span>. Lavora in un ristorante italiano.</p>
-                    </div>
-
-                    <div style="text-align: right; margin-top: 40px;">
-                        <button class="btn-nav" onclick="showSection('sec-gramm')">Avanti: Grammatica (Далее: Грамматика) ➔</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="sec-gramm" class="section-block">
-            <div class="card">
-                <header>
-                    <div class="header-course">Grammatica</div>
-                    <h1 class="header-main-title">Il Verbo ESSERE<span class="ru-block">(Глагол БЫТЬ)</span></h1>
-                </header>
-                <div class="content">
-                    <div class="instruction">rules Impara a memoria (Выучите наизусть):</div>
-                    
-                    <table class="grammar-table">
-                        <tr><th>Italiano</th><th>Russo</th></tr>
-                        <tr><td>Io <strong>sono</strong></td><td>Я (есть)</td></tr>
-                        <tr><td>Tu <strong>sei</strong></td><td>Ты (есть)</td></tr>
-                        <tr><td>Lui/Lei <strong>è</strong></td><td>Он/Она (есть)</td></tr>
-                        <tr><td>Noi <strong>siamo</strong></td><td>Мы (есть)</td></tr>
-                        <tr><td>Voi <strong>siete</strong></td><td>Вы (есть)</td></tr>
-                        <tr><td>Loro <strong>sono</strong></td><td>Они (есть)</td></tr>
-                    </table>
-
-                    <div class="text-box">
-                        <h3>Esempi:</h3>
-                        <p>• Io <strong>sono</strong> Antonio.</p>
-                        <p>• Tu <strong>sei</strong> brava.</p>
-                        <p>• Lei <strong>è</strong> di Roma?</p>
-                    </div>
-
-                    <div style="text-align: right; margin-top: 40px;">
-                        <button class="btn-nav" onclick="showSection('sec-eser')">Avanti: Esercizi (Далее: Упражнения) ➔</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="sec-eser" class="section-block">
-            <div class="card">
-                <header>
-                    <div class="header-course">Pratica</div>
-                    <h1 class="header-main-title">Esercizi di Consolidamento<span class="ru-block">(Практика)</span></h1>
-                </header>
-                <div class="content">
-                    <div class="instruction">🗣️ Leggi ad alta voce (Прочитайте вслух):</div>
-                    
-                    <div class="text-box">
-                        <h3>Dialogo A: Presentarsi</h3>
-                        <p><strong>Giulia:</strong> Ciao! Io mi chiamo Giulia, e tu?</p>
-                        <p><strong>Marco:</strong> Piacere, io sono Marco.</p>
-                        <p><strong>Giulia:</strong> Di dove sei?</p>
-                        <p><strong>Marco:</strong> Sono di Milano, e tu?</p>
-                    </div>
-
-                    <div style="text-align: center; margin-top: 50px;">
-                        <h2 style="color:var(--primary)">🎉 Lezione Completata!</h2>
-                        <p>Hai finito l'Unità 1.</p>
-                        
-                        <div style="margin: 30px 0;">
-                            <a href="unita2.html" class="btn-nav" style="background-color: var(--primary);">
-                                Prossima Lezione (Следующий урок) ➔
-                            </a>
-                        </div>
-                        
-                        <a href="index.html" class="btn-nav btn-dashboard">
-                            Torna alla Dashboard (В меню)
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <script>
-        function toggleMenu() {
-            const sidebar = document.getElementById("mySidebar");
-            const overlay = document.getElementById("overlayBg");
-            if (sidebar.style.left === "0px") {
-                sidebar.style.left = "-280px";
-                overlay.style.display = "none";
-            } else {
-                sidebar.style.left = "0px";
-                overlay.style.display = "block";
-            }
-        }
-
-        function showSection(sectionId) {
-            document.querySelectorAll('.section-block').forEach(sec => sec.classList.remove('active'));
-            document.getElementById(sectionId).classList.add('active');
-            
-            document.querySelectorAll('.sidebar a').forEach(link => link.classList.remove('active'));
-            if(sectionId === 'sec-pres') document.getElementById('link-pres').classList.add('active');
-            if(sectionId === 'sec-dial' || sectionId === 'sec-dial2') document.getElementById('link-dial').classList.add('active');
-            if(sectionId === 'sec-testo') document.getElementById('link-testo').classList.add('active');
-            if(sectionId === 'sec-gramm') document.getElementById('link-gramm').classList.add('active');
-            if(sectionId === 'sec-eser') document.getElementById('link-eser').classList.add('active');
-
-            if (window.innerWidth < 800) toggleMenu();
-            window.scrollTo(0,0);
-        }
-
-        function checkQuiz(quizId, resultId) {
-            const quizContainer = document.getElementById(quizId);
-            const containers = quizContainer.querySelectorAll('.options');
-            let correctCount = 0;
-            
-            containers.forEach(container => {
-                const selected = container.querySelector('input:checked');
-                const correct = container.getAttribute('data-correct');
-                const options = container.querySelectorAll('.option');
-                
-                options.forEach(opt => {
-                    opt.classList.remove('correct', 'incorrect');
-                    const val = opt.querySelector('input').value;
-                    
-                    if(val === correct) {
-                        if(selected && selected.value === correct) opt.classList.add('correct');
-                    }
-                    if(selected && selected.value === val) {
-                        if(val === correct) opt.classList.add('correct');
-                        else opt.classList.add('incorrect');
-                    }
-                });
-                
-                // Evidenzia sempre la risposta corretta se l'utente ha sbagliato
-                options.forEach(opt => {
-                   if(opt.querySelector('input').value === correct && selected) {
-                       opt.classList.add('correct');
-                       // Rimuovi lo stile "selezionato" di browser se vuoi, ma qui usiamo classi CSS
-                   } 
-                });
-
-                if(selected && selected.value === correct) correctCount++;
-            });
-
-            const score = Math.round((correctCount / containers.length) * 100);
-            const res = document.getElementById(resultId);
-            res.style.display = 'block';
-            res.querySelector('.score-text').innerText = "Risultato: " + score + "%";
-            const feedTxt = res.querySelector('.feedback-text');
-            feedTxt.innerText = score === 100 ? "Eccellente! (Отлично!)" : "Riprova! (Попробуйте еще раз)";
-            res.style.borderColor = score === 100 ? "var(--primary)" : "var(--secondary)";
-        }
-    </script>
-</body>
-</html>
