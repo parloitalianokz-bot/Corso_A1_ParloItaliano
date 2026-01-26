@@ -115,6 +115,35 @@
         .grammar-table td { padding: 15px; border-bottom: 1px solid #eee; background: white; }
         .grammar-table tr:last-child td { border-bottom: none; }
 
+        /* --- STILE BOX TRASCRIZIONE --- */
+        .transcript-box {
+            background: #fff;
+            border: 2px dashed #bdc3c7; /* Bordo tratteggiato grigio */
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            text-align: left;
+            display: none; /* Nascosto di default */
+            animation: fadeIn 0.3s;
+        }
+        
+        .transcript-box h4 {
+            color: var(--primary);
+            margin-top: 0;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .transcript-row {
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #f5f5f5;
+        }
+        
+        .speaker { font-weight: bold; color: var(--text); }
+        .it-text { color: var(--text); font-size: 1.05rem; display: block; margin-bottom: 3px; }
+        .ru-text { color: #7f8c8d; font-size: 0.9rem; font-style: italic; }
+        
         /* --- STILE PULSANTI RESPONSIVE (CORRETTO) --- */
         .btn-nav {
             display: inline-flex;
@@ -286,6 +315,30 @@
                     <div class="video-container">
                         <iframe src="https://www.youtube.com/embed/UT5tYRPrMoY?rel=0&modestbranding=1&iv_load_policy=3" frameborder="0" allowfullscreen></iframe>
                     </div>
+
+                    <div style="text-align: center; margin: 20px 0;">
+                        <button class="btn-nav btn-secondary" style="width: auto; padding: 12px 25px; font-size: 0.9rem;" onclick="toggleTranscript('trans1')">
+                            📜 Leggi Trascrizione (Текст диалога)
+                        </button>
+                    </div>
+
+                    <div id="trans1" class="transcript-box">
+                        <h4>Dialogo 1</h4>
+                        
+                        <div class="transcript-row">
+                            <span class="speaker">Antonio:</span>
+                            <span class="it-text">Buongiorno! Io sono l'insegnante.</span>
+                            <span class="ru-text">Добрый день! Я учитель.</span>
+                        </div>
+
+                        <div class="transcript-row">
+                            <span class="speaker">Aigerim:</span>
+                            <span class="it-text">Buongiorno! Piacere, sono Aigerim.</span>
+                            <span class="ru-text">Добрый день! Приятно познакомиться, я Айгерим.</span>
+                        </div>
+
+                        </div>
+                    
                     
                     <div class="quiz-container" id="quiz1">
                         <div class="question">1. Chi è Antonio?</div>
@@ -360,6 +413,23 @@
                     <div class="video-container">
                         <iframe src="https://www.youtube.com/embed/iFQhfdwgNtA?rel=0&modestbranding=1&iv_load_policy=3" frameborder="0" allowfullscreen></iframe>
                     </div>
+
+                    <div style="text-align: center; margin: 20px 0;">
+                        <button class="btn-nav btn-secondary" style="width: auto; padding: 12px 25px; font-size: 0.9rem;" onclick="toggleTranscript('trans2')">
+                            📜 Leggi Trascrizione (Текст диалога)
+                        </button>
+                    </div>
+
+                    <div id="trans2" class="transcript-box">
+                        <h4>Dialogo 2</h4>
+                        
+                        <div class="transcript-row">
+                            <span class="speaker">Giulia:</span>
+                            <span class="it-text">Ciao! Come ti chiami?</span>
+                            <span class="ru-text">Привет! Как тебя зовут?</span>
+                        </div>
+                        
+                         </div>
                     
                     <div class="quiz-container" id="quiz2">
                         <div class="question">1. Domanda Dialogo 2?</div>
@@ -562,6 +632,18 @@
             feedTxt.innerText = score === 100 ? "Eccellente! (Отлично!)" : "Riprova! (Попробуйте еще раз)";
             res.style.borderColor = score === 100 ? "var(--primary)" : "var(--secondary)";
         }
+
+        function toggleTranscript(id) {
+            const el = document.getElementById(id);
+            if (el.style.display === 'none' || el.style.display === '') {
+                el.style.display = 'block';
+                // Scorre leggermente verso il testo
+                el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            } else {
+                el.style.display = 'none';
+            }
+        }
+        
     </script>
 
 
