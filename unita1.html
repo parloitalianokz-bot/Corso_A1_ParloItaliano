@@ -115,16 +115,21 @@
         .grammar-table td { padding: 15px; border-bottom: 1px solid #eee; background: white; }
         .grammar-table tr:last-child td { border-bottom: none; }
 
-        /* --- STILE BOX TRASCRIZIONE --- */
+        /* --- STILE BOX TRASCRIZIONE SCORREVOLE --- */
         .transcript-box {
             background: #fff;
-            border: 2px dashed #bdc3c7; /* Bordo tratteggiato grigio */
+            border: 2px dashed #bdc3c7;
             border-radius: 15px;
-            padding: 25px;
+            padding: 20px;
             margin-bottom: 30px;
             text-align: left;
             display: none; /* Nascosto di default */
             animation: fadeIn 0.3s;
+            
+            /* NOVITÀ: Rende il box scorrevole */
+            max-height: 300px; /* Altezza massima fissa */
+            overflow-y: auto;  /* Aggiunge la barra di scorrimento se serve */
+            border-left: 5px solid var(--primary); /* Un tocco di stile in più */
         }
         
         .transcript-box h4 {
@@ -323,21 +328,98 @@
                     </div>
 
                     <div id="trans1" class="transcript-box">
-                        <h4>Dialogo 1</h4>
+                        <h4>Trascrizione Dialogo 1</h4>
                         
                         <div class="transcript-row">
                             <span class="speaker">Antonio:</span>
-                            <span class="it-text">Buongiorno! Io sono l'insegnante.</span>
-                            <span class="ru-text">Добрый день! Я учитель.</span>
+                            <span class="it-text">Buongiorno a tutti! Io sono Antonio. Sono l’insegnante di italiano.</span>
+                            <span class="ru-text">Всем добрый день! Я Антонио. Я учитель итальянского.</span>
                         </div>
 
                         <div class="transcript-row">
                             <span class="speaker">Aigerim:</span>
-                            <span class="it-text">Buongiorno! Piacere, sono Aigerim.</span>
-                            <span class="ru-text">Добрый день! Приятно познакомиться, я Айгерим.</span>
+                            <span class="it-text">Buongiorno, signor Antonio. Io sono Aigerim.</span>
+                            <span class="ru-text">Добрый день, синьор Антонио. Я Айгерим.</span>
+                        </div>
+                        
+                        <div class="transcript-row">
+                            <span class="speaker">Antonio:</span>
+                            <span class="it-text">Perfetto. E tu chi sei?</span>
+                            <span class="ru-text">Отлично. А ты кто?</span>
                         </div>
 
+                        <div class="transcript-row">
+                            <span class="speaker">Kirill:</span>
+                            <span class="it-text">Buongiorno, Antonio. Io sono Kirill, sono di Almaty.</span>
+                            <span class="ru-text">Добрый день, Антонио. Я Кирилл, я из Алматы.</span>
                         </div>
+
+                        <div class="transcript-row">
+                            <span class="speaker">Antonio:</span>
+                            <span class="it-text">Ma tu, non sei kazako, giusto?</span>
+                            <span class="ru-text">Но ты ведь не казах, верно?</span>
+                        </div>
+
+                        <div class="transcript-row">
+                            <span class="speaker">Kirill:</span>
+                            <span class="it-text">No, certo. Io non sono kazako, io sono russo.</span>
+                            <span class="ru-text">Нет, конечно. Я не казах, я русский.</span>
+                        </div>
+
+                        <div class="transcript-row">
+                            <span class="speaker">Antonio:</span>
+                            <span class="it-text">Ciao Aigerim, tu sei di Almaty?</span>
+                            <span class="ru-text">Привет, Айгерим, ты из Алматы?</span>
+                        </div>
+
+                        <div class="transcript-row">
+                            <span class="speaker">Aigerim:</span>
+                            <span class="it-text">No, non sono di Almaty. Io sono di Astana.</span>
+                            <span class="ru-text">Нет, я не из Алматы. Я из Астаны.</span>
+                        </div>
+
+                        <div class="transcript-row">
+                            <span class="speaker">Antonio:</span>
+                            <span class="it-text">Ah, bene. Aigerim, tu sei casalinga, giusto? E perché studi l'italiano?</span>
+                            <span class="ru-text">А, хорошо. Айгерим, ты домохозяйка, верно? А почему ты учишь итальянский?</span>
+                        </div>
+
+                        <div class="transcript-row">
+                            <span class="speaker">Aigerim:</span>
+                            <span class="it-text">Sì, sono casalinga. Studio l'italiano perché amo la cucina italiana. È molto buona!</span>
+                            <span class="ru-text">Да, я домохозяйка. Я учу итальянский, потому что люблю итальянскую кухню. Она очень вкусная!</span>
+                        </div>
+
+                        <div class="transcript-row">
+                            <span class="speaker">Antonio:</span>
+                            <span class="it-text">Bene. E tu, che lavoro fai, Kirill?</span>
+                            <span class="ru-text">Хорошо. А кем ты работаешь, Кирилл?</span>
+                        </div>
+
+                        <div class="transcript-row">
+                            <span class="speaker">Kirill:</span>
+                            <span class="it-text">Io sono programmatore.</span>
+                            <span class="ru-text">Я программист.</span>
+                        </div>
+
+                        <div class="transcript-row">
+                            <span class="speaker">Antonio:</span>
+                            <span class="it-text">Molto bene. E tu, perché studi l'italiano? Per lavoro?</span>
+                            <span class="ru-text">Очень хорошо. А ты почему учишь итальянский? Для работы?</span>
+                        </div>
+
+                        <div class="transcript-row">
+                            <span class="speaker">Kirill:</span>
+                            <span class="it-text">Sì, sì, per lavoro. Io lavoro per una compagnia italiana.</span>
+                            <span class="ru-text">Да, да, для работы. Я работаю в итальянской компании.</span>
+                        </div>
+                        
+                        <div class="transcript-row">
+                            <span class="speaker">Antonio:</span>
+                            <span class="it-text">Perfetto, ragazzi. Allora, iniziamo la lezione!</span>
+                            <span class="ru-text">Отлично, ребята. Тогда начинаем урок!</span>
+                        </div>
+                    </div>
                     
                     
                     <div class="quiz-container" id="quiz1">
