@@ -229,7 +229,7 @@
             line-height: 1.2; /* Spazio tra le righe se va a capo */
             margin-top: 15px;
         }
-
+        
         /* Regole specifiche per Cellulari (schermi piccoli) */
         @media (max-width: 600px) {
             .btn-nav {
@@ -258,6 +258,31 @@
             margin-top: 20px; /* Compensa lo spostamento */
         }
 
+
+/* --- Contenitore per i pulsanti Avanti/Indietro --- */
+        .nav-buttons-container {
+            display: flex;
+            justify-content: space-between; /* Indietro a sinistra, Avanti a destra */
+            align-items: center;
+            margin-top: 40px;
+            gap: 15px; /* Spazio tra i pulsanti su mobile */
+            flex-wrap: wrap; /* Su schermi piccolissimi vanno a capo */
+        }
+
+        /* Stile specifico per il tasto INDIETRO (Grigio) */
+        .btn-back {
+            background-color: #95a5a6; /* Grigio Cemento */
+            border-bottom-color: #7f8c8d; /* Grigio Scuro per l'ombra */
+            width: auto; /* Non occupa tutto lo spazio */
+            flex: 1; /* Si adatta allo spazio */
+        }
+        
+        /* Modifica per far stare bene due pulsanti vicini */
+        .btn-next {
+             flex: 1; /* Si adatta allo spazio */
+        }
+
+        
         /* Pulsante Start Gigante */
         .btn-start {
             background-color: #2980b9;
@@ -518,17 +543,21 @@
                             <label class="option"><input type="radio" name="q7" value="c"> Kirill è italiano.</label>
                         </div>
 
-                        <div style="text-align: center; margin-top: 30px;">
+<div style="text-align: center; margin-top: 30px;">
                             <button class="btn-nav btn-check" onclick="checkQuiz('quiz1', 'res1')">Verifica (Проверить) ✓</button>
                         </div>
+                        
                         <div id="res1" class="result-container">
                             <h3 class="score-text"></h3>
                             <p class="feedback-text"></p>
                         </div>
-                    </div>
-                    
-                    <div style="text-align: right; margin-top: 40px;">
-                        <button class="btn-nav" onclick="showSection('sec-dial2')">Vai al Dialogo 2 (Диалог 2) ➔</button>
+                    </div> <div class="nav-buttons-container">
+                        <button class="btn-nav btn-back" onclick="showSection('sec-pres')">
+                            ⬅ Intro (Введение)
+                        </button>
+                        <button class="btn-nav btn-next" onclick="showSection('sec-dial2')">
+                            Dialogo 2 (Диалог 2) ➔
+                        </button>
                     </div>
                 </div>
             </div>
