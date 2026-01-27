@@ -24,7 +24,7 @@
             align-items: center;
         }
 
-        /* --- LOGIN OVERLAY (uguale a prima) --- */
+        /* --- LOGIN OVERLAY --- */
         #login-overlay {
             background: rgba(255, 255, 255, 0.98);
             padding: 40px;
@@ -149,7 +149,7 @@
             <h1 class="main-title">Le Tue Lezioni</h1>
             <div class="welcome-user">
                 Ciao, <span id="userName">Studente</span>! 
-                <button class="logout-btn" onclick="location.reload()">Esci</button>
+                <button class="logout-btn" onclick="logout()">Esci</button>
             </div>
         </header>
 
@@ -159,16 +159,14 @@
 
     <script>
         // --- DATABASE STUDENTI ---
-        // "level": indica l'ultima unità a cui hanno accesso (0 = solo intro, 5 = tutto)
         const studenti = {
-            "mariniantonio@gmail.com": { pass: "123", name: "Antonio", level: 2 },   // Solo Unità 0
-            "assel.suleimenova@gmail.com":  { pass: "123", name: "Assel",  level: 5 },   // Fino a Unità 2
-            "vip@test.com":   { pass: "123", name: "VIP",   level: 5 },   // Tutto sbloccato
-            "antonio":        { pass: "admin", name: "Maestro", level: 5 } // Admin
+            "mariniantonio@gmail.com": { pass: "123", name: "Antonio", level: 2 },
+            "assel.suleimenova@gmail.com":  { pass: "123", name: "Assel",  level: 5 },
+            "vip@test.com":   { pass: "123", name: "VIP",   level: 5 },
+            "antonio":        { pass: "admin", name: "Maestro", level: 5 } 
         };
 
         // --- ELENCO UNITA' ---
-        // Qui definisci i titoli e i link ai file HTML
         const units = [
             { id: 0, title: "Introduzione alla fonetica", ru: "Введение в фонетику", file: "unita0.html" },
             { id: 1, title: "La scuola parlo italiano", ru: "Школа итальянского", file: "unita1.html" },
@@ -178,6 +176,17 @@
             { id: 5, title: "Il mio vicino di casa", ru: "Мой сосед", file: "unita5.html" }
         ];
 
+        // Controllo all'avvio: se c'è già il "timbro", mostra direttamente la dashboard
+        window.onload = function() {
+            if (sessionStorage.getItem("accesso_effettuato") === "true") {
+                const savedUser = sessionStorage.getItem("nome_utente");
+                const savedLevel = sessionStorage.getItem("livello_utente");
+                if(savedUser && savedLevel) {
+                    showDashboard(savedUser, parseInt(savedLevel));
+                }
+            }
+        };
+
         function login() {
             const email = document.getElementById("email").value.trim().toLowerCase();
             const pass = document.getElementById("pass").value.trim();
@@ -186,26 +195,41 @@
             if (studenti[email] && studenti[email].pass === pass) {
                 // Login corretto
                 const user = studenti[email];
-                document.getElementById("login-overlay").style.display = "none";
-                document.getElementById("dashboard").style.display = "block";
-                document.getElementById("userName").innerText = user.name;
                 
-                // Genera la griglia in base al livello
-                renderGrid(user.level);
+                // 🔐 1. CREIAMO IL TIMBRO DI SICUREZZA
+                sessionStorage.setItem("accesso_effettuato", "true");
+                // Salviamo anche nome e livello per ricaricare la pagina se serve
+                sessionStorage.setItem("nome_utente", user.name);
+                sessionStorage.setItem("livello_utente", user.level);
+
+                showDashboard(user.name, user.level);
             } else {
                 err.style.display = "block";
             }
         }
 
+        function showDashboard(name, level) {
+            document.getElementById("login-overlay").style.display = "none";
+            document.getElementById("dashboard").style.display = "block";
+            document.getElementById("userName").innerText = name;
+            renderGrid(level);
+        }
+
+        function logout() {
+            // 🔐 CANCELLA IL TIMBRO
+            sessionStorage.clear(); 
+            location.reload(); // Ricarica la pagina e torna al login
+        }
+
         function renderGrid(userLevel) {
             const container = document.getElementById("gridContainer");
-            container.innerHTML = ""; // Pulisce
+            container.innerHTML = ""; 
 
             units.forEach(unit => {
-                // Determina se è bloccata o sbloccata
                 const isUnlocked = unit.id <= userLevel;
                 const statusClass = isUnlocked ? "unlocked" : "locked";
                 const icon = isUnlocked ? "🟢" : "🔒";
+                // Se sbloccato, aggiunge il link. Se bloccato, non fa nulla.
                 const clickAction = isUnlocked ? `onclick="window.location.href='${unit.file}'"` : "";
 
                 const cardHTML = `
@@ -220,7 +244,6 @@
             });
         }
 
-        // Tasto Invio per login
         document.addEventListener("keyup", function(e) {
             if (e.key === "Enter" && document.getElementById("login-overlay").style.display !== "none") {
                 login();
