@@ -4,8 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unità 1 - Parlo Italiano</title>
+
+    <script>
+        if (sessionStorage.getItem("accesso_effettuato") !== "true") {
+            window.location.href = "index.html";
+        }
+    </script>
+    
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
+        /* ... da qui in poi il tuo stile è perfetto ... */
         :root {
             --primary: #27ae60; /* Verde Smeraldo */
             --primary-dark: #219150; 
