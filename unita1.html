@@ -73,7 +73,24 @@
         .ru-block { display: block; color: #999; font-size: 0.6em; font-weight: normal; margin-top: 5px; font-family: 'Montserrat', sans-serif; }
 
         .content { padding: 40px; color: var(--text); line-height: 1.6; }
+        
+        /* Istruzioni Standard (Rosa/Rosso) */
         .instruction { background: #e8f8f5; padding: 20px; border-radius: 15px; color: var(--primary-dark); margin-bottom: 30px; font-weight: 600; border: 2px solid #d1f2eb; }
+
+        /* NUOVO STILE: Box Scaffolding (Azzurro/Rassicurante) */
+        .context-box {
+            background-color: #eaf6fc; /* Azzurro chiarissimo */
+            border-left: 5px solid #3498db; /* Barra laterale Blu */
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            font-size: 0.95rem;
+            color: #2c3e50;
+        }
+        .context-box ul { margin: 10px 0; padding-left: 10px; list-style: none; }
+        .context-box li { margin-bottom: 5px; position: relative; padding-left: 20px; }
+        .context-box li::before { content: "🔹"; font-size: 0.8rem; position: absolute; left: 0; top: 2px; }
+
 
         /* Stili specifici Presentazione */
         .competencies-box { background: white; padding: 25px; border-radius: 15px; margin-bottom: 30px; border: 2px solid #eee; box-shadow: 0 4px 0 #eee; }
@@ -82,8 +99,10 @@
         .tips-box { background: white; padding: 25px; border-radius: 15px; margin-bottom: 30px; border: 2px solid #eee; box-shadow: 0 4px 0 #eee; }
         .tips-box h3 { color: var(--secondary); margin-top: 0; }
         
+        /* Liste generiche */
         ul { list-style: none; padding: 0; }
         li { margin-bottom: 15px; position: relative; padding-left: 25px; }
+        /* Il li::before generico è sovrascritto nel context-box per evitare conflitti */
         li::before { content: "•"; color: var(--primary); font-weight: bold; font-size: 1.5rem; position: absolute; left: 0; top: -5px; }
 
         /* Video & Quiz */
@@ -115,7 +134,7 @@
         .grammar-table td { padding: 15px; border-bottom: 1px solid #eee; background: white; }
         .grammar-table tr:last-child td { border-bottom: none; }
 
-/* --- STILE BOX TRASCRIZIONE COMPATTO & LEGGIBILE (CORRETTO) --- */
+        /* --- STILE BOX TRASCRIZIONE COMPATTO & LEGGIBILE (CORRETTO) --- */
         .transcript-box {
             background: #fff;
             border: 2px solid #e0e0e0;
@@ -339,6 +358,20 @@
                 </header>
                 <div class="content">
                     <div class="instruction">🎧 Guarda il video e fai il test<br>(Посмотрите видео и пройдите тест):</div>
+                    
+                    <div class="context-box">
+                        <p style="margin-top:0;">Посмотрите видео, в котором Антонио знакомится с Айгерим и Кириллом.<br>
+                        Постарайтесь услышать ответы на 3 вопроса:</p>
+                        <ul style="margin-bottom:15px;">
+                             <li><strong>Откуда они?</strong> (Происхождение)</li>
+                             <li><strong>Кем работают?</strong> (Профессия)</li>
+                             <li><strong>Почему учат язык?</strong> (Мотивация)</li>
+                        </ul>
+                        <p style="margin-bottom:0; font-weight:bold; color:var(--primary);">
+                            🧘 Без паники: <span style="font-weight:normal; color:var(--text);">Не пытайтесь понимать каждое слово. Главное — понять основную идею!</span>
+                        </p>
+                    </div>
+
                     <div class="video-container">
                         <iframe src="https://www.youtube.com/embed/UT5tYRPrMoY?rel=0&modestbranding=1&iv_load_policy=3" frameborder="0" allowfullscreen></iframe>
                     </div>
@@ -672,9 +705,7 @@
             if(sectionId === 'sec-gramm') document.getElementById('link-gramm').classList.add('active');
             if(sectionId === 'sec-eser') document.getElementById('link-eser').classList.add('active');
 
-            // --- CORREZIONE QUI ---
             // Chiudi il menu SOLO se è aperto (style.left === "0px")
-            // Se è già chiuso, non fare nulla.
             const sidebar = document.getElementById("mySidebar");
             if (window.innerWidth < 800 && sidebar.style.left === "0px") {
                 toggleMenu();
@@ -735,10 +766,7 @@
                 el.style.display = 'none';
             }
         }
-        
     </script>
-
-
 
 </body>
 </html>
