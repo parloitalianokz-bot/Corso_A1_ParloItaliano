@@ -305,6 +305,53 @@
         }
 
         .overlay-bg { display: none; position: fixed; width: 100%; height: 100%; top: 0; left: 0; background: rgba(0,0,0,0.5); z-index: 1000; }
+        
+        /* --- STILE PER I PROFILI CON FOTO --- */
+        .profile-card {
+            display: flex;
+            align-items: center;
+            background: #fff;
+            border: 2px solid #eee;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 0 #eee;
+            transition: transform 0.2s;
+        }
+        .profile-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--primary);
+        }
+        
+        .profile-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%; /* La rende tonda */
+            object-fit: cover; /* Taglia l'immagine bene senza deformarla */
+            border: 3px solid var(--primary);
+            margin-right: 20px;
+            flex-shrink: 0; /* Impedisce alla foto di schiacciarsi */
+        }
+        
+        .profile-text p {
+            margin: 5px 0;
+            font-size: 0.95rem;
+        }
+
+        /* Su cellulare, metti la foto sopra e centra tutto */
+        @media (max-width: 500px) {
+            .profile-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            .profile-img {
+                margin-right: 0;
+                margin-bottom: 15px;
+                width: 100px;
+                height: 100px;
+            }
+        }
+        
     </style>
 </head>
 <body>
@@ -749,30 +796,76 @@
             </div>
         </div>
 
-        <div id="sec-testo" class="section-block">
+<div id="sec-testo" class="section-block">
             <div class="card">
                 <header>
                     <div class="header-course">Lettura</div>
-                    <h1 class="header-main-title">La scuola "Parlo Italiano"<span class="ru-block">(Текст: Школа итальянского)</span></h1>
+                    <h1 class="header-main-title">I Nostri Studenti <span class="ru-block">(Наши студенты)</span></h1>
                 </header>
                 <div class="content">
                     <div class="instruction">📖 Leggi il testo (Прочитайте текст):</div>
                     
-                    <div class="text-box">
-                        <h3>La Scuola</h3>
-                        <p>La scuola "Parlo Italiano" è ad <span class="highlight">Almaty</span>, in Kazakhstan. È una scuola moderna, perfetta per studenti russofoni perché è online.</p>
+                    <div class="context-box">
+                        <p style="margin:0;">
+                            La scuola <strong>"Parlo Italiano"</strong> è ad <span class="highlight">Almaty</span>, in Kazakhstan.<br>
+                            È una scuola moderna, perfetta per studenti russofoni perché è online.
+                        </p>
                     </div>
 
-                    <div class="text-box">
-                        <h3>Gli Studenti</h3>
-                        <p><strong>Aigerim</strong> è kazaka ed è <span class="highlight">casalinga</span>. Studia l'italiano perché ama la cucina italiana.</p>
-                        <p><strong>Kirill</strong> è russo ed è <span class="highlight">programmatore</span>. Studia l'italiano perché lavora in una compagnia italiana.</p>
-                        <p><strong>Zarina</strong> è uzbeka ed è <span class="highlight">infermiera</span>. Sogna di visitare Roma.</p>
-                        <p><strong>Bekzat</strong> è kazako ed è <span class="highlight">cuoco</span>. Lavora in un ristorante italiano.</p>
+                    <h3 style="color:var(--text); text-align:center; margin-bottom:25px;">Chi sono gli studenti?</h3>
+
+                    <div class="profile-card">
+                        <img src="img/Aigerim_Testo_2.jpg" alt="Aigerim" class="profile-img" onerror="this.style.display='none'"> 
+                        <div class="profile-text">
+                            <p><strong>Aigerim</strong> è una studentessa. È <span class="highlight">kazaka</span>.</p>
+                            <p>È <span class="highlight">casalinga</span>.</p>
+                            <p>Studia l'italiano perché ama la cucina italiana.</p>
+                        </div>
                     </div>
 
-                    <div style="text-align: right; margin-top: 40px;">
-                        <button class="btn-nav" onclick="showSection('sec-gramm')">Avanti: Grammatica (Далее: Грамматика) ➔</button>
+                    <div class="profile-card">
+                        <img src="img/Kirill_Testo_3.jpg" alt="Kirill" class="profile-img" onerror="this.style.display='none'">
+                        <div class="profile-text">
+                            <p><strong>Kirill</strong> è uno studente della scuola.</p>
+                            <p>Kirill è <span class="highlight">russo</span>; è <span class="highlight">programmatore</span>.</p>
+                            <p>Studia l'italiano perché lavora in una compagnia italiana.</p>
+                        </div>
+                    </div>
+
+                    <div class="profile-card">
+                        <img src="img/Zarina_Testo_4.jpg" alt="Zarina" class="profile-img" onerror="this.style.display='none'">
+                        <div class="profile-text">
+                            <p><strong>Zarina</strong> è una studentessa della scuola.</p>
+                            <p>Zarina è <span class="highlight">uzbeka</span>; è <span class="highlight">infermiera</span>.</p>
+                            <p>Studia l'italiano perché sogna di visitare Roma.</p>
+                        </div>
+                    </div>
+
+                    <div class="profile-card">
+                        <img src="img/Bekzat_Testo_5.jpg" alt="Bekzat" class="profile-img" onerror="this.style.display='none'">
+                        <div class="profile-text">
+                            <p><strong>Bekzat</strong> è uno studente della scuola.</p>
+                            <p>Bekzat è <span class="highlight">kazako</span>; è <span class="highlight">cuoco</span>.</p>
+                            <p>Studia l'italiano perché lavora in un ristorante italiano.</p>
+                        </div>
+                    </div>
+
+                    <div class="profile-card" style="border-color: var(--primary); background: #f0fdf4;">
+                        <img src="img/Antonio_Testo_6.jpg" alt="Antonio" class="profile-img" onerror="this.style.display='none'">
+                        <div class="profile-text">
+                            <p><strong>Antonio Marini</strong> è l'insegnante della scuola "Parlo Italiano".</p>
+                            <p>È sposato e ha due figlie.</p>
+                            <p><em>È un bravo insegnante perché è paziente e sempre disponibile con gli studenti.</em> 😉</p>
+                        </div>
+                    </div>
+
+                    <div class="nav-buttons-container">
+                        <button class="btn-nav btn-back" onclick="showSection('sec-dial2')">
+                            ⬅ Dialogo 2 (Диалог 2)
+                        </button>
+                        <button class="btn-nav btn-next" onclick="showSection('sec-gramm')">
+                            Grammatica (Грамматика) ➔
+                        </button>
                     </div>
                 </div>
             </div>
