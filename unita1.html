@@ -115,40 +115,62 @@
         .grammar-table td { padding: 15px; border-bottom: 1px solid #eee; background: white; }
         .grammar-table tr:last-child td { border-bottom: none; }
 
-        /* --- STILE BOX TRASCRIZIONE SCORREVOLE --- */
+/* --- STILE BOX TRASCRIZIONE COMPATTO & LEGGIBILE (CORRETTO) --- */
         .transcript-box {
             background: #fff;
-            border: 2px dashed #bdc3c7;
-            border-radius: 15px;
-            padding: 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 15px; 
             margin-bottom: 30px;
             text-align: left;
-            display: none; /* Nascosto di default */
+            display: none; 
             animation: fadeIn 0.3s;
-            
-            /* NOVITÀ: Rende il box scorrevole */
-            max-height: 300px; /* Altezza massima fissa */
-            overflow-y: auto;  /* Aggiunge la barra di scorrimento se serve */
-            border-left: 5px solid var(--primary); /* Un tocco di stile in più */
+            max-height: 280px; 
+            overflow-y: auto;
+            border-left: 5px solid var(--primary);
         }
         
         .transcript-box h4 {
             color: var(--primary);
             margin-top: 0;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
+            margin-bottom: 10px;
+            font-size: 1rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
         }
 
         .transcript-row {
-            margin-bottom: 12px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid #f5f5f5;
+            margin-bottom: 10px; /* Un po' più di spazio tra le battute */
+            padding-bottom: 10px;
+            border-bottom: 1px dashed #e0e0e0; 
+            line-height: 1.5;
         }
         
-        .speaker { font-weight: bold; color: var(--text); }
-        .it-text { color: var(--text); font-size: 1.05rem; display: block; margin-bottom: 3px; }
-        .ru-text { color: #7f8c8d; font-size: 0.9rem; font-style: italic; }
-        
+        /* Speaker e Italiano */
+        .speaker { 
+            font-size: 0.95rem; 
+            font-weight: 800; 
+            color: var(--primary); 
+            margin-right: 5px;
+        }
+
+        .it-text { 
+            color: #2c3e50; /* Blu scuro */
+            font-size: 1rem; 
+            font-weight: 600; 
+        }
+
+        /* Russo: NERO e non corsivo per massima leggibilità */
+        .ru-text { 
+            display: block; 
+            color: #1a1a1a; /* Quasi NERO (molto più leggibile del grigio) */
+            font-size: 0.9rem; /* Dimensione aumentata */
+            margin-top: 4px;
+            padding-left: 8px; 
+            border-left: 3px solid #ccc; /* Barra laterale grigia */
+            font-family: 'Montserrat', sans-serif; /* Assicura font pulito */
+        }
+
         /* --- STILE PULSANTI RESPONSIVE (CORRETTO) --- */
         .btn-nav {
             display: inline-flex;
