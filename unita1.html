@@ -352,6 +352,35 @@
             }
         }
         
+        
+        /* Stile per il tasto traduzione piccolo */
+        .btn-translate {
+            background: none;
+            border: none;
+            color: var(--grey);
+            cursor: pointer;
+            font-size: 0.8rem;
+            text-decoration: underline;
+            padding: 0;
+            margin-top: 10px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .btn-translate:hover {
+            color: var(--primary);
+        }
+
+        /* Stile del testo tradotto */
+        .translation-text {
+            display: none; /* Nascosto di default */
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed #eee;
+            color: #555;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        
+        
     </style>
 </head>
 <body>
@@ -810,6 +839,11 @@
                             La scuola <strong>"Parlo Italiano"</strong> è ad <span class="highlight">Almaty</span>, in Kazakhstan.<br>
                             È una scuola moderna, perfetta per studenti russofoni perché è online.
                         </p>
+                        <button class="btn-translate" onclick="toggleTrans('txt-intro')">Mostra traduzione (Показать перевод)</button>
+                        <div id="txt-intro" class="translation-text">
+                            Школа "Parlo Italiano" находится в Алматы, Казахстан.<br>
+                            Это современная школа, идеально подходящая для русскоязычных студентов, потому что она онлайн.
+                        </div>
                     </div>
 
                     <h3 style="color:var(--text); text-align:center; margin-bottom:25px;">Chi sono gli studenti?</h3>
@@ -820,6 +854,13 @@
                             <p><strong>Aigerim</strong> è una studentessa. È <span class="highlight">kazaka</span>.</p>
                             <p>È <span class="highlight">casalinga</span>.</p>
                             <p>Studia l'italiano perché ama la cucina italiana.</p>
+                            
+                            <button class="btn-translate" onclick="toggleTrans('txt-aig')">Traduzione (Перевод) ▼</button>
+                            <div id="txt-aig" class="translation-text">
+                                Айгерим — студентка. Она казашка.<br>
+                                Она домохозяйка.<br>
+                                Она учит итальянский, потому что любит итальянскую кухню.
+                            </div>
                         </div>
                     </div>
 
@@ -829,6 +870,13 @@
                             <p><strong>Kirill</strong> è uno studente della scuola.</p>
                             <p>Kirill è <span class="highlight">russo</span>; è <span class="highlight">programmatore</span>.</p>
                             <p>Studia l'italiano perché lavora in una compagnia italiana.</p>
+
+                            <button class="btn-translate" onclick="toggleTrans('txt-kir')">Traduzione (Перевод) ▼</button>
+                            <div id="txt-kir" class="translation-text">
+                                Кирилл — студент школы.<br>
+                                Кирилл русский; он программист.<br>
+                                Он учит итальянский, потому что работает в итальянской компании.
+                            </div>
                         </div>
                     </div>
 
@@ -838,6 +886,13 @@
                             <p><strong>Zarina</strong> è una studentessa della scuola.</p>
                             <p>Zarina è <span class="highlight">uzbeka</span>; è <span class="highlight">infermiera</span>.</p>
                             <p>Studia l'italiano perché sogna di visitare Roma.</p>
+
+                            <button class="btn-translate" onclick="toggleTrans('txt-zar')">Traduzione (Перевод) ▼</button>
+                            <div id="txt-zar" class="translation-text">
+                                Зарина — студентка школы.<br>
+                                Зарина узбечка; она медсестра.<br>
+                                Она учит итальянский, потому что мечтает посетить Рим.
+                            </div>
                         </div>
                     </div>
 
@@ -847,6 +902,13 @@
                             <p><strong>Bekzat</strong> è uno studente della scuola.</p>
                             <p>Bekzat è <span class="highlight">kazako</span>; è <span class="highlight">cuoco</span>.</p>
                             <p>Studia l'italiano perché lavora in un ristorante italiano.</p>
+
+                            <button class="btn-translate" onclick="toggleTrans('txt-bek')">Traduzione (Перевод) ▼</button>
+                            <div id="txt-bek" class="translation-text">
+                                Бекзат — студент школы.<br>
+                                Бекзат казах; он повар.<br>
+                                Он учит итальянский, потому что работает в итальянском ресторане.
+                            </div>
                         </div>
                     </div>
 
@@ -856,6 +918,13 @@
                             <p><strong>Antonio Marini</strong> è l'insegnante della scuola "Parlo Italiano".</p>
                             <p>È sposato e ha due figlie.</p>
                             <p><em>È un bravo insegnante perché è paziente e sempre disponibile con gli studenti.</em> 😉</p>
+
+                            <button class="btn-translate" onclick="toggleTrans('txt-ant')">Traduzione (Перевод) ▼</button>
+                            <div id="txt-ant" class="translation-text">
+                                Антонио Марини — учитель школы "Parlo Italiano".<br>
+                                Он женат, и у него две дочери.<br>
+                                Он хороший учитель, потому что он терпеливый и всегда готов помочь студентам.
+                            </div>
                         </div>
                     </div>
 
@@ -1027,6 +1096,16 @@
                 el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             } else {
                 el.style.display = 'none';
+            }
+        }
+        
+        
+        function toggleTrans(id) {
+            const el = document.getElementById(id);
+            if (el.style.display === 'block') {
+                el.style.display = 'none';
+            } else {
+                el.style.display = 'block';
             }
         }
     </script>
