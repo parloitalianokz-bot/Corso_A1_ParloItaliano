@@ -6,6 +6,7 @@
     <title>Unità 1 - Parlo Italiano</title>
 
     <script>
+        // Controllo accesso semplice
         if (sessionStorage.getItem("accesso_effettuato") !== "true") {
             window.location.href = "index.html";
         }
@@ -13,7 +14,6 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
-        /* ... da qui in poi il tuo stile è perfetto ... */
         :root {
             --primary: #27ae60; /* Verde Smeraldo */
             --primary-dark: #219150; 
@@ -82,13 +82,13 @@
 
         .content { padding: 40px; color: var(--text); line-height: 1.6; }
         
-        /* Istruzioni Standard (Rosa/Rosso) */
+        /* Istruzioni Standard */
         .instruction { background: #e8f8f5; padding: 20px; border-radius: 15px; color: var(--primary-dark); margin-bottom: 30px; font-weight: 600; border: 2px solid #d1f2eb; }
 
-        /* NUOVO STILE: Box Scaffolding (Azzurro/Rassicurante) */
+        /* Context Box Scaffolding */
         .context-box {
-            background-color: #eaf6fc; /* Azzurro chiarissimo */
-            border-left: 5px solid #3498db; /* Barra laterale Blu */
+            background-color: #eaf6fc;
+            border-left: 5px solid #3498db;
             padding: 20px;
             border-radius: 12px;
             margin-bottom: 25px;
@@ -98,7 +98,6 @@
         .context-box ul { margin: 10px 0; padding-left: 10px; list-style: none; }
         .context-box li { margin-bottom: 5px; position: relative; padding-left: 20px; }
         .context-box li::before { content: "🔹"; font-size: 0.8rem; position: absolute; left: 0; top: 2px; }
-
 
         /* Stili specifici Presentazione */
         .competencies-box { background: white; padding: 25px; border-radius: 15px; margin-bottom: 30px; border: 2px solid #eee; box-shadow: 0 4px 0 #eee; }
@@ -110,7 +109,6 @@
         /* Liste generiche */
         ul { list-style: none; padding: 0; }
         li { margin-bottom: 15px; position: relative; padding-left: 25px; }
-        /* Il li::before generico è sovrascritto nel context-box per evitare conflitti */
         li::before { content: "•"; color: var(--primary); font-weight: bold; font-size: 1.5rem; position: absolute; left: 0; top: -5px; }
 
         /* Video & Quiz */
@@ -142,246 +140,88 @@
         .grammar-table td { padding: 15px; border-bottom: 1px solid #eee; background: white; }
         .grammar-table tr:last-child td { border-bottom: none; }
 
-        /* --- STILE BOX TRASCRIZIONE COMPATTO & LEGGIBILE (CORRETTO) --- */
+        /* TRASCRIZIONE */
         .transcript-box {
-            background: #fff;
-            border: 2px solid #e0e0e0;
-            border-radius: 12px;
-            padding: 15px; 
-            margin-bottom: 30px;
-            text-align: left;
-            display: none; 
-            animation: fadeIn 0.3s;
-            max-height: 280px; 
-            overflow-y: auto;
-            border-left: 5px solid var(--primary);
+            background: #fff; border: 2px solid #e0e0e0; border-radius: 12px;
+            padding: 15px; margin-bottom: 30px; text-align: left;
+            display: none; animation: fadeIn 0.3s; max-height: 280px; 
+            overflow-y: auto; border-left: 5px solid var(--primary);
         }
-        
         .transcript-box h4 {
-            color: var(--primary);
-            margin-top: 0;
-            margin-bottom: 10px;
-            font-size: 1rem;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 5px;
+            color: var(--primary); margin-top: 0; margin-bottom: 10px;
+            font-size: 1rem; border-bottom: 1px solid #eee; padding-bottom: 5px;
         }
-
-        .transcript-row {
-            margin-bottom: 10px; /* Un po' più di spazio tra le battute */
-            padding-bottom: 10px;
-            border-bottom: 1px dashed #e0e0e0; 
-            line-height: 1.5;
-        }
-        
-        /* Speaker e Italiano */
-        .speaker { 
-            font-size: 0.95rem; 
-            font-weight: 800; 
-            color: var(--primary); 
-            margin-right: 5px;
-        }
-
-        .it-text { 
-            color: #2c3e50; /* Blu scuro */
-            font-size: 1rem; 
-            font-weight: 600; 
-        }
-
-        /* Russo: NERO e non corsivo per massima leggibilità */
+        .transcript-row { margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px dashed #e0e0e0; line-height: 1.5; }
+        .speaker { font-size: 0.95rem; font-weight: 800; color: var(--primary); margin-right: 5px; }
+        .it-text { color: #2c3e50; font-size: 1rem; font-weight: 600; }
         .ru-text { 
-            display: block; 
-            color: #1a1a1a; /* Quasi NERO (molto più leggibile del grigio) */
-            font-size: 0.9rem; /* Dimensione aumentata */
-            margin-top: 4px;
-            padding-left: 8px; 
-            border-left: 3px solid #ccc; /* Barra laterale grigia */
-            font-family: 'Montserrat', sans-serif; /* Assicura font pulito */
+            display: block; color: #1a1a1a; font-size: 0.9rem; margin-top: 4px;
+            padding-left: 8px; border-left: 3px solid #ccc; font-family: 'Montserrat', sans-serif; 
         }
 
-        /* --- STILE PULSANTI RESPONSIVE (CORRETTO) --- */
+        /* PULSANTI */
         .btn-nav {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background-color: var(--primary);
-            color: white;
-            
-            /* Dimensioni Desktop */
-            padding: 18px 30px;
-            font-size: 1rem;
-            
-            border-radius: 16px;
-            text-decoration: none;
-            font-weight: 800;
-            border: none;
-            cursor: pointer;
-            border-bottom: 5px solid var(--primary-dark);
-            transition: all 0.1s;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            
-            /* Gestione Mobile Fondamentale */
-            width: 100%; /* Occupa tutta la larghezza disponibile */
-            max-width: 100%; /* Non esce mai dal contenitore */
-            box-sizing: border-box; /* Il padding non allarga il pulsante */
-            white-space: normal; /* Permette al testo di andare a capo */
-            text-align: center; /* Centra il testo se va su due righe */
-            line-height: 1.2; /* Spazio tra le righe se va a capo */
-            margin-top: 15px;
+            display: inline-flex; align-items: center; justify-content: center;
+            background-color: var(--primary); color: white;
+            padding: 18px 30px; font-size: 1rem; border-radius: 16px;
+            text-decoration: none; font-weight: 800; border: none; cursor: pointer;
+            border-bottom: 5px solid var(--primary-dark); transition: all 0.1s;
+            text-transform: uppercase; letter-spacing: 1px;
+            width: 100%; max-width: 100%; box-sizing: border-box;
+            white-space: normal; text-align: center; line-height: 1.2; margin-top: 15px;
         }
         
-        /* Regole specifiche per Cellulari (schermi piccoli) */
         @media (max-width: 600px) {
-            .btn-nav {
-                padding: 15px 10px; /* Meno spazio ai lati */
-                font-size: 0.9rem; /* Testo un po' più piccolo */
-                border-bottom-width: 4px; /* Bordo 3D un po' più sottile */
-            }
+            .btn-nav { padding: 15px 10px; font-size: 0.9rem; border-bottom-width: 4px; }
         }
-        
-        /* Regole per Desktop (schermi grandi) */
         @media (min-width: 601px) {
-            .btn-nav { 
-                width: auto; /* Su PC il pulsante è largo quanto serve */
-                min-width: 200px; /* Ma non troppo stretto */
-            }
+            .btn-nav { width: auto; min-width: 200px; }
         }
 
-        .btn-nav:hover {
-            filter: brightness(110%);
-            transform: translateY(-2px);
-        }
+        .btn-nav:hover { filter: brightness(110%); transform: translateY(-2px); }
+        .btn-nav:active { border-bottom-width: 0px; transform: translateY(5px); margin-top: 20px; }
 
-        .btn-nav:active {
-            border-bottom-width: 0px;
-            transform: translateY(5px);
-            margin-top: 20px; /* Compensa lo spostamento */
-        }
-
-
-/* --- Contenitore per i pulsanti Avanti/Indietro --- */
         .nav-buttons-container {
-            display: flex;
-            justify-content: space-between; /* Indietro a sinistra, Avanti a destra */
-            align-items: center;
-            margin-top: 40px;
-            gap: 15px; /* Spazio tra i pulsanti su mobile */
-            flex-wrap: wrap; /* Su schermi piccolissimi vanno a capo */
+            display: flex; justify-content: space-between; align-items: center;
+            margin-top: 40px; gap: 15px; flex-wrap: wrap; 
         }
-
-        /* Stile specifico per il tasto INDIETRO (Grigio) */
-        .btn-back {
-            background-color: #95a5a6; /* Grigio Cemento */
-            border-bottom-color: #7f8c8d; /* Grigio Scuro per l'ombra */
-            width: auto; /* Non occupa tutto lo spazio */
-            flex: 1; /* Si adatta allo spazio */
-        }
-        
-        /* Modifica per far stare bene due pulsanti vicini */
-        .btn-next {
-             flex: 1; /* Si adatta allo spazio */
-        }
-
-        
-        /* Pulsante Start Gigante */
-        .btn-start {
-            background-color: #2980b9;
-            border-bottom-color: #1a5276;
-            padding: 20px; /* Padding uniforme */
-            width: 100%;
-            max-width: 400px; /* Limite massimo larghezza */
-        }
-
-        /* Pulsante Dashboard Rosso */
-        .btn-dashboard {
-            background-color: var(--secondary);
-            border-bottom-color: var(--secondary-dark);
-        }
-
-        /* Pulsante Verifica (Giallo) */
-        .btn-check {
-            background-color: #f39c12;
-            border-bottom-color: #d35400;
-        }
+        .btn-back { background-color: #95a5a6; border-bottom-color: #7f8c8d; width: auto; flex: 1; }
+        .btn-next { flex: 1; }
+        .btn-start { background-color: #2980b9; border-bottom-color: #1a5276; padding: 20px; width: 100%; max-width: 400px; }
+        .btn-dashboard { background-color: var(--secondary); border-bottom-color: var(--secondary-dark); }
+        .btn-check { background-color: #f39c12; border-bottom-color: #d35400; }
 
         .overlay-bg { display: none; position: fixed; width: 100%; height: 100%; top: 0; left: 0; background: rgba(0,0,0,0.5); z-index: 1000; }
         
-        /* --- STILE PER I PROFILI CON FOTO --- */
+        /* PROFILI */
         .profile-card {
-            display: flex;
-            align-items: center;
-            background: #fff;
-            border: 2px solid #eee;
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 0 #eee;
-            transition: transform 0.2s;
+            display: flex; align-items: center; background: #fff;
+            border: 2px solid #eee; border-radius: 15px; padding: 20px;
+            margin-bottom: 20px; box-shadow: 0 4px 0 #eee; transition: transform 0.2s;
         }
-        .profile-card:hover {
-            transform: translateY(-3px);
-            border-color: var(--primary);
+        .profile-card:hover { transform: translateY(-3px); border-color: var(--primary); }
+        .profile-img {
+            width: 120px; height: 120px; border-radius: 50%; object-fit: cover;
+            border: 3px solid var(--primary); margin-right: 25px; flex-shrink: 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
-        
-       .profile-img {
-            width: 120px;  /* PRIMA ERA 80px */
-            height: 120px; /* PRIMA ERA 80px */
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid var(--primary);
-            margin-right: 25px; /* Aumentato un po' lo spazio dal testo */
-            flex-shrink: 0;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Aggiunta un'ombra carina */
-        }
-        
-        .profile-text p {
-            margin: 5px 0;
-            font-size: 0.95rem;
-        }
+        .profile-text p { margin: 5px 0; font-size: 0.95rem; }
 
-        /* Su cellulare, metti la foto sopra e centra tutto */
         @media (max-width: 500px) {
-            .profile-card {
-                flex-direction: column;
-                text-align: center;
-            }
-            .profile-img {
-                margin-right: 0;
-                margin-bottom: 15px;
-                width: 100px;
-                height: 100px;
-            }
+            .profile-card { flex-direction: column; text-align: center; }
+            .profile-img { margin-right: 0; margin-bottom: 15px; width: 130px; height: 130px; }
         }
         
-        
-        /* Stile per il tasto traduzione piccolo */
         .btn-translate {
-            background: none;
-            border: none;
-            color: var(--grey);
-            cursor: pointer;
-            font-size: 0.8rem;
-            text-decoration: underline;
-            padding: 0;
-            margin-top: 10px;
+            background: none; border: none; color: var(--grey); cursor: pointer;
+            font-size: 0.8rem; text-decoration: underline; padding: 0; margin-top: 10px;
             font-family: 'Montserrat', sans-serif;
         }
-        .btn-translate:hover {
-            color: var(--primary);
-        }
-
-        /* Stile del testo tradotto */
+        .btn-translate:hover { color: var(--primary); }
         .translation-text {
-            display: none; /* Nascosto di default */
-            margin-top: 10px;
-            padding-top: 10px;
-            border-top: 1px dashed #eee;
-            color: #555;
-            font-size: 0.9rem;
-            line-height: 1.4;
+            display: none; margin-top: 10px; padding-top: 10px;
+            border-top: 1px dashed #eee; color: #555; font-size: 0.9rem; line-height: 1.4;
         }
-        
-        
     </style>
 </head>
 <body>
@@ -494,86 +334,20 @@
 
                     <div id="trans1" class="transcript-box">
                         <h4>Trascrizione Dialogo 1</h4>
-                        
-                        <div class="transcript-row">
-                            <span class="speaker">Antonio:</span>
-                            <span class="it-text">Buongiorno a tutti! Io sono Antonio. Sono l’insegnante di italiano.</span>
-                            <span class="ru-text">Всем добрый день! Я Антонио. Я учитель итальянского.</span>
-                        </div>
-
-                        <div class="transcript-row">
-                            <span class="speaker">Aigerim:</span>
-                            <span class="it-text">Buongiorno, signor Antonio. Io sono Aigerim.</span>
-                            <span class="ru-text">Добрый день, синьор Антонио. Я Айгерим.</span>
-                        </div>
-
-                        <div class="transcript-row">
-                            <span class="speaker">Antonio:</span>
-                            <span class="it-text">Ciao Aigerim, buon appetito. Tu sei di Almaty?</span>
-                            <span class="ru-text">Привет, Айгерим, приятного аппетита. Ты из Алматы?</span>
-                        </div>
-
-                        <div class="transcript-row">
-                            <span class="speaker">Aigerim:</span>
-                            <span class="it-text">No, non sono di Almaty. Io sono di Astana. Questa è Astana!</span>
-                            <span class="ru-text">Нет, я не из Алматы. Я из Астаны. Это Астана!</span>
-                        </div>
-
-                        <div class="transcript-row">
-                            <span class="speaker">Antonio:</span>
-                            <span class="it-text">Ah, bene. Aigerim, tu sei casalinga, giusto? E perché studi l'italiano?</span>
-                            <span class="ru-text">А, хорошо. Айгерим, ты домохозяйка, верно? А почему ты учишь итальянский?</span>
-                        </div>
-
-                        <div class="transcript-row">
-                            <span class="speaker">Aigerim:</span>
-                            <span class="it-text">Sì, sono casalinga. Studio l'italiano perché amo la cucina italiana. È molto buona!</span>
-                            <span class="ru-text">Да, я домохозяйка. Я учу итальянский, потому что люблю итальянскую кухню. Она очень вкусная!</span>
-                        </div>
-
-                        <div class="transcript-row">
-                            <span class="speaker">Antonio:</span>
-                            <span class="it-text">Perfetto, grazie Aigerim. E tu chi sei?</span>
-                            <span class="ru-text">Отлично, спасибо, Айгерим. А ты кто?</span>
-                        </div>
-
-                        <div class="transcript-row">
-                            <span class="speaker">Kirill:</span>
-                            <span class="it-text">Buongiorno, Antonio. Io sono Kirill, sono di Almaty.</span>
-                            <span class="ru-text">Добрый день, Антонио. Я Кирилл, я из Алматы.</span>
-                        </div>
-
-                        <div class="transcript-row">
-                            <span class="speaker">Antonio:</span>
-                            <span class="it-text">Ma tu, non sei kazako, giusto?</span>
-                            <span class="ru-text">Но ты ведь не казах, верно?</span>
-                        </div>
-
-                        <div class="transcript-row">
-                            <span class="speaker">Kirill:</span>
-                            <span class="it-text">No, certo. Io non sono kazako, io sono russo.</span>
-                            <span class="ru-text">Нет, конечно. Я не казах, я русский.</span>
-                        </div>
-
-                        <div class="transcript-row">
-                            <span class="speaker">Antonio:</span>
-                            <span class="it-text">Bene, e tu perché studi l'italiano, Kirill?</span>
-                            <span class="ru-text">Хорошо, а почему ты учишь итальянский, Кирилл?</span>
-                        </div>
-
-                        <div class="transcript-row">
-                            <span class="speaker">Kirill:</span>
-                            <span class="it-text">Per lavoro. Sono programmatore. Lavoro per una compagnia italiana.</span>
-                            <span class="ru-text">Для работы. Я программист. Я работаю в итальянской компании.</span>
-                        </div>
-                        
-                        <div class="transcript-row">
-                            <span class="speaker">Antonio:</span>
-                            <span class="it-text">Perfetto. Allora, cominciamo?</span>
-                            <span class="ru-text">Отлично. Тогда начинаем?</span>
-                        </div>
+                        <div class="transcript-row"><span class="speaker">Antonio:</span> <span class="it-text">Buongiorno a tutti! Io sono Antonio. Sono l’insegnante di italiano.</span> <span class="ru-text">Всем добрый день! Я Антонио. Я учитель итальянского.</span></div>
+                        <div class="transcript-row"><span class="speaker">Aigerim:</span> <span class="it-text">Buongiorno, signor Antonio. Io sono Aigerim.</span> <span class="ru-text">Добрый день, синьор Антонио. Я Айгерим.</span></div>
+                        <div class="transcript-row"><span class="speaker">Antonio:</span> <span class="it-text">Ciao Aigerim, buon appetito. Tu sei di Almaty?</span> <span class="ru-text">Привет, Айгерим, приятного аппетита. Ты из Алматы?</span></div>
+                        <div class="transcript-row"><span class="speaker">Aigerim:</span> <span class="it-text">No, non sono di Almaty. Io sono di Astana. Questa è Astana!</span> <span class="ru-text">Нет, я не из Алматы. Я из Астаны. Это Астана!</span></div>
+                        <div class="transcript-row"><span class="speaker">Antonio:</span> <span class="it-text">Ah, bene. Aigerim, tu sei casalinga, giusto? E perché studi l'italiano?</span> <span class="ru-text">А, хорошо. Айгерим, ты домохозяйка, верно? А почему ты учишь итальянский?</span></div>
+                        <div class="transcript-row"><span class="speaker">Aigerim:</span> <span class="it-text">Sì, sono casalinga. Studio l'italiano perché amo la cucina italiana. È molto buona!</span> <span class="ru-text">Да, я домохозяйка. Я учу итальянский, потому что люблю итальянскую кухню. Она очень вкусная!</span></div>
+                        <div class="transcript-row"><span class="speaker">Antonio:</span> <span class="it-text">Perfetto, grazie Aigerim. E tu chi sei?</span> <span class="ru-text">Отлично, спасибо, Айгерим. А ты кто?</span></div>
+                        <div class="transcript-row"><span class="speaker">Kirill:</span> <span class="it-text">Buongiorno, Antonio. Io sono Kirill, sono di Almaty.</span> <span class="ru-text">Добрый день, Антонио. Я Кирилл, я из Алматы.</span></div>
+                        <div class="transcript-row"><span class="speaker">Antonio:</span> <span class="it-text">Ma tu, non sei kazako, giusto?</span> <span class="ru-text">Но ты ведь не казах, верно?</span></div>
+                        <div class="transcript-row"><span class="speaker">Kirill:</span> <span class="it-text">No, certo. Io non sono kazako, io sono russo.</span> <span class="ru-text">Нет, конечно. Я не казах, я русский.</span></div>
+                        <div class="transcript-row"><span class="speaker">Antonio:</span> <span class="it-text">Bene, e tu perché studi l'italiano, Kirill?</span> <span class="ru-text">Хорошо, а почему ты учишь итальянский, Кирилл?</span></div>
+                        <div class="transcript-row"><span class="speaker">Kirill:</span> <span class="it-text">Per lavoro. Sono programmatore. Lavoro per una compagnia italiana.</span> <span class="ru-text">Для работы. Я программист. Я работаю в итальянской компании.</span></div>
+                        <div class="transcript-row"><span class="speaker">Antonio:</span> <span class="it-text">Perfetto. Allora, cominciamo?</span> <span class="ru-text">Отлично. Тогда начинаем?</span></div>
                     </div>
-                    
                     
                     <div class="quiz-container" id="quiz1">
                         <div class="question">1. Chi è Antonio?</div>
@@ -582,7 +356,6 @@
                             <label class="option"><input type="radio" name="q1" value="b"> Antonio è l'insegnante.</label>
                             <label class="option"><input type="radio" name="q1" value="c"> Antonio è il direttore.</label>
                         </div>
-                        
                         <div class="question">2. Che lavoro fa Aigerim?</div>
                         <div class="options" data-correct="b">
                             <label class="option"><input type="radio" name="q2" value="a"> Aigerim è programmatrice.</label>
@@ -620,15 +393,16 @@
                             <label class="option"><input type="radio" name="q7" value="c"> Kirill è italiano.</label>
                         </div>
 
-<div style="text-align: center; margin-top: 30px;">
+                        <div style="text-align: center; margin-top: 30px;">
                             <button class="btn-nav btn-check" onclick="checkQuiz('quiz1', 'res1')">Verifica (Проверить) ✓</button>
                         </div>
-                        
                         <div id="res1" class="result-container">
                             <h3 class="score-text"></h3>
                             <p class="feedback-text"></p>
                         </div>
-                    </div> <div class="nav-buttons-container">
+                    </div> 
+
+                    <div class="nav-buttons-container">
                         <button class="btn-nav btn-back" onclick="showSection('sec-pres')">
                             ⬅ Intro (Введение)
                         </button>
@@ -640,7 +414,7 @@
             </div>
         </div>
 
-<div id="sec-dial2" class="section-block">
+        <div id="sec-dial2" class="section-block">
             <div class="card">
                 <header>
                     <div class="header-course">Dialoghi</div>
@@ -674,130 +448,58 @@
 
                     <div id="trans2" class="transcript-box">
                         <h4>Dialogo 2: Zarina e Bekzat</h4>
-                        
-                        <div class="transcript-row">
-                            <span class="speaker">Antonio:</span>
-                            <span class="it-text">Buongiorno Zarina e Bekzat. Voi siete stranieri?</span>
-                            <span class="ru-text">Добрый день, Зарина и Бекзат. Вы иностранцы?</span>
-                        </div>
-                        
-                        <div class="transcript-row">
-                            <span class="speaker">Zarina:</span>
-                            <span class="it-text">Sì, buongiorno Antonio. Noi siamo stranieri.</span>
-                            <span class="ru-text">Да, добрый день, Антонио. Мы иностранцы.</span>
-                        </div>
-
-                        <div class="transcript-row">
-                            <span class="speaker">Bekzat:</span>
-                            <span class="it-text">Sì, io sono kazako e Zarina è uzbeka.</span>
-                            <span class="ru-text">Да, я казах, а Зарина узбечка.</span>
-                        </div>
-
-                        <div class="transcript-row">
-                            <span class="speaker">Antonio:</span>
-                            <span class="it-text">Molto bene. Voi siete studenti o lavorate?</span>
-                            <span class="ru-text">Очень хорошо. Вы студенты или работаете?</span>
-                        </div>
-
-                        <div class="transcript-row">
-                            <span class="speaker">Zarina:</span>
-                            <span class="it-text">Io sono infermiera. E Bekzat è cuoco.</span>
-                            <span class="ru-text">Я медсестра. А Бекзат повар.</span>
-                        </div>
-
-                        <div class="transcript-row">
-                            <span class="speaker">Antonio:</span>
-                            <span class="it-text">Ah, benissimo. E perché studiate l'italiano?</span>
-                            <span class="ru-text">А, отлично. А почему вы учите итальянский?</span>
-                        </div>
-
-                        <div class="transcript-row">
-                            <span class="speaker">Zarina:</span>
-                            <span class="it-text">Io studio perché sogno di viaggiare in Italia, specialmente a Roma.</span>
-                            <span class="ru-text">Я учу, потому что мечтаю поехать в Италию, особенно в Рим.</span>
-                        </div>
-
-                        <div class="transcript-row">
-                            <span class="speaker">Bekzat:</span>
-                            <span class="it-text">Io per lavoro, perché lavoro in un ristorante italiano.</span>
-                            <span class="ru-text">Я для работы, потому что работаю в итальянском ресторане.</span>
-                        </div>
-
-                        <div class="transcript-row">
-                            <span class="speaker">Antonio:</span>
-                            <span class="it-text">Per curiosità, voi siete amici o siete sposati?</span>
-                            <span class="ru-text">Из любопытства, вы друзья или женаты?</span>
-                        </div>
-
-                        <div class="transcript-row">
-                            <span class="speaker">Bekzat:</span>
-                            <span class="it-text">No, non siamo amici. Siamo marito e moglie.</span>
-                            <span class="ru-text">Нет, мы не друзья. Мы муж и жена.</span>
-                        </div>
-
-                        <div class="transcript-row">
-                            <span class="speaker">Antonio:</span>
-                            <span class="it-text">Ah che bello! Allora siete sposati. Siete proprio una bella coppia!</span>
-                            <span class="ru-text">Ах, как здорово! Значит, вы женаты. Вы очень красивая пара!</span>
-                        </div>
-
-                        <div class="transcript-row">
-                            <span class="speaker">Zarina:</span>
-                            <span class="it-text">Sì, siamo sposati. Io sono sua moglie!</span>
-                            <span class="ru-text">Да, мы женаты. Я его жена!</span>
-                        </div>
-
-                        <div class="transcript-row">
-                            <span class="speaker">Antonio:</span>
-                            <span class="it-text">Perfetto. Allora, adesso cominciamo la lezione, va bene?</span>
-                            <span class="ru-text">Отлично. Тогда сейчас начнем урок, хорошо?</span>
-                        </div>
+                        <div class="transcript-row"><span class="speaker">Antonio:</span> <span class="it-text">Buongiorno Zarina e Bekzat. Voi siete stranieri?</span> <span class="ru-text">Добрый день, Зарина и Бекзат. Вы иностранцы?</span></div>
+                        <div class="transcript-row"><span class="speaker">Zarina:</span> <span class="it-text">Sì, buongiorno Antonio. Noi siamo stranieri.</span> <span class="ru-text">Да, добрый день, Антонио. Мы иностранцы.</span></div>
+                        <div class="transcript-row"><span class="speaker">Bekzat:</span> <span class="it-text">Sì, io sono kazako e Zarina è uzbeka.</span> <span class="ru-text">Да, я казах, а Зарина узбечка.</span></div>
+                        <div class="transcript-row"><span class="speaker">Antonio:</span> <span class="it-text">Molto bene. Voi siete studenti o lavorate?</span> <span class="ru-text">Очень хорошо. Вы студенты или работаете?</span></div>
+                        <div class="transcript-row"><span class="speaker">Zarina:</span> <span class="it-text">Io sono infermiera. E Bekzat è cuoco.</span> <span class="ru-text">Я медсестра. А Бекзат повар.</span></div>
+                        <div class="transcript-row"><span class="speaker">Antonio:</span> <span class="it-text">Ah, benissimo. E perché studiate l'italiano?</span> <span class="ru-text">А, отлично. А почему вы учите итальянский?</span></div>
+                        <div class="transcript-row"><span class="speaker">Zarina:</span> <span class="it-text">Io studio perché sogno di viaggiare in Italia, specialmente a Roma.</span> <span class="ru-text">Я учу, потому что мечтаю поехать в Италию, особенно в Рим.</span></div>
+                        <div class="transcript-row"><span class="speaker">Bekzat:</span> <span class="it-text">Io per lavoro, perché lavoro in un ristorante italiano.</span> <span class="ru-text">Я для работы, потому что работаю в итальянском ресторане.</span></div>
+                        <div class="transcript-row"><span class="speaker">Antonio:</span> <span class="it-text">Per curiosità, voi siete amici o siete sposati?</span> <span class="ru-text">Из любопытства, вы друзья или женаты?</span></div>
+                        <div class="transcript-row"><span class="speaker">Bekzat:</span> <span class="it-text">No, non siamo amici. Siamo marito e moglie.</span> <span class="ru-text">Нет, мы не друзья. Мы муж и жена.</span></div>
+                        <div class="transcript-row"><span class="speaker">Antonio:</span> <span class="it-text">Ah che bello! Allora siete sposati. Siete proprio una bella coppia!</span> <span class="ru-text">Ах, как здорово! Значит, вы женаты. Вы очень красивая пара!</span></div>
+                        <div class="transcript-row"><span class="speaker">Zarina:</span> <span class="it-text">Sì, siamo sposati. Io sono sua moglie!</span> <span class="ru-text">Да, мы женаты. Я его жена!</span></div>
+                        <div class="transcript-row"><span class="speaker">Antonio:</span> <span class="it-text">Perfetto. Allora, adesso cominciamo la lezione, va bene?</span> <span class="ru-text">Отлично. Тогда сейчас начнем урок, хорошо?</span></div>
                     </div>
                     
                     <div class="quiz-container" id="quiz2">
-                        
                         <div class="question">1. Di dov'è Zarina?</div>
                         <div class="options" data-correct="b">
                             <label class="option"><input type="radio" name="d2_q1" value="a"> Zarina è kazaka.</label>
                             <label class="option"><input type="radio" name="d2_q1" value="b"> Zarina è uzbeka.</label>
                             <label class="option"><input type="radio" name="d2_q1" value="c"> Zarina è russa.</label>
                         </div>
-
                         <div class="question">2. Di dov'è Bekzat?</div>
                         <div class="options" data-correct="a">
                             <label class="option"><input type="radio" name="d2_q2" value="a"> Bekzat è kazako.</label>
                             <label class="option"><input type="radio" name="d2_q2" value="b"> Bekzat è uzbeko.</label>
                             <label class="option"><input type="radio" name="d2_q2" value="c"> Bekzat è italiano.</label>
                         </div>
-
                         <div class="question">3. Che lavoro fa Bekzat?</div>
                         <div class="options" data-correct="c">
                             <label class="option"><input type="radio" name="d2_q3" value="a"> Bekzat è infermiere.</label>
                             <label class="option"><input type="radio" name="d2_q3" value="b"> Bekzat è insegnante.</label>
                             <label class="option"><input type="radio" name="d2_q3" value="c"> Bekzat è cuoco.</label>
                         </div>
-
                         <div class="question">4. Che lavoro fa Zarina?</div>
                         <div class="options" data-correct="a">
                             <label class="option"><input type="radio" name="d2_q4" value="a"> Zarina è infermiera.</label>
                             <label class="option"><input type="radio" name="d2_q4" value="b"> Zarina è casalinga.</label>
                             <label class="option"><input type="radio" name="d2_q4" value="c"> Zarina è programmatrice.</label>
                         </div>
-
                         <div class="question">5. Perché Bekzat studia l'italiano?</div>
                         <div class="options" data-correct="a">
                             <label class="option"><input type="radio" name="d2_q5" value="a"> Per lavoro (ristorante).</label>
                             <label class="option"><input type="radio" name="d2_q5" value="b"> Per viaggiare a Roma.</label>
                             <label class="option"><input type="radio" name="d2_q5" value="c"> Per amore.</label>
                         </div>
-
                         <div class="question">6. Perché Zarina studia l'italiano?</div>
                         <div class="options" data-correct="b">
                             <label class="option"><input type="radio" name="d2_q6" value="a"> Per lavoro.</label>
                             <label class="option"><input type="radio" name="d2_q6" value="b"> Per viaggiare a Roma.</label>
                             <label class="option"><input type="radio" name="d2_q6" value="c"> Perché ama la pizza.</label>
                         </div>
-
                         <div class="question">7. Bekzat e Zarina sono amici?</div>
                         <div class="options" data-correct="b">
                             <label class="option"><input type="radio" name="d2_q7" value="a"> Sì, sono amici.</label>
@@ -826,7 +528,7 @@
             </div>
         </div>
 
-<div id="sec-testo" class="section-block">
+        <div id="sec-testo" class="section-block">
             <div class="card">
                 <header>
                     <div class="header-course">Lettura</div>
@@ -929,9 +631,9 @@
                         </div>
                     </div>
 
-<hr style="border: 0; border-top: 2px dashed #eee; margin: 40px 0;">
+                    <hr style="border: 0; border-top: 2px dashed #eee; margin: 40px 0;">
 
- <div class="quiz-container" id="quiz-testo">
+                    <div class="quiz-container" id="quiz-testo">
                         <h3 style="color:var(--primary); text-align:center;">✅ Verifica la comprensione <span class="ru-block">(Проверьте понимание текста)</span></h3>
                         <p style="text-align:center; margin-bottom:30px; font-size:0.9rem;">Rispondi alle domande (Ответьте на вопросы):</p>
 
@@ -941,120 +643,103 @@
                             <label class="option"><input type="radio" name="qt_1" value="b"> È ad Almaty.</label>
                             <label class="option"><input type="radio" name="qt_1" value="c"> È a Roma.</label>
                         </div>
-
                         <div class="question">2. Dov’è la scuola "Parlo Italiano"? (Paese)</div>
                         <div class="options" data-correct="c">
                             <label class="option"><input type="radio" name="qt_2" value="a"> È in Italia.</label>
                             <label class="option"><input type="radio" name="qt_2" value="b"> È in Russia.</label>
                             <label class="option"><input type="radio" name="qt_2" value="c"> È in Kazakistan.</label>
                         </div>
-
                         <div class="question">3. Chi è Aigerim?</div>
                         <div class="options" data-correct="b">
                             <label class="option"><input type="radio" name="qt_3" value="a"> È la direttrice della scuola.</label>
                             <label class="option"><input type="radio" name="qt_3" value="b"> È una studentessa della scuola.</label>
                             <label class="option"><input type="radio" name="qt_3" value="c"> È un’insegnante della scuola.</label>
                         </div>
-
                         <div class="question">4. Che lavoro fa Aigerim?</div>
                         <div class="options" data-correct="a">
                             <label class="option"><input type="radio" name="qt_4" value="a"> È casalinga.</label>
                             <label class="option"><input type="radio" name="qt_4" value="b"> È dottoressa.</label>
                             <label class="option"><input type="radio" name="qt_4" value="c"> È ingegnera.</label>
                         </div>
-
                         <div class="question">5. Perché Aigerim studia l’italiano?</div>
                         <div class="options" data-correct="b">
                             <label class="option"><input type="radio" name="qt_5" value="a"> Per turismo.</label>
                             <label class="option"><input type="radio" name="qt_5" value="b"> Perché ama la cucina italiana.</label>
                             <label class="option"><input type="radio" name="qt_5" value="c"> Perché lavora in Italia.</label>
                         </div>
-
                         <div class="question">6. Di dov’è Aigerim?</div>
                         <div class="options" data-correct="c">
                             <label class="option"><input type="radio" name="qt_6" value="a"> È francese.</label>
                             <label class="option"><input type="radio" name="qt_6" value="b"> È russa.</label>
                             <label class="option"><input type="radio" name="qt_6" value="c"> È kazaka.</label>
                         </div>
-
                         <div class="question">7. Di dov’è Kirill?</div>
                         <div class="options" data-correct="c">
                             <label class="option"><input type="radio" name="qt_7" value="a"> È italiano.</label>
                             <label class="option"><input type="radio" name="qt_7" value="b"> È inglese.</label>
                             <label class="option"><input type="radio" name="qt_7" value="c"> È russo.</label>
                         </div>
-
                         <div class="question">8. Perché Kirill studia l’italiano?</div>
                         <div class="options" data-correct="b">
                             <label class="option"><input type="radio" name="qt_8" value="a"> Perché ama la cucina italiana.</label>
                             <label class="option"><input type="radio" name="qt_8" value="b"> Perché lavora con gli italiani.</label>
                             <label class="option"><input type="radio" name="qt_8" value="c"> Perché viaggia in Italia.</label>
                         </div>
-
                         <div class="question">9. Che lavoro fa Kirill?</div>
                         <div class="options" data-correct="a">
                             <label class="option"><input type="radio" name="qt_9" value="a"> È programmatore.</label>
                             <label class="option"><input type="radio" name="qt_9" value="b"> È insegnante.</label>
                             <label class="option"><input type="radio" name="qt_9" value="c"> È dentista.</label>
                         </div>
-
                         <div class="question">10. Di dov’è Zarina?</div>
                         <div class="options" data-correct="c">
                             <label class="option"><input type="radio" name="qt_10" value="a"> È russa.</label>
                             <label class="option"><input type="radio" name="qt_10" value="b"> È italiana.</label>
                             <label class="option"><input type="radio" name="qt_10" value="c"> È uzbeka.</label>
                         </div>
-
                         <div class="question">11. Che lavoro fa Zarina?</div>
                         <div class="options" data-correct="b">
                             <label class="option"><input type="radio" name="qt_11" value="a"> È casalinga.</label>
                             <label class="option"><input type="radio" name="qt_11" value="b"> È infermiera.</label>
                             <label class="option"><input type="radio" name="qt_11" value="c"> È insegnante.</label>
                         </div>
-
                         <div class="question">12. Perché Zarina studia l’italiano?</div>
                         <div class="options" data-correct="c">
                             <label class="option"><input type="radio" name="qt_12" value="a"> Per lavoro.</label>
                             <label class="option"><input type="radio" name="qt_12" value="b"> Perché ama la musica italiana.</label>
                             <label class="option"><input type="radio" name="qt_12" value="c"> Per viaggiare in Italia.</label>
                         </div>
-
                         <div class="question">13. Di dov’è Bekzat?</div>
                         <div class="options" data-correct="a">
                             <label class="option"><input type="radio" name="qt_13" value="a"> È kazako.</label>
                             <label class="option"><input type="radio" name="qt_13" value="b"> È russo.</label>
                             <label class="option"><input type="radio" name="qt_13" value="c"> È americano.</label>
                         </div>
-
                         <div class="question">14. Che lavoro fa Bekzat?</div>
                         <div class="options" data-correct="b">
                             <label class="option"><input type="radio" name="qt_14" value="a"> È ingegnere.</label>
                             <label class="option"><input type="radio" name="qt_14" value="b"> È cuoco.</label>
                             <label class="option"><input type="radio" name="qt_14" value="c"> È insegnante.</label>
                         </div>
-
                         <div class="question">15. Perché Bekzat studia l’italiano?</div>
                         <div class="options" data-correct="c">
                             <label class="option"><input type="radio" name="qt_15" value="a"> Per piacere.</label>
                             <label class="option"><input type="radio" name="qt_15" value="b"> Per turismo.</label>
                             <label class="option"><input type="radio" name="qt_15" value="c"> Per lavoro.</label>
                         </div>
-
                         <div class="question">16. Chi è Antonio?</div>
                         <div class="options" data-correct="b">
                             <label class="option"><input type="radio" name="qt_16" value="a"> È uno studente della scuola.</label>
                             <label class="option"><input type="radio" name="qt_16" value="b"> È l’insegnante della scuola.</label>
                             <label class="option"><input type="radio" name="qt_16" value="c"> È il direttore della scuola.</label>
                         </div>
-
                         <div class="question">17. Antonio è sposato?</div>
                         <div class="options" data-correct="a">
                             <label class="option"><input type="radio" name="qt_17" value="a"> Sì, è sposato.</label>
                             <label class="option"><input type="radio" name="qt_17" value="b"> No, è single.</label>
                             <label class="option"><input type="radio" name="qt_17" value="c"> No, è divorziato.</label>
                         </div>
-                        
-                         <div class="question">18. Antonio è un bravo insegnante?</div>
+                        <div class="question">18. Antonio è un bravo insegnante?</div>
                         <div class="options" data-correct="b">
                             <label class="option"><input type="radio" name="qt_18" value="a"> È un cattivo insegnante.</label>
                             <label class="option"><input type="radio" name="qt_18" value="b"> È un bravo insegnante.</label>
@@ -1062,15 +747,111 @@
                         </div>
 
                         <div style="text-align: center; margin-top: 30px;">
-                            <button class="btn-nav btn-check" onclick="checkQuiz('quiz-testo', 'res-testo')">Verifica (Проверить) ✓</button>
+                            <button class="btn-nav btn-check" onclick="checkQuiz('quiz-testo', 'res-testo'); document.getElementById('btn-show-analysis').style.display='inline-flex'">
+                                Verifica (Проверить) ✓
+                            </button>
                         </div>
+                        
                         <div id="res-testo" class="result-container">
                             <h3 class="score-text"></h3>
                             <p class="feedback-text"></p>
                         </div>
-                    </div>
 
+                        <div style="text-align:center; margin-top:20px;">
+                            <button id="btn-show-analysis" class="btn-nav" style="display:none; background-color:#3498db; width:auto;" onclick="showAnalysisStep()">
+                                🔍 Analizziamo le domande (Разберем вопросы) ➔
+                            </button>
+                        </div>
 
+                    </div> 
+                    
+<div id="analysis-section" style="display:none; animation: fadeIn 0.5s;">
+                        
+                        <hr style="border: 0; border-top: 2px dashed #ccc; margin: 40px 0;">
+
+                        <div class="context-box" style="background-color:#fff8e1; border-color:#f1c40f;">
+                            <h3 style="color:#d35400; margin-top:0;">1. Osserva (Посмотрите):</h3>
+                            <p>Ecco le domande e le risposte che abbiamo appena visto:</p>
+                            
+                            <table class="grammar-table" style="margin:0;">
+                                <tr>
+                                    <th style="background:#f39c12;">Domanda (Вопрос)</th>
+                                    <th style="background:#f39c12;">Risposta (Ответ)</th>
+                                </tr>
+                                <tr>
+                                    <td><strong>Chi</strong> è Antonio?</td>
+                                    <td>È l'insegnante (Persona).</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Dov'è</strong> la scuola?</td>
+                                    <td>È ad Almaty (Luogo).</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Di dov'è</strong> Kirill?</td>
+                                    <td>È russo (Origine).</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Che lavoro</strong> fa?</td>
+                                    <td>È cuoco (Professione).</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Perché</strong> studia?</td>
+                                    <td>Per lavoro (Motivo).</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="quiz-container" id="quiz-interrogativi" style="border: 2px solid #f1c40f; padding: 25px; border-radius: 15px; background-color: #fffcf5;">
+                            <h3 style="color:#d35400; text-align:center;">2. Deduci la regola (Выведите правило)</h3>
+                            <p style="text-align:center; margin-bottom:30px; font-size:0.9rem;">
+                                Какое вопросительное слово мы используем, чтобы...
+                            </p>
+
+                            <div class="question">1. Узнать личность человека (Кто?)</div>
+                            <div class="options" data-correct="a">
+                                <label class="option"><input type="radio" name="qi_1" value="a"> <strong>Chi</strong> è...?</label>
+                                <label class="option"><input type="radio" name="qi_1" value="b"> <strong>Dove</strong> è...?</label>
+                                <label class="option"><input type="radio" name="qi_1" value="c"> <strong>Perché</strong> è...?</label>
+                            </div>
+
+                            <div class="question">2. Узнать происхождение (Откуда?)</div>
+                            <div class="options" data-correct="b">
+                                <label class="option"><input type="radio" name="qi_2" value="a"> <strong>Dove</strong> è...?</label>
+                                <label class="option"><input type="radio" name="qi_2" value="b"> <strong>Di dov'è</strong>...?</label>
+                                <label class="option"><input type="radio" name="qi_2" value="c"> <strong>Chi</strong> è...?</label>
+                            </div>
+
+                            <div class="question">3. Узнать местонахождение (Где?)</div>
+                            <div class="options" data-correct="a">
+                                <label class="option"><input type="radio" name="qi_3" value="a"> <strong>Dov'è</strong>...?</label>
+                                <label class="option"><input type="radio" name="qi_3" value="b"> <strong>Di dov'è</strong>...?</label>
+                                <label class="option"><input type="radio" name="qi_3" value="c"> <strong>Che lavoro</strong>...?</label>
+                            </div>
+
+                            <div class="question">4. Узнать профессию (Кем работает?)</div>
+                            <div class="options" data-correct="c">
+                                <label class="option"><input type="radio" name="qi_4" value="a"> <strong>Chi</strong> fa...?</label>
+                                <label class="option"><input type="radio" name="qi_4" value="b"> <strong>Perché</strong> fa...?</label>
+                                <label class="option"><input type="radio" name="qi_4" value="c"> <strong>Che lavoro</strong> fa...?</label>
+                            </div>
+
+                            <div class="question">5. Узнать причину (Почему?)</div>
+                            <div class="options" data-correct="b">
+                                <label class="option"><input type="radio" name="qi_5" value="a"> <strong>Come</strong>...?</label>
+                                <label class="option"><input type="radio" name="qi_5" value="b"> <strong>Perché</strong>...?</label>
+                                <label class="option"><input type="radio" name="qi_5" value="c"> <strong>Chi</strong>...?</label>
+                            </div>
+
+                            <div style="text-align: center; margin-top: 30px;">
+                                <button class="btn-nav btn-check" onclick="checkQuiz('quiz-interrogativi', 'res-interrogativi')">Verifica (Проверить) ✓</button>
+                            </div>
+                            <div id="res-interrogativi" class="result-container">
+                                <h3 class="score-text"></h3>
+                                <p class="feedback-text"></p>
+                            </div>
+                        </div>
+
+ 
                     <div class="nav-buttons-container">
                         <button class="btn-nav btn-back" onclick="showSection('sec-dial2')">
                             ⬅ Dialogo 2 (Диалог 2)
@@ -1242,7 +1023,6 @@
             }
         }
         
-        
         function toggleTrans(id) {
             const el = document.getElementById(id);
             if (el.style.display === 'block') {
@@ -1250,6 +1030,17 @@
             } else {
                 el.style.display = 'block';
             }
+        }
+        
+        function showAnalysisStep() {
+            const analysisSec = document.getElementById('analysis-section');
+            const btn = document.getElementById('btn-show-analysis');
+            
+            analysisSec.style.display = 'block';
+            btn.style.display = 'none'; // Nasconde il pulsante blu dopo averlo cliccato
+            
+            // Scorre dolcemente verso la nuova sezione
+            analysisSec.scrollIntoView({ behavior: 'smooth' });
         }
     </script>
 
