@@ -323,14 +323,15 @@
             border-color: var(--primary);
         }
         
-        .profile-img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%; /* La rende tonda */
-            object-fit: cover; /* Taglia l'immagine bene senza deformarla */
+       .profile-img {
+            width: 120px;  /* PRIMA ERA 80px */
+            height: 120px; /* PRIMA ERA 80px */
+            border-radius: 50%;
+            object-fit: cover;
             border: 3px solid var(--primary);
-            margin-right: 20px;
-            flex-shrink: 0; /* Impedisce alla foto di schiacciarsi */
+            margin-right: 25px; /* Aumentato un po' lo spazio dal testo */
+            flex-shrink: 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Aggiunta un'ombra carina */
         }
         
         .profile-text p {
@@ -347,8 +348,8 @@
             .profile-img {
                 margin-right: 0;
                 margin-bottom: 15px;
-                width: 100px;
-                height: 100px;
+                width: 130px;  /* PRIMA ERA 100px - Su mobile osiamo di più! */
+                height: 130px;
             }
         }
         
