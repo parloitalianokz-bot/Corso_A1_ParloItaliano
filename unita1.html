@@ -348,8 +348,8 @@
             .profile-img {
                 margin-right: 0;
                 margin-bottom: 15px;
-                width: 130px;  /* PRIMA ERA 100px - Su mobile osiamo di più! */
-                height: 130px;
+                width: 100px;
+                height: 100px;
             }
         }
         
@@ -837,7 +837,7 @@
                     
                     <div class="context-box">
                         <p style="margin:0;">
-                            La scuola <strong>"Parlo Italiano"</strong> è ad <span class="highlight">Almaty</span>, in Kazakistan.<br>
+                            La scuola <strong>"Parlo Italiano"</strong> è ad <span class="highlight">Almaty</span>, in Kazakhstan.<br>
                             È una scuola moderna, perfetta per studenti russofoni perché è online.
                         </p>
                         <button class="btn-translate" onclick="toggleTrans('txt-intro')">Mostra traduzione (Показать перевод)</button>
@@ -928,6 +928,149 @@
                             </div>
                         </div>
                     </div>
+
+<hr style="border: 0; border-top: 2px dashed #eee; margin: 40px 0;">
+
+                    <div class="quiz-container" id="quiz-testo">
+                        <h3 style="color:var(--primary); text-align:center;">✅ Verifica la comprensione <span class="ru-block">(Проверьте понимание текста)</span></h3>
+                        <p style="text-align:center; margin-bottom:30px; font-size:0.9rem;">Seleziona la risposta corretta (Выберите правильный вариант):</p>
+
+                        <div class="question">1. La scuola "Parlo Italiano"...</div>
+                        <div class="options" data-correct="b">
+                            <label class="option"><input type="radio" name="qt_1" value="a"> è a Milano</label>
+                            <label class="option"><input type="radio" name="qt_1" value="b"> è ad Almaty</label>
+                            <label class="option"><input type="radio" name="qt_1" value="c"> è a Roma</label>
+                        </div>
+
+                        <div class="question">2. La scuola "Parlo Italiano"...</div>
+                        <div class="options" data-correct="c">
+                            <label class="option"><input type="radio" name="qt_2" value="a"> è in Italia</label>
+                            <label class="option"><input type="radio" name="qt_2" value="b"> è in Russia</label>
+                            <label class="option"><input type="radio" name="qt_2" value="c"> è in Kazakistan</label>
+                        </div>
+
+                        <div class="question">3. Aigerim...</div>
+                        <div class="options" data-correct="b">
+                            <label class="option"><input type="radio" name="qt_3" value="a"> è la direttrice della scuola</label>
+                            <label class="option"><input type="radio" name="qt_3" value="b"> è una studentessa della scuola</label>
+                            <label class="option"><input type="radio" name="qt_3" value="c"> è un’insegnante della scuola</label>
+                        </div>
+
+                        <div class="question">4. Aigerim...</div>
+                        <div class="options" data-correct="a">
+                            <label class="option"><input type="radio" name="qt_4" value="a"> è casalinga</label>
+                            <label class="option"><input type="radio" name="qt_4" value="b"> è dottoressa</label>
+                            <label class="option"><input type="radio" name="qt_4" value="c"> è ingegnera</label>
+                        </div>
+
+                        <div class="question">5. Aigerim studia l’italiano...</div>
+                        <div class="options" data-correct="b">
+                            <label class="option"><input type="radio" name="qt_5" value="a"> per turismo</label>
+                            <label class="option"><input type="radio" name="qt_5" value="b"> perché ama la cucina italiana</label>
+                            <label class="option"><input type="radio" name="qt_5" value="c"> perché lavora in Italia</label>
+                        </div>
+
+                        <div class="question">6. Aigerim...</div>
+                        <div class="options" data-correct="c">
+                            <label class="option"><input type="radio" name="qt_6" value="a"> è francese</label>
+                            <label class="option"><input type="radio" name="qt_6" value="b"> è russa</label>
+                            <label class="option"><input type="radio" name="qt_6" value="c"> è kazaka</label>
+                        </div>
+
+                        <div class="question">7. Kirill...</div>
+                        <div class="options" data-correct="c">
+                            <label class="option"><input type="radio" name="qt_7" value="a"> è italiano</label>
+                            <label class="option"><input type="radio" name="qt_7" value="b"> è inglese</label>
+                            <label class="option"><input type="radio" name="qt_7" value="c"> è russo</label>
+                        </div>
+
+                        <div class="question">8. Kirill studia l’italiano...</div>
+                        <div class="options" data-correct="b">
+                            <label class="option"><input type="radio" name="qt_8" value="a"> perché ama la cucina italiana</label>
+                            <label class="option"><input type="radio" name="qt_8" value="b"> perché lavora con gli italiani</label>
+                            <label class="option"><input type="radio" name="qt_8" value="c"> perché viaggia in Italia</label>
+                        </div>
+
+                        <div class="question">9. Kirill...</div>
+                        <div class="options" data-correct="a">
+                            <label class="option"><input type="radio" name="qt_9" value="a"> è programmatore</label>
+                            <label class="option"><input type="radio" name="qt_9" value="b"> è insegnante</label>
+                            <label class="option"><input type="radio" name="qt_9" value="c"> è dentista</label>
+                        </div>
+
+                        <div class="question">10. Zarina...</div>
+                        <div class="options" data-correct="c">
+                            <label class="option"><input type="radio" name="qt_10" value="a"> è russa</label>
+                            <label class="option"><input type="radio" name="qt_10" value="b"> è italiana</label>
+                            <label class="option"><input type="radio" name="qt_10" value="c"> è uzbeka</label>
+                        </div>
+
+                        <div class="question">11. Zarina...</div>
+                        <div class="options" data-correct="b">
+                            <label class="option"><input type="radio" name="qt_11" value="a"> è casalinga</label>
+                            <label class="option"><input type="radio" name="qt_11" value="b"> è infermiera</label>
+                            <label class="option"><input type="radio" name="qt_11" value="c"> è insegnante</label>
+                        </div>
+
+                        <div class="question">12. Zarina studia l’italiano...</div>
+                        <div class="options" data-correct="c">
+                            <label class="option"><input type="radio" name="qt_12" value="a"> per lavoro</label>
+                            <label class="option"><input type="radio" name="qt_12" value="b"> perché ama la musica italiana</label>
+                            <label class="option"><input type="radio" name="qt_12" value="c"> per viaggiare in Italia</label>
+                        </div>
+
+                        <div class="question">13. Bekzat...</div>
+                        <div class="options" data-correct="a">
+                            <label class="option"><input type="radio" name="qt_13" value="a"> è kazako</label>
+                            <label class="option"><input type="radio" name="qt_13" value="b"> è russo</label>
+                            <label class="option"><input type="radio" name="qt_13" value="c"> è americano</label>
+                        </div>
+
+                        <div class="question">14. Bekzat...</div>
+                        <div class="options" data-correct="b">
+                            <label class="option"><input type="radio" name="qt_14" value="a"> è ingegnere</label>
+                            <label class="option"><input type="radio" name="qt_14" value="b"> è cuoco</label>
+                            <label class="option"><input type="radio" name="qt_14" value="c"> è insegnante</label>
+                        </div>
+
+                        <div class="question">15. Bekzat studia l’italiano...</div>
+                        <div class="options" data-correct="c">
+                            <label class="option"><input type="radio" name="qt_15" value="a"> per piacere</label>
+                            <label class="option"><input type="radio" name="qt_15" value="b"> per turismo</label>
+                            <label class="option"><input type="radio" name="qt_15" value="c"> per lavoro</label>
+                        </div>
+
+                        <div class="question">16. Antonio...</div>
+                        <div class="options" data-correct="b">
+                            <label class="option"><input type="radio" name="qt_16" value="a"> è uno studente della scuola</label>
+                            <label class="option"><input type="radio" name="qt_16" value="b"> è l’insegnante della scuola</label>
+                            <label class="option"><input type="radio" name="qt_16" value="c"> è il direttore della scuola</label>
+                        </div>
+
+                        <div class="question">17. Antonio...</div>
+                        <div class="options" data-correct="a">
+                            <label class="option"><input type="radio" name="qt_17" value="a"> è sposato</label>
+                            <label class="option"><input type="radio" name="qt_17" value="b"> è single</label>
+                            <label class="option"><input type="radio" name="qt_17" value="c"> è divorziato</label>
+                        </div>
+                        
+                         <div class="question">18. Antonio...</div>
+                        <div class="options" data-correct="b">
+                            <label class="option"><input type="radio" name="qt_18" value="a"> è un cattivo insegnante</label>
+                            <label class="option"><input type="radio" name="qt_18" value="b"> è un bravo insegnante</label>
+                            <label class="option"><input type="radio" name="qt_18" value="c"> è un bravo studente</label>
+                        </div>
+
+
+                        <div style="text-align: center; margin-top: 30px;">
+                            <button class="btn-nav btn-check" onclick="checkQuiz('quiz-testo', 'res-testo')">Verifica (Проверить) ✓</button>
+                        </div>
+                        <div id="res-testo" class="result-container">
+                            <h3 class="score-text"></h3>
+                            <p class="feedback-text"></p>
+                        </div>
+                    </div>
+
 
                     <div class="nav-buttons-container">
                         <button class="btn-nav btn-back" onclick="showSection('sec-dial2')">
