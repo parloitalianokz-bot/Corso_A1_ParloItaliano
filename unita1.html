@@ -117,6 +117,15 @@
         
         .question { font-weight: bold; margin-bottom: 15px; font-size: 1.1rem; color: var(--text); margin-top: 30px; }
         
+        .ru-question {
+            display: block;       /* Va a capo automaticamente */
+            font-size: 0.9rem;    /* Un po' più piccolo */
+            color: #7f8c8d;       /* Grigio, meno invadente */
+            font-weight: normal;  /* Non grassetto */
+            margin-top: 2px;
+            font-style: italic;
+        }
+        
         .option { 
             display: block; background: #fff; padding: 15px; margin: 10px 0; border-radius: 15px; cursor: pointer; 
             border: 2px solid #eee; transition: all 0.2s; font-weight: 500;
@@ -349,44 +358,71 @@
                         <div class="transcript-row"><span class="speaker">Antonio:</span> <span class="it-text">Perfetto. Allora, cominciamo?</span> <span class="ru-text">Отлично. Тогда начинаем?</span></div>
                     </div>
                     
-                    <div class="quiz-container" id="quiz1">
-                        <div class="question">1. Chi è Antonio?</div>
+                   <div class="quiz-container" id="quiz1">
+                        <div class="question">
+                            1. Chi è Antonio?
+                            <span class="ru-question">(Кто такой Антонио?)</span>
+                        </div>
                         <div class="options" data-correct="b">
                             <label class="option"><input type="radio" name="q1" value="a"> Antonio è uno studente.</label>
                             <label class="option"><input type="radio" name="q1" value="b"> Antonio è l'insegnante.</label>
                             <label class="option"><input type="radio" name="q1" value="c"> Antonio è il direttore.</label>
                         </div>
-                        <div class="question">2. Che lavoro fa Aigerim?</div>
+                        
+                        <div class="question">
+                            2. Che lavoro fa Aigerim?
+                            <span class="ru-question">(Кем работает Айгерим?)</span>
+                        </div>
                         <div class="options" data-correct="b">
                             <label class="option"><input type="radio" name="q2" value="a"> Aigerim è programmatrice.</label>
                             <label class="option"><input type="radio" name="q2" value="b"> Aigerim è casalinga.</label>
                             <label class="option"><input type="radio" name="q2" value="c"> Aigerim è cuoca.</label>
                         </div>
-                        <div class="question">3. Di dov'è Aigerim?</div>
+                        
+                        <div class="question">
+                            3. Di dov'è Aigerim?
+                            <span class="ru-question">(Откуда Айгерим?)</span>
+                        </div>
                         <div class="options" data-correct="b">
                              <label class="option"><input type="radio" name="q3" value="a"> Aigerim è di Almaty.</label>
                              <label class="option"><input type="radio" name="q3" value="b"> Aigerim è di Astana.</label>
                              <label class="option"><input type="radio" name="q3" value="c"> Aigerim è di Mosca.</label>
                         </div>
-                        <div class="question">4. Perché Aigerim studia l'italiano?</div>
+                        
+                        <div class="question">
+                            4. Perché Aigerim studia l'italiano?
+                            <span class="ru-question">(Почему Айгерим учит итальянский?)</span>
+                        </div>
                         <div class="options" data-correct="b">
                             <label class="option"><input type="radio" name="q4" value="a"> Per lavoro.</label>
                             <label class="option"><input type="radio" name="q4" value="b"> Perché ama la cucina italiana.</label>
                             <label class="option"><input type="radio" name="q4" value="c"> Per viaggiare.</label>
                         </div>
-                        <div class="question">5. Che lavoro fa Kirill?</div>
+                        
+                        <div class="question">
+                            5. Che lavoro fa Kirill?
+                            <span class="ru-question">(Кем работает Кирилл?)</span>
+                        </div>
                         <div class="options" data-correct="c">
                             <label class="option"><input type="radio" name="q5" value="a"> Kirill è cuoco.</label>
                             <label class="option"><input type="radio" name="q5" value="b"> Kirill è insegnante.</label>
                             <label class="option"><input type="radio" name="q5" value="c"> Kirill è programmatore.</label>
                         </div>
-                        <div class="question">6. Perché Kirill studia l'italiano?</div>
+                        
+                        <div class="question">
+                            6. Perché Kirill studia l'italiano?
+                            <span class="ru-question">(Почему Кирилл учит итальянский?)</span>
+                        </div>
                         <div class="options" data-correct="a">
                             <label class="option"><input type="radio" name="q6" value="a"> Per lavoro.</label>
                             <label class="option"><input type="radio" name="q6" value="b"> Per visitare Roma.</label>
                             <label class="option"><input type="radio" name="q6" value="c"> Perché ama il cibo.</label>
                         </div>
-                        <div class="question">7. Di dov'è Kirill?</div>
+                        
+                        <div class="question">
+                            7. Di dov'è Kirill?
+                            <span class="ru-question">(Откуда Кирилл?)</span>
+                        </div>
                         <div class="options" data-correct="b">
                             <label class="option"><input type="radio" name="q7" value="a"> Kirill è kazako.</label>
                             <label class="option"><input type="radio" name="q7" value="b"> Kirill è russo.</label>
@@ -400,7 +436,7 @@
                             <h3 class="score-text"></h3>
                             <p class="feedback-text"></p>
                         </div>
-                    </div> 
+                    </div>
 
                     <div class="nav-buttons-container">
                         <button class="btn-nav btn-back" onclick="showSection('sec-pres')">
