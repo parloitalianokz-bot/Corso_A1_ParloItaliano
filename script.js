@@ -246,7 +246,15 @@ function checkPuzzle() {
     }
 }
 
-
+    // Funzione per mescolare i div all'avvio
+window.onload = function() {
+    const pool = document.getElementById('word-pool');
+    if(pool) {
+        for (let i = pool.children.length; i >= 0; i--) {
+            pool.appendChild(pool.children[Math.random() * i | 0]);
+        }
+    }
+};
 
 
 
