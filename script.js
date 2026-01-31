@@ -231,22 +231,19 @@ async function checkSentencesWithAI() {
 
     COME DEVI RISPONDERE: 
     1. Per ogni frase dello studente:
-       - Se corretta: ✅ + "Ottimo lavoro! (Превосходная работа!)"
-       - Se c'è un errore: ❌ + Spiegazione BREVISSIMA SOLO IN RUSSO + Frase corretta in GRASSETTO.
+       - Se corretta: ✅ + complimenti in russp
+       - Se c'è un errore: ❌ + Spiegazione in russo + Frase corretta in GRASSETTO.
     2. Se lo studente dimentica "Non è... è...", digli in russo che deve usare quella struttura.
     3. Mai usare termini troppo tecnici o scolastici come "sostantivo femminile" o "struttura negativa-affermativa". Parla come un amico che aiuta.   
 
 
     FORMATTAZIONE HTML:
-    Nome personaggio:
     <br><b>Frase corretta in italiano</b>
     <br>Commento breve bilingue o solo russo.
     <hr>
 
     CONCLUSIONE:
-    Deve essere incoraggiante e rigorosamente bilingue.
-    "Ricorda, l'importante è imparare e divertirsi! Continua così!" 
-    = "Помни, главное — учиться с удовольствием! Так держать!"
+    Deve essere incoraggiante e rigorosamente in russo.
 
     TESTI DELLO STUDENTE:
     1. ${s1}
