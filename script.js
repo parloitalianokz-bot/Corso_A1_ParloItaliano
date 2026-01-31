@@ -266,7 +266,6 @@ async function checkSentencesWithAI() {
     const loader = document.getElementById('ai-loader-sent');
     const responseText = document.getElementById('ai-response-text');
 
-    // Controllo se l'utente ha scritto qualcosa (almeno le prime due frasi)
     if (s1.length < 3 && s2.length < 3) {
         alert("Scrivi almeno le prime due frasi! (Напишите хотя бы первые два предложения!)");
         return;
@@ -276,37 +275,26 @@ async function checkSentencesWithAI() {
     loader.style.display = 'block';
     responseText.innerHTML = '';
 
-    // LA TUA CHIAVE E' QUI:
     const API_KEY = "AIzaSyCFVxX3AmcnauR-Hu4kQZzlUzCIX6AnJwI"; 
 
-    // Costruiamo il Prompt con la "Verità"
     const prompt = `
-    Sei un insegnante di italiano. 
-    Dati corretti (Verità):
-    1. Aigerim: è Kazaka (NON è russa).
-    2. Kirill: è Programmatore (NON è studente).
-    3. Zarina: è Uzbeka (NON è inglese).
-    4. Bekzat: Studia per Lavoro (NON per turismo).
-
-    Lo studente deve scrivere frasi usando la struttura "NON È X, È Y".
+    Sei un insegnante di italiano per russi. 
+    Dati corretti: Aigerim=Kazaka, Kirill=Programmatore, Zarina=Uzbeka, Bekzat=Lavoro.
     
-    Frasi dello studente:
+    Analizza queste frasi dello studente:
     1. ${s1}
     2. ${s2}
     3. ${s3}
     4. ${s4}
 
-    Analizza ogni frase.
-    Se la frase è vuota, ignorala.
-    Per ogni frase scritta:
-    - Se è corretta (grammatica E fatti), metti ✅ e un complimento breve in russo.
-    - Se è sbagliata (grammatica O fatti), metti ❌, spiega l'errore in RUSSO e scrivi la frase corretta in italiano.
-    
-    Usa formattazione HTML semplice (<br>, <b>).
+    Per ogni frase:
+    - Se corretta: ✅ + breve lode in russo.
+    - Se errata: ❌ + spiega l'errore in RUSSO + scrivi la frase corretta in grassetto.
     `;
 
     try {
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`, {
+        // NOTA: Qui ho cambiato l'URL in v1/models/gemini-1.5-flash
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${API_KEY}`, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
@@ -314,16 +302,16 @@ async function checkSentencesWithAI() {
 
         const data = await response.json();
         
-        if (data.error) throw new Error(data.error.message);
+        if (data.error) {
+            throw new Error(data.error.message);
+        }
 
         const aiReply = data.candidates[0].content.parts[0].text;
-        
-        // Formattazione per visualizzazione
         responseText.innerHTML = aiReply.replace(/\n/g, '<br>');
 
     } catch (error) {
-        responseText.innerHTML = "Errore di connessione (Ошибка): " + error.message;
-        console.error(error);
+        responseText.innerHTML = "<span style='color:red'>Errore: " + error.message + "</span>";
+        console.error("Dettaglio errore:", error);
     } finally {
         loader.style.display = 'none';
     }
