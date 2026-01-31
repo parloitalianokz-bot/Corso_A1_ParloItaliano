@@ -256,6 +256,7 @@ window.onload = function() {
     }
 };
 
+
 async function checkSentencesWithAI() {
     const s1 = document.getElementById('sent-aig').value;
     const s2 = document.getElementById('sent-kir').value;
@@ -316,8 +317,6 @@ async function checkSentencesWithAI() {
         loader.style.display = 'none';
     }
 }
-
-
 
 
 
