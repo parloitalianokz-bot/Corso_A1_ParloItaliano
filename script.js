@@ -276,7 +276,7 @@ async function checkSentencesWithAI() {
     loader.style.display = 'block';
     responseText.innerHTML = '';
 
-    const API_KEY = "AIzaSyCFVxX3AmcnauR-Hu4kQZzlUzCIX6AnJwI"; 
+    const API_KEY = "AIzaSyBV4Vmwz2Y0zXki4TF-yi_JJIoaYVmX0-A"; 
 
     const prompt = `
     Sei un insegnante di italiano per russi. 
