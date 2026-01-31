@@ -294,8 +294,8 @@ async function checkSentencesWithAI() {
     `;
 
     try {
-        // NOTA: Qui ho cambiato l'URL in v1/models/gemini-1.5-flash
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${API_KEY}`, {
+        // Usiamo gemini-pro e v1beta che è la combinazione più compatibile
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${API_KEY}`, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
@@ -311,12 +311,11 @@ async function checkSentencesWithAI() {
         responseText.innerHTML = aiReply.replace(/\n/g, '<br>');
 
     } catch (error) {
-        responseText.innerHTML = "<span style='color:red'>Errore: " + error.message + "</span>";
+        responseText.innerHTML = "<span style='color:red'>Errore: " + error.message + "</span><br><br>Prova a riscrivere la chiave o attendi qualche minuto che Google attivi il servizio.";
         console.error("Dettaglio errore:", error);
     } finally {
         loader.style.display = 'none';
     }
 }
-
 
 
