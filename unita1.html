@@ -978,6 +978,53 @@
                 </div>
             </div>
 
+
+           <hr style="border: 0; border-top: 2px dashed #eee; margin: 40px 0;">
+
+                    <div id="writing-challenge-ai" style="background: #fdfefe; border: 2px solid #8e44ad; border-radius: 15px; padding: 20px;">
+                        <h3 style="color: #8e44ad; text-align: center; margin-top: 0;">✍️ Ora scrivi tu! <span class="ru-block">(Теперь напишите вы!)</span></h3>
+                        
+                        <p style="text-align: center; margin-bottom: 20px;">
+                            Guarda i dati corretti sopra e scrivi frasi complete.<br>
+                            Usa la struttura: <strong>"Non è..., è..."</strong><br>
+                            <span class="ru-block" style="color:#7f8c8d; font-size: 0.9rem;">(Используйте правильные данные из таблицы выше. Напишите, что неверно, а что верно. Пример: "Aigerim non è russa, è kazaka".)</span>
+                        </p>
+
+                        <div class="input-group-ai" style="margin-bottom: 15px;">
+                            <label><strong>1. Aigerim:</strong> (Nazionalità / Национальность)</label>
+                            <input type="text" id="sent-aig" class="ai-input" placeholder="Es: Aigerim non è russa, è...">
+                        </div>
+
+                        <div class="input-group-ai" style="margin-bottom: 15px;">
+                            <label><strong>2. Kirill:</strong> (Professione / Профессия)</label>
+                            <input type="text" id="sent-kir" class="ai-input" placeholder="Es: Kirill non è studente, è...">
+                        </div>
+
+                        <div class="input-group-ai" style="margin-bottom: 15px;">
+                            <label><strong>3. Zarina:</strong> (Nazionalità / Национальность)</label>
+                            <input type="text" id="sent-zar" class="ai-input" placeholder="Scrivi la frase completa...">
+                        </div>
+
+                        <div class="input-group-ai" style="margin-bottom: 25px;">
+                            <label><strong>4. Bekzat:</strong> (Motivo / Причина)</label>
+                            <input type="text" id="sent-bek" class="ai-input" placeholder="Es: Bekzat non studia per turismo, studia...">
+                        </div>
+
+                        <div style="text-align: center;">
+                            <button class="btn-nav" style="background-color: #8e44ad;" onclick="checkSentencesWithAI()">
+                                ✨ Verifica con AI (Проверить с ИИ)
+                            </button>
+                        </div>
+
+                        <div id="ai-sentence-feedback" style="display:none; margin-top: 20px; background: #f4f6f7; padding: 15px; border-radius: 10px; border-left: 5px solid #8e44ad;">
+                            <div id="ai-loader-sent" style="display:none; text-align:center;">🤖 Controllo... (Проверяю...)</div>
+                            <div id="ai-response-text" style="white-space: pre-wrap; line-height: 1.5;"></div>
+                        </div>
+                    </div> 
+
+
+            
+            
             <div class="card">
                 <header>
                     <div class="header-course">Passo 2: La Regola</div>
