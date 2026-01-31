@@ -18,9 +18,14 @@ function showSection(sectionId) {
     
     // Aggiorna menu (evidenzia la voce corrente)
     document.querySelectorAll('.sidebar a').forEach(link => link.classList.remove('active'));
+    
     if(sectionId === 'sec-pres') document.getElementById('link-pres').classList.add('active');
     if(sectionId === 'sec-dial' || sectionId === 'sec-dial2') document.getElementById('link-dial').classList.add('active');
     if(sectionId === 'sec-testo') document.getElementById('link-testo').classList.add('active');
+    
+    // NUOVA RIGA PER LA STORIA
+    if(sectionId === 'sec-storia') document.getElementById('link-storia').classList.add('active');
+    
     // Nota: sec-negativa usa lo stesso link di grammatica
     if(sectionId === 'sec-gramm' || sectionId === 'sec-negativa') document.getElementById('link-gramm').classList.add('active');
     if(sectionId === 'sec-eser') document.getElementById('link-eser').classList.add('active');
