@@ -901,24 +901,14 @@
                     <hr style="border: 0; border-top: 2px dashed #eee; margin: 50px 0;">
 
                     <div class="logic-game-section">
-                        <h2 style="text-align:center; color:#d35400;">😱 Oh no! Tutto Sbagliato!</h2>
-                        <p style="text-align:center;">Il computer è impazzito e ha mescolato i dati. <br>
-                        <span class="ru-block">(Компьютер сошел с ума и перепутал данные. Исправьте таблицу!)</span></p>
+                        <h2 style="text-align:center; color:#2980b9;">🧩 Mettiamo in ordine! <span class="ru-block">(Наведем порядок!)</span></h2>
+                        
+                        <p style="text-align:center; margin-bottom: 30px;">
+                            Ecco i dati alla rinfusa. Tocca una parola e poi tocca la casella giusta.<br>
+                            <span class="ru-block" style="color:#7f8c8d;">(Данные перемешаны. Нажмите на слово, а затем на правильную ячейку в таблице.)</span>
+                        </p>
 
-                        <div class="wrong-table-container" style="opacity: 0.6; filter: grayscale(100%); margin-bottom: 20px; font-size: 0.8rem;">
-                            <p style="text-align:center; font-weight:bold; color:red;">❌ DATI ERRATI (ОШИБКИ):</p>
-                            <table class="grammar-table" style="background:#fcecec;">
-                                <tr><th>Studente</th><th>Nazionalità</th><th>Professione</th><th>Motivo</th></tr>
-                                <tr><td>Aigerim</td><td>Russa (?)</td><td>Insegnante (?)</td><td>Lavoro (?)</td></tr>
-                                <tr><td>Kirill</td><td>Francese (?)</td><td>Studente (?)</td><td>Lasagne (?)</td></tr>
-                                <tr><td>Zarina</td><td>Inglese (?)</td><td>Casalinga (?)</td><td>Lavoro (?)</td></tr>
-                                <tr><td>Bekzat</td><td>Giapponese (?)</td><td>Avvocato (?)</td><td>Turismo (?)</td></tr>
-                            </table>
-                        </div>
-
-                        <p style="text-align:center; color:#27ae60; font-weight:bold;">✅ Correggi tu! (Tocca la parola e poi la casella vuota)</p>
-
-                        <div id="word-pool" class="chips-container">
+                        <div id="word-pool" class="chips-container" style="background: #eaf2f8; border-color: #3498db;">
                             <div class="chip" onclick="selectChip(this)" data-val="kazaka">Kazaka</div>
                             <div class="chip" onclick="selectChip(this)" data-val="russo">Russo</div>
                             <div class="chip" onclick="selectChip(this)" data-val="uzbeka">Uzbeka</div>
@@ -938,33 +928,33 @@
                         <table class="puzzle-table">
                             <thead>
                                 <tr>
-                                    <th>Nome</th>
-                                    <th>Nazionalità 🌍</th>
-                                    <th>Professione 🛠️</th>
-                                    <th>Motivo 🎯</th>
+                                    <th style="background:#34495e;">Studente</th>
+                                    <th style="background:#34495e;">Nazionalità 🌍</th>
+                                    <th style="background:#34495e;">Professione 🛠️</th>
+                                    <th style="background:#34495e;">Motivo 🎯</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><strong>Aigerim</strong></td>
+                                    <td style="background:#f4f6f7; font-weight:bold;">Aigerim</td>
                                     <td class="drop-zone" onclick="placeChip(this)" data-correct="kazaka"></td>
                                     <td class="drop-zone" onclick="placeChip(this)" data-correct="casalinga"></td>
                                     <td class="drop-zone" onclick="placeChip(this)" data-correct="cucina"></td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Kirill</strong></td>
+                                    <td style="background:#f4f6f7; font-weight:bold;">Kirill</td>
                                     <td class="drop-zone" onclick="placeChip(this)" data-correct="russo"></td>
                                     <td class="drop-zone" onclick="placeChip(this)" data-correct="prog"></td>
                                     <td class="drop-zone" onclick="placeChip(this)" data-correct="lavoro_it"></td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Zarina</strong></td>
+                                    <td style="background:#f4f6f7; font-weight:bold;">Zarina</td>
                                     <td class="drop-zone" onclick="placeChip(this)" data-correct="uzbeka"></td>
                                     <td class="drop-zone" onclick="placeChip(this)" data-correct="infermiera"></td>
                                     <td class="drop-zone" onclick="placeChip(this)" data-correct="roma"></td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Bekzat</strong></td>
+                                    <td style="background:#f4f6f7; font-weight:bold;">Bekzat</td>
                                     <td class="drop-zone" onclick="placeChip(this)" data-correct="kazako"></td>
                                     <td class="drop-zone" onclick="placeChip(this)" data-correct="cuoco"></td>
                                     <td class="drop-zone" onclick="placeChip(this)" data-correct="ristorante"></td>
@@ -979,7 +969,6 @@
                             <p id="puzzle-feedback" style="margin-top:10px; font-weight:bold;"></p>
                         </div>
                     </div>
-
 
 
                     
