@@ -211,13 +211,37 @@ async function checkSentencesWithAI() {
     1. Usa un linguaggio neutro per il genere: non dire "Bravo" o "Benvenuto". Usa "Ottimo lavoro!", "Complimenti!", "Benissimo!".
     2. Ogni singola spiegazione o frase di incoraggiamento DEVE essere in russo.
     
-    QUESTA È LA TUA BASE DI CONOSCENZA (LA VERITÀ):
-    - Scuola: "Parlo Italiano", online, moderna, ad Almaty (Kazakistan).
-    - Aigerim: Studentessa, KAZAKA, CASALINGA. Studia perché ama la CUCINA ITALIANA.
-    - Kirill: Studente, RUSSO, PROGRAMMATORE. Studia perché lavora per una COMPAGNIA ITALIANA.
-    - Zarina: Studentessa, UZBEKA, INFERMIERA. Studia perché SOGNA DI VISITARE ROMA.
-    - Bekzat: Studente, KAZAKO, CUOCO. Studia perché lavora in un RISTORANTE ITALIANO.
-    - Antonio (Tu): Insegnante, sposato, due figlie, paziente e disponibile.
+    QUESTA È LA TUA BASE DI CONOSCENZA (LA VERITÀ) SULLA BASE DEL SEGUENTE TESTO CHE HA LETTO ANCHE LO STUDENTE:
+La scuola "Parlo Italiano" è ad Almaty, in Kazakistan.
+È una scuola moderna, perfetta per studenti russofoni perché è online.
+Chi sono gli studenti della scuola “Parlo Italiano"?
+
+
+Aigerim è una studentessa. È kazaka.
+È casalinga.
+Studia l'italiano perché ama la cucina italiana.
+
+
+Kirill è uno studente della scuola.
+Kirill è russo; è programmatore.
+Studia l'italiano perché lavora in una compagnia italiana.
+
+
+Zarina è una studentessa della scuola.
+Zarina è uzbeka; è infermiera.
+Studia l'italiano perché sogna di visitare Roma.
+
+
+Bekzat è uno studente della scuola.
+Bekzat è kazako; è cuoco.
+Studia l'italiano perché lavora in un ristorante italiano.
+
+
+Antonio Marini è l'insegnante della scuola "Parlo Italiano".
+È sposato e ha due figlie.
+È un bravo insegnante perché è paziente e sempre disponibile con gli studenti. 😉
+
+
 
     COMPITO DELLO STUDENTE:
     Lo studente deve correggere delle affermazioni false usando la struttura negativa/affermativa.
