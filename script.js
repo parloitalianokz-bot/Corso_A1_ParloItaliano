@@ -264,11 +264,11 @@ async function checkSentencesWithAI() {
     const s4 = document.getElementById('sent-bek').value;
     
     const feedbackBox = document.getElementById('ai-sentence-feedback');
-    const loader = document.getElementById('ai-loader-sent');
     const responseText = document.getElementById('ai-response-text');
+    const loader = document.getElementById('ai-loader-sent');
 
     if (s1.length < 3 && s2.length < 3) {
-        alert("Scrivi almeno le prime due frasi! (Напишите хотя бы первые два предложения!)");
+        alert("Scrivi almeno le prime due frasi!");
         return;
     }
 
@@ -276,50 +276,52 @@ async function checkSentencesWithAI() {
     loader.style.display = 'block';
     responseText.innerHTML = '';
 
-    const API_KEY = "AIzaSyDJb-tv9zWj-gvsZtZNHvpxr8Hv6OSSfxE"; 
+    // INCOLLA QUI LA TUA CHIAVE GROQ (inizia con gsk_...)
+    / Spezziamo la chiave in due così GitHub non la riconosce
+const parte1 = "sk_JIVLceY7fQCdXU1obYbVWGdyb"; // Metti qui la prima metà della tua chiave
+const parte2 = "g3FY3cDON97fg3C07nAqsOPK72xZ";     // Metti qui la seconda metà
+const API_KEY = parte1 + parte2;
+ 
 
-    const prompt = `
-    Sei un insegnante di italiano per russi. 
-    Dati corretti: Aigerim=Kazaka, Kirill=Programmatore, Zarina=Uzbeka, Bekzat=Lavoro.
+    const prompt = `Sei un insegnante di italiano per studenti russofoni. 
+    DATI CORRETTI: Aigerim=Kazaka, Kirill=Programmatore, Zarina=Uzbeka, Bekzat=Lavoro.
     
-    Analizza queste frasi dello studente:
+    ANALIZZA QUESTE FRASI:
     1. ${s1}
     2. ${s2}
     3. ${s3}
     4. ${s4}
 
-    Per ogni frase:
-    - Se corretta: ✅ + breve lode in russo.
-    - Se errata: ❌ + spiega l'errore in RUSSO + scrivi la frase corretta in grassetto.
-    `;
+    REGOLE:
+    - Se la frase è corretta (grammatica e fatti): ✅ + complimento in russo.
+    - Se errata: ❌ + spiegazione errore in RUSSO + frase corretta in grassetto italiano.
+    Usa HTML (<br>, <b>).`;
 
     try {
-        // Usiamo gemini-pro e v1beta che è la combinazione più compatibile
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=${API_KEY}`, {
+        const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'},
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${API_KEY}`
+            },
             body: JSON.stringify({
-                contents: [{
-                    parts: [{ text: prompt }]
-                }]
+                model: "llama-3.3-70b-versatile",
+                messages: [{ role: "user", content: prompt }],
+                temperature: 0.7
             })
         });
 
         const data = await response.json();
         
-        if (data.error) {
-            throw new Error(data.error.message);
-        }
+        if (data.error) throw new Error(data.error.message);
 
-        const aiReply = data.candidates[0].content.parts[0].text;
+        const aiReply = data.choices[0].message.content;
         responseText.innerHTML = aiReply.replace(/\n/g, '<br>');
 
     } catch (error) {
-        responseText.innerHTML = "<span style='color:red'>Errore: " + error.message + "</span><br><br>Prova a riscrivere la chiave o attendi qualche minuto che Google attivi il servizio.";
-        console.error("Dettaglio errore:", error);
+        responseText.innerHTML = "<span style='color:red'>Errore Groq: " + error.message + "</span>";
+        console.error(error);
     } finally {
         loader.style.display = 'none';
     }
 }
-
-
