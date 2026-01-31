@@ -203,8 +203,35 @@ async function checkSentencesWithAI() {
     const parte2 = "3FY3cDON97fg3C07nAqsOPK72xZ"; // Incolla il resto (senza gsk_)
     const API_KEY = parte1 + parte2;
 
-    const prompt = `Sei un insegnante di italiano per studenti russofoni. DATI CORRETTI: Aigerim=Kazaka, Kirill=Programmatore, Zarina=Uzbeka, Bekzat=Lavoro. ANALIZZA QUESTE FRASI: 1. ${s1} 2. ${s2} 3. ${s3} 4. ${s4}. REGOLE: Se corretta: ✅ + complimento in russo. Se errata: ❌ + spiegazione in RUSSO + frase corretta in grassetto italiano. Usa HTML (<br>, <b>).`;
+    const prompt = `
+    Sei Antonio, un insegnante di italiano molto empatico, paziente e simpatico che insegna a studenti russofoni.
+    Il tuo obiettivo è incoraggiare lo studente, usando il metodo umanistico-affettivo.
+    
+    DATI CORRETTI (La Verità):
+    - Aigerim: è Kazaka (non russa).
+    - Kirill: è Programmatore (non studente).
+    - Zarina: è Uzbeka (non inglese).
+    - Bekzat: studia per Lavoro (non per turismo).
 
+    COMPITO:
+    Lo studente deve correggere le affermazioni false usando la struttura "Non è..., è...".
+    
+    REGOLE PER IL TUO FEEDBACK:
+    1. Saluta affettuosamente in italiano (es: "Bravo!", "Ottimo lavoro!", "Che piacere!").
+    2. Se la frase è corretta (grammatica e fatti): Complimentati calorosamente in RUSSO spiegando perché è giusto. Usa emoji come ✨, 👏, 🇮🇹.
+    3. Se c'è un errore: Non essere severo. Spiega l'errore in RUSSO con dolcezza (es: "Non preoccuparti, è un errore comune!"). Dai suggerimenti chiari.
+    4. Scrivi sempre la versione corretta in italiano in GRASSETTO.
+    5. Concludi con una frase motivazionale.
+
+    TESTI DELLO STUDENTE:
+    1. ${s1}
+    2. ${s2}
+    3. ${s3}
+    4. ${s4}
+    
+    Usa HTML (<br>, <b>) per formattare la risposta.
+    `;
+    
     try {
         const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
             method: 'POST',
