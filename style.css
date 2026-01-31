@@ -1,0 +1,271 @@
+        :root {
+            --primary: #27ae60; /* Verde Smeraldo */
+            --primary-dark: #219150; 
+            --secondary: #e74c3c; /* Rosso */
+            --secondary-dark: #c0392b; 
+            --text: #2c3e50;
+            --grey: #95a5a6;
+            --light-bg: #f9f9f9;
+            --accent: #f1c40f; 
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #f0f3f5;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        /* --- MENU LATERALE --- */
+        .menu-btn {
+            position: fixed; top: 20px; left: 20px; font-size: 1.5rem; cursor: pointer; z-index: 1000;
+            color: white; background: var(--text); padding: 10px 15px; border-radius: 12px;
+            box-shadow: 0 4px 0 rgba(0,0,0,0.2); transition: 0.1s; 
+        }
+        .menu-btn:active { transform: translateY(4px); box-shadow: none; }
+
+        .sidebar {
+            height: 100%; width: 280px; position: fixed; z-index: 1001; top: 0; left: -280px;
+            background-color: white; overflow-x: hidden; transition: 0.4s; padding-top: 60px;
+            box-shadow: 4px 0 15px rgba(0,0,0,0.1);
+        }
+        .sidebar .close-btn { position: absolute; top: 10px; right: 20px; font-size: 2.5rem; color: var(--secondary); cursor: pointer; }
+        
+        .sidebar h3 { padding: 0 20px; color: var(--primary); font-family: 'Playfair Display', serif; margin-bottom: 5px; }
+        .sidebar p { padding: 0 20px; color: #888; font-size: 0.8rem; margin-top: 0; margin-bottom: 20px; }
+
+        .sidebar a {
+            padding: 15px 25px; text-decoration: none; font-size: 0.95rem; color: var(--text); display: block;
+            transition: 0.2s; border-left: 5px solid transparent; cursor: pointer;
+            font-weight: 600;
+        }
+        .sidebar a:hover, .sidebar a.active { background-color: #f0f7f4; color: var(--primary); border-left: 5px solid var(--primary); }
+        .ru-menu { display: block; font-size: 0.75rem; color: #999; font-weight: normal; margin-top: 3px; }
+
+        /* --- CONTENUTO PRINCIPALE --- */
+        #main-wrapper { width: 100%; max-width: 900px; margin: 80px 20px 40px; }
+        
+        .section-block { display: none; animation: fadeIn 0.4s; }
+        .section-block.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .card { 
+            background: white; border-radius: 20px; overflow: hidden; 
+            box-shadow: 0 8px 0 #e0e0e0;
+            border: 2px solid #eee;
+            margin-bottom: 40px; 
+        }
+        
+        header { padding: 40px 30px; text-align: center; border-bottom: 2px solid #f0f0f0; background: #fff; }
+        .header-course { font-size: 0.9rem; color: var(--grey); font-weight: bold; text-transform: uppercase; letter-spacing: 2px; }
+        .header-main-title { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--primary); margin: 10px 0; line-height: 1.2; }
+        .ru-block { display: block; color: #999; font-size: 0.6em; font-weight: normal; margin-top: 5px; font-family: 'Montserrat', sans-serif; }
+
+        .content { padding: 40px; color: var(--text); line-height: 1.6; }
+        
+        /* Istruzioni Standard */
+        .instruction { background: #e8f8f5; padding: 20px; border-radius: 15px; color: var(--primary-dark); margin-bottom: 30px; font-weight: 600; border: 2px solid #d1f2eb; }
+
+        /* Context Box Scaffolding */
+        .context-box {
+            background-color: #eaf6fc;
+            border-left: 5px solid #3498db;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            font-size: 0.95rem;
+            color: #2c3e50;
+        }
+        .context-box ul { margin: 10px 0; padding-left: 10px; list-style: none; }
+        .context-box li { margin-bottom: 5px; position: relative; padding-left: 20px; }
+        .context-box li::before { content: "🔹"; font-size: 0.8rem; position: absolute; left: 0; top: 2px; }
+
+        /* Stili specifici Presentazione */
+        .competencies-box { background: white; padding: 25px; border-radius: 15px; margin-bottom: 30px; border: 2px solid #eee; box-shadow: 0 4px 0 #eee; }
+        .competencies-box h3 { color: var(--primary); margin-top: 0; }
+        
+        .tips-box { background: white; padding: 25px; border-radius: 15px; margin-bottom: 30px; border: 2px solid #eee; box-shadow: 0 4px 0 #eee; }
+        .tips-box h3 { color: var(--secondary); margin-top: 0; }
+        
+        /* Liste generiche */
+        ul { list-style: none; padding: 0; }
+        li { margin-bottom: 15px; position: relative; padding-left: 25px; }
+        li::before { content: "•"; color: var(--primary); font-weight: bold; font-size: 1.5rem; position: absolute; left: 0; top: -5px; }
+
+        /* Video & Quiz */
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; border-radius: 20px; overflow: hidden; border: 2px solid #eee; margin-bottom: 30px; }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        
+        .question { font-weight: bold; margin-bottom: 15px; font-size: 1.1rem; color: var(--text); margin-top: 30px; }
+        
+        .ru-question {
+            display: block;       /* Va a capo automaticamente */
+            font-size: 0.9rem;    /* Un po' più piccolo */
+            color: #7f8c8d;       /* Grigio, meno invadente */
+            font-weight: normal;  /* Non grassetto */
+            margin-top: 2px;
+            font-style: italic;
+        }
+        
+        .option { 
+            display: block; background: #fff; padding: 15px; margin: 10px 0; border-radius: 15px; cursor: pointer; 
+            border: 2px solid #eee; transition: all 0.2s; font-weight: 500;
+        }
+        .option:hover { border-color: var(--primary); background: #f0fdf4; transform: translateX(5px); }
+        .correct { background-color: #d4edda !important; border-color: var(--primary) !important; color: #155724; }
+        .incorrect { background-color: #f8d7da !important; border-color: var(--secondary) !important; color: #721c24; }
+        
+        .result-container { 
+            margin-top: 30px; padding: 20px; border-radius: 15px; text-align: center; 
+            background: #fff; border: 2px solid #eee; display: none; 
+        }
+
+        /* Testi e Grammatica */
+        .text-box { background: white; padding: 25px; border-radius: 15px; border: 2px solid #eee; margin-bottom: 20px; box-shadow: 0 4px 0 #eee; }
+        .text-box h3 { color: var(--text); margin-top: 0; border-bottom: 2px solid var(--accent); display: inline-block; padding-bottom: 5px; }
+        .highlight { background-color: #fef9e7; padding: 2px 8px; border-radius: 6px; font-weight: bold; border-bottom: 2px solid #f1c40f; }
+        
+        .grammar-table { width: 100%; border-collapse: separate; border-spacing: 0; border: 2px solid #eee; border-radius: 15px; overflow: hidden; margin: 20px 0; }
+        .grammar-table th { background: var(--primary); color: white; padding: 15px; text-align: left; }
+        .grammar-table td { padding: 15px; border-bottom: 1px solid #eee; background: white; }
+        .grammar-table tr:last-child td { border-bottom: none; }
+
+       
+        /* TRASCRIZIONE */
+        .transcript-box {
+            background: #fff; border: 2px solid #e0e0e0; border-radius: 12px;
+            padding: 15px; margin-bottom: 30px; text-align: left;
+            display: none; animation: fadeIn 0.3s; max-height: 280px; 
+            overflow-y: auto; border-left: 5px solid var(--primary);
+        }
+        .transcript-box h4 {
+            color: var(--primary); margin-top: 0; margin-bottom: 10px;
+            font-size: 1rem; border-bottom: 1px solid #eee; padding-bottom: 5px;
+        }
+        .transcript-row { margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px dashed #e0e0e0; line-height: 1.5; }
+        .speaker { font-size: 0.95rem; font-weight: 800; color: var(--primary); margin-right: 5px; }
+        .it-text { color: #2c3e50; font-size: 1rem; font-weight: 600; }
+        .ru-text { 
+            display: block; color: #1a1a1a; font-size: 0.9rem; margin-top: 4px;
+            padding-left: 8px; border-left: 3px solid #ccc; font-family: 'Montserrat', sans-serif; 
+        }
+
+        /* PULSANTI */
+        .btn-nav {
+            display: inline-flex; align-items: center; justify-content: center;
+            background-color: var(--primary); color: white;
+            padding: 18px 30px; font-size: 1rem; border-radius: 16px;
+            text-decoration: none; font-weight: 800; border: none; cursor: pointer;
+            border-bottom: 5px solid var(--primary-dark); transition: all 0.1s;
+            text-transform: uppercase; letter-spacing: 1px;
+            width: 100%; max-width: 100%; box-sizing: border-box;
+            white-space: normal; text-align: center; line-height: 1.2; margin-top: 15px;
+        }
+        
+        @media (max-width: 600px) {
+            .btn-nav { padding: 15px 10px; font-size: 0.9rem; border-bottom-width: 4px; }
+        }
+        @media (min-width: 601px) {
+            .btn-nav { width: auto; min-width: 200px; }
+        }
+
+        .btn-nav:hover { filter: brightness(110%); transform: translateY(-2px); }
+        .btn-nav:active { border-bottom-width: 0px; transform: translateY(5px); margin-top: 20px; }
+
+        .nav-buttons-container {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-top: 40px; gap: 15px; flex-wrap: wrap; 
+        }
+        .btn-back { background-color: #95a5a6; border-bottom-color: #7f8c8d; width: auto; flex: 1; }
+        .btn-next { flex: 1; }
+        .btn-start { background-color: #2980b9; border-bottom-color: #1a5276; padding: 20px; width: 100%; max-width: 400px; }
+        .btn-dashboard { background-color: var(--secondary); border-bottom-color: var(--secondary-dark); }
+        .btn-check { background-color: #f39c12; border-bottom-color: #d35400; }
+
+        .overlay-bg { display: none; position: fixed; width: 100%; height: 100%; top: 0; left: 0; background: rgba(0,0,0,0.5); z-index: 1000; }
+        
+        /* PROFILI */
+        .profile-card {
+            display: flex; align-items: center; background: #fff;
+            border: 2px solid #eee; border-radius: 15px; padding: 20px;
+            margin-bottom: 20px; box-shadow: 0 4px 0 #eee; transition: transform 0.2s;
+        }
+        .profile-card:hover { transform: translateY(-3px); border-color: var(--primary); }
+        .profile-img {
+            width: 120px; height: 120px; border-radius: 50%; object-fit: cover;
+            border: 3px solid var(--primary); margin-right: 25px; flex-shrink: 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .profile-text p { margin: 5px 0; font-size: 0.95rem; }
+
+        @media (max-width: 500px) {
+            .profile-card { flex-direction: column; text-align: center; }
+            .profile-img { margin-right: 0; margin-bottom: 15px; width: 130px; height: 130px; }
+        }
+        
+        .btn-translate {
+            background: none; border: none; color: var(--grey); cursor: pointer;
+            font-size: 0.8rem; text-decoration: underline; padding: 0; margin-top: 10px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .btn-translate:hover { color: var(--primary); }
+        .translation-text {
+            display: none; margin-top: 10px; padding-top: 10px;
+            border-top: 1px dashed #eee; color: #555; font-size: 0.9rem; line-height: 1.4;
+        }
+        
+        
+        
+        
+        /* --- STILI NUOVI PER ESERCIZI DI SCRITTURA INLINE (AGGIUNTA) --- */
+        .neg-input-area {
+            font-size: 1.1rem;
+            margin: 10px 0;
+            line-height: 2.2; /* Spazio aumentato per scrivere comodamente */
+        }
+        .input-inline {
+            border: none;
+            border-bottom: 2px dashed #95a5a6;
+            background: #fdfdfd;
+            text-align: center;
+            font-size: 1rem;
+            color: var(--text);
+            font-family: 'Montserrat', sans-serif;
+            transition: 0.3s;
+            margin: 0 5px;
+            padding: 0 5px;
+            font-weight: 600;
+        }
+        
+        /* Larghezze diverse per parole diverse */
+        .input-inline.short { width: 50px; }       /* Per: non, è, no */
+        .input-inline.medium { width: 100px; }     /* Per: nomi, aggettivi brevi */
+        .input-inline.long { width: 150px; }       /* Per: programmatore, insegnante */
+
+        .input-inline:focus {
+            outline: none;
+            border-bottom: 2px solid var(--primary);
+            background: #fff;
+        }
+        .input-correct {
+            border-bottom: 2px solid #27ae60 !important;
+            color: #27ae60 !important;
+            background: #eafaf1 !important;
+        }
+        .input-wrong {
+            border-bottom: 2px solid #e74c3c !important;
+            color: #e74c3c !important;
+            background: #fdedec !important;
+        }
+        
+        /* Il placeholder (il suggerimento n _ _ ) in grigio chiaro */
+        ::placeholder { 
+            color: #bdc3c7; 
+            font-weight: normal; 
+            letter-spacing: 2px;
+        }
+        
+        
