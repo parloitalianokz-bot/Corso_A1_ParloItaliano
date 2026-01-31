@@ -170,3 +170,84 @@ function checkWrittenExercises() {
          feed.style.color = "#f39c12";
     }
 }
+
+    /* --- LOGICA GIOCO TABELLA (TAP & PLACE) --- */
+let selectedChipElement = null;
+
+function selectChip(element) {
+    // Se clicco su una chip già selezionata, la deseleziono
+    if (selectedChipElement === element) {
+        element.classList.remove('selected');
+        selectedChipElement = null;
+        return;
+    }
+
+    // Rimuovi selezione dagli altri
+    document.querySelectorAll('.chip').forEach(c => c.classList.remove('selected'));
+    
+    // Seleziona quella nuova
+    element.classList.add('selected');
+    selectedChipElement = element;
+}
+
+function placeChip(cell) {
+    // Se non ho selezionato nulla, non faccio nulla
+    if (!selectedChipElement) return;
+
+    // Se la cella ha già un figlio (una chip), lo rimandiamo al pool
+    if (cell.children.length > 0) {
+        const oldChip = cell.children[0];
+        document.getElementById('word-pool').appendChild(oldChip);
+    }
+
+    // Sposta la chip nella cella
+    selectedChipElement.classList.remove('selected');
+    cell.appendChild(selectedChipElement);
+    
+    // Resetta selezione
+    selectedChipElement = null;
+}
+
+function checkPuzzle() {
+    let correctCount = 0;
+    const dropZones = document.querySelectorAll('.drop-zone');
+    const total = dropZones.length;
+
+    dropZones.forEach(zone => {
+        const correctVal = zone.getAttribute('data-correct');
+        const chip = zone.querySelector('.chip');
+
+        // Resetta classi
+        zone.classList.remove('correct', 'wrong');
+
+        if (chip) {
+            const userVal = chip.getAttribute('data-val');
+            if (userVal === correctVal) {
+                zone.classList.add('correct');
+                correctCount++;
+            } else {
+                zone.classList.add('wrong');
+                // Opzionale: se vuoi che torni indietro quando sbagli
+                // document.getElementById('word-pool').appendChild(chip);
+            }
+        } else {
+            // Cella vuota considerata errore
+            zone.classList.add('wrong');
+        }
+    });
+
+    const feedback = document.getElementById('puzzle-feedback');
+    if (correctCount === total) {
+        feedback.innerHTML = "🎉 Bravissimo! Tutto corretto! (Отлично! Все верно!)";
+        feedback.style.color = "green";
+    } else {
+        feedback.innerHTML = `⚠️ Hai indovinato ${correctCount} su ${total}. Riprova i rossi!`;
+        feedback.style.color = "orange";
+    }
+}
+
+
+
+
+
+
