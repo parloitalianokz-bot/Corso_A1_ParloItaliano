@@ -266,6 +266,7 @@ async function checkSentencesWithAI() {
     const loader = document.getElementById('ai-loader-sent');
     const responseText = document.getElementById('ai-response-text');
 
+    // Controllo se l'utente ha scritto qualcosa (almeno le prime due frasi)
     if (s1.length < 3 && s2.length < 3) {
         alert("Scrivi almeno le prime due frasi! (Напишите хотя бы первые два предложения!)");
         return;
@@ -275,9 +276,8 @@ async function checkSentencesWithAI() {
     loader.style.display = 'block';
     responseText.innerHTML = '';
 
-    // --- CONFIGURAZIONE CHIAVE ---
-    // Usa la stessa chiave che hai preso prima
-    const API_KEY = "INCOLLA_QUI_LA_TUA_CHIAVE_GEMINI"; 
+    // LA TUA CHIAVE E' QUI:
+    const API_KEY = "AIzaSyCFVxX3AmcnauR-Hu4kQZzlUzCIX6AnJwI"; 
 
     // Costruiamo il Prompt con la "Verità"
     const prompt = `
@@ -323,11 +323,11 @@ async function checkSentencesWithAI() {
 
     } catch (error) {
         responseText.innerHTML = "Errore di connessione (Ошибка): " + error.message;
+        console.error(error);
     } finally {
         loader.style.display = 'none';
     }
 }
-
 
 
 
