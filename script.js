@@ -231,7 +231,7 @@ async function checkStoryWithAI() {
         REGOLE:
         1. Se il messaggio è comprensibile per un italiano, sii entusiasta!
         2. Non correggere ogni piccolo errore grammaticale (es. se scrive "scuola online" invece di "la scuola è online", va bene).
-        3. Spiega eventuali correzioni solo se l'errore cambia il senso della frase.
+        3. Spiega eventuali correzioni solo se l'errore cambia il senso della frase o la rende poco comprensibile
         4. Rispondi SEMPRE in russo per le spiegazioni e i complimenti.
         
         TESTO DELLO STUDENTE:
@@ -239,7 +239,7 @@ async function checkStoryWithAI() {
         
         FORMATO RISPOSTA (HTML):
         ✅/⚠️ [Commento generale in russo]
-        <br><b>Versione più naturale:</b> [Testo corretto breve]
+        <br><b>Вот правильная версия.</b> [Testo dello studente con correzioni]
     `;
 
     callAI(prompt, document.getElementById('ai-response-story'), document.getElementById('ai-loader-story'));
