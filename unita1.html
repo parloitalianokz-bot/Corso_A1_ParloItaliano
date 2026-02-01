@@ -677,8 +677,8 @@
         <div id="sec-storia" class="section-block">
             <div class="card" style="border: 2px solid #f39c12; background: #fffcf5;">
                 <header style="background: #fffcf5; border-bottom: 1px dashed #f39c12;">
-                    <div class="header-course">Produzione</div>
-                    <h1 class="header-main-title" style="color: #d35400;">Raccontami una storia <span class="ru-block">(Расскажи мне историю)</span></h1>
+                    <div class="header-course">Produzione Scritta</div>
+                    <h1 class="header-main-title" style="color: #d35400;">Racconta la storia <span class="ru-block">(Расскажи историю)</span></h1>
                 </header>
                 
                 <div class="content">
@@ -686,52 +686,38 @@
                         <img src="img/racconta_storia.jpg" alt="Raccontami una storia" style="max-width: 100%; height: auto; border-radius: 10px; margin-bottom: 20px;">
                         
                         <div style="text-align: left; background: white; padding: 20px; border-radius: 10px; border: 1px solid #eee;">
-                            <p style="font-size: 0.9rem; color: #555;">
-                                <strong>Описание задания:</strong> Представьте, что Вы рассказываете о школе "Parlo Italiano" своему другу-итальянцу, который не говорит по-русски.<br>
-                                <strong>Главная цель:</strong> Общение. Попробуйте использовать все слова и фразы, которые Вы изучили в этом уроке.<br>
-                                <em>Не бойтесь ошибок. Главное — чтобы Ваш друг Вас понял!</em>
+                            <p style="font-size: 0.95rem; color: #4a5568; line-height: 1.6;">
+                                <strong>Задание:</strong> Напиши небольшую историю о школе и людях, которых ты встретил в уроке. Используй глагол <b>essere</b> (sono, è, sono...).<br>
+                                <em>Цель — чтобы тебя поняли. Не бойся делать ошибки!</em>
                             </p>
                         </div>
                     </div>
 
                     <div style="background: white; padding: 30px; border-radius: 15px; border: 2px dashed #f39c12;">
-                        <h3 style="margin-top:0; color:#d35400;">✍️ Scrivi qui (o parla):</h3>
+                        <h3 style="margin-top:0; color:#d35400;">✍️ Scrivi qui <span class="ru-text" style="display:inline; border:none; padding:0;">(Напиши здесь):</span></h3>
                         
-                        <div style="text-align: left; font-size: 1.1rem; line-height: 2.2;">
-                            <p>Ciao, ti presento la mia scuola di italiano… <br><span style="font-size:0.8rem; color:#999;">(Привет, представляю тебе мою школу итальянского.)</span></p>
-                            
-                            <div style="margin-bottom: 15px;">
-                                La scuola è <input type="text" placeholder="(современная / онлайн / в Алматы...)" style="border: none; border-bottom: 2px solid #f39c12; background: #fffcf5; width: 60%; font-size: 1rem; color: #2c3e50; font-family: 'Montserrat', sans-serif; padding: 5px;">
-                            </div>
-                            
-                            <div style="margin-bottom: 15px;">
-                                Aigerim è <input type="text" placeholder="(студентка / казашка...)" style="border: none; border-bottom: 2px solid #f39c12; background: #fffcf5; width: 60%; font-size: 1rem; color: #2c3e50; font-family: 'Montserrat', sans-serif; padding: 5px;">
-                            </div>
-
-                            <div style="margin-bottom: 15px;">
-                                Anche Kirill è <input type="text" placeholder="(русский / программист...)" style="border: none; border-bottom: 2px solid #f39c12; background: #fffcf5; width: 60%; font-size: 1rem; color: #2c3e50; font-family: 'Montserrat', sans-serif; padding: 5px;">
-                            </div>
-
-                            <div style="margin-bottom: 15px;">
-                                Zarina e Bekzat sono <input type="text" placeholder="(муж и жена / иностранцы...)" style="border: none; border-bottom: 2px solid #f39c12; background: #fffcf5; width: 50%; font-size: 1rem; color: #2c3e50; font-family: 'Montserrat', sans-serif; padding: 5px;">
-                            </div>
-
-                            <div style="margin-bottom: 15px;">
-                                Antonio è <input type="text" placeholder="(учитель...)" style="border: none; border-bottom: 2px solid #f39c12; background: #fffcf5; width: 50%; font-size: 1rem; color: #2c3e50; font-family: 'Montserrat', sans-serif; padding: 5px;">, è molto bravo!
-                            </div>
+                        <div class="exercise-template" style="background: #fdfcf0; padding: 15px; border-radius: 8px; margin-bottom: 15px; font-style: italic; color: #7f8c8d; border: 1px solid #f9ebea;">
+                            Ciao, ti presento la mia scuola di italiano… (Привет, представляю тебе мою школу итальянского.)<br>
+                            La scuola è ________<br>
+                            Aigerim è ________<br>
+                            Anche Kirill è ________<br>
+                            Zarina e Bekzat sono ________<br>
+                            Antonio è ________, è molto bravo!
                         </div>
 
-                        <button class="btn-translate" onclick="toggleTrans('example-text')" style="margin-top: 20px; font-size: 1rem; width:100%; border: 1px solid #27ae60; padding:10px; border-radius:10px; color:#27ae60; background:white;">
-                            👁️ Vedi un esempio di risposta (Посмотреть пример)
-                        </button>
+                        <textarea id="ai-story-input" class="ai-input" rows="8" 
+                            placeholder="Ciao! La scuola è online. Aigerim è..." 
+                            style="width: 100%; padding: 15px; border-radius: 10px; border: 1px solid #ccc; font-family: 'Montserrat', sans-serif; font-size: 1rem;"></textarea>
                         
-                        <div id="example-text" class="translation-text" style="text-align: left; background: #e8f8f5; border: 1px solid #27ae60; padding: 15px; border-radius: 10px; margin-top: 15px;">
-                            <p><strong>Esempio:</strong></p>
-                            <p>La scuola è <strong>online ad Almaty</strong>.</p>
-                            <p>Aigerim è <strong>kazaka e casalinga</strong>.</p>
-                            <p>Anche Kirill è <strong>studente (o russo)</strong>.</p>
-                            <p>Zarina e Bekzat sono <strong>stranieri (o marito e moglie)</strong>.</p>
-                            <p>Antonio è <strong>l'insegnante</strong>, è molto bravo!</p>
+                        <div style="text-align: center; margin-top: 20px;">
+                            <button class="btn-nav" style="background-color: #8e44ad; width: auto; padding: 12px 30px;" onclick="checkStoryWithAI()">
+                                VERIFICA COMPRENSIBILITÀ ➔
+                            </button>
+                        </div>
+
+                        <div id="ai-feedback-story" style="display:none; margin-top: 20px; background: #f4f0f8; padding: 15px; border-radius: 10px; border-left: 5px solid #8e44ad;">
+                            <div id="ai-loader-story" style="display:none; text-align:center;">🤖 Учитель читает твою историю...</div>
+                            <div id="ai-response-story" style="white-space: pre-wrap; line-height: 1.5;"></div>
                         </div>
                     </div>
 
