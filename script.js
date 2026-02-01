@@ -178,31 +178,90 @@ window.onload = function() {
     }
 };
 
-/* --- LOGICA IA --- */
+
+
+/* --- MOTORE IA COMUNE --- */
+async function callAI(prompt, responseElement, loaderElement) {
+    // --- CHIAVE SPEZZATA ---
+    const parte1 = "gsk_JIVLceY7fQCdXU1obYbVWGdyb"; // La tua chiave
+    const parte2 = "3FY3cDON97fg3C07nAqsOPK72xZ"; 
+    const API_KEY = parte1 + parte2;
+
+    loaderElement.style.display = 'block';
+    responseElement.innerHTML = '';
+
+    try {
+        const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${API_KEY}`
+            },
+            body: JSON.stringify({
+                model: "llama-3.3-70b-versatile",
+                messages: [{ role: "user", content: prompt }],
+                temperature: 0.7
+            })
+        });
+
+        const data = await response.json();
+        if (data.error) throw new Error(data.error.message);
+        
+        // Formattazione base della risposta
+        responseElement.innerHTML = data.choices[0].message.content.replace(/\n/g, '<br>');
+    } catch (error) {
+        responseElement.innerHTML = "<span style='color:red'>Errore: " + error.message + "</span>";
+    } finally {
+        loaderElement.style.display = 'none';
+    }
+}
+
+ /* IA RACCONTAMI UNA STORIA */
+async function checkStoryWithAI() {
+    const story = document.getElementById('ai-story-input').value;
+    if (story.length < 10) { alert("Scrivi qualcosa di più! (Напиши немного больше!)"); return; }
+
+    const feedbackContainer = document.getElementById('ai-feedback-story'); // Assicurati che l'ID esista nell'HTML
+    feedbackContainer.style.display = 'block';
+
+    const prompt = `
+        Sei Antonio, l'insegnante di "Parlo Italiano". 
+        OBIETTIVO: Valuta la COMPRENSIBILITÀ della storia dello studente.
+        
+        REGOLE:
+        1. Se il messaggio è comprensibile per un italiano, sii entusiasta!
+        2. Non correggere ogni piccolo errore grammaticale (es. se scrive "scuola online" invece di "la scuola è online", va bene).
+        3. Spiega eventuali correzioni solo se l'errore cambia il senso della frase.
+        4. Rispondi SEMPRE in russo per le spiegazioni e i complimenti.
+        
+        TESTO DELLO STUDENTE:
+        "${story}"
+        
+        FORMATO RISPOSTA (HTML):
+        ✅/⚠️ [Commento generale in russo]
+        <br><b>Versione più naturale:</b> [Testo corretto breve]
+    `;
+
+    callAI(prompt, document.getElementById('ai-response-story'), document.getElementById('ai-loader-story'));
+}
+
+
+
+
+
+
+/* --- LOGICA IA FRASI NEGATIVE--- */
 async function checkSentencesWithAI() {
     const s1 = document.getElementById('sent-aig').value;
     const s2 = document.getElementById('sent-kir').value;
     const s3 = document.getElementById('sent-zar').value;
     const s4 = document.getElementById('sent-bek').value;
     
+    if (s1.length < 3) { alert("Scrivi almeno la prima frase!"); return; }
+
     const feedbackBox = document.getElementById('ai-sentence-feedback');
-    const responseText = document.getElementById('ai-response-text');
-    const loader = document.getElementById('ai-loader-sent');
-
-    if (s1.length < 3) {
-        alert("Scrivi almeno la prima frase!");
-        return;
-    }
-
     feedbackBox.style.display = 'block';
-    loader.style.display = 'block';
-    responseText.innerHTML = '';
-
-    // --- CHIAVE SPEZZATA ---
-    const parte1 = "gsk_JIVLceY7fQCdXU1obYbVWGdyb"; // Lascia gsk_ qui
-    const parte2 = "3FY3cDON97fg3C07nAqsOPK72xZ"; // Incolla il resto (senza gsk_)
-    const API_KEY = parte1 + parte2;
-
+    
     const prompt = `
     Sei Antonio, l'insegnante della scuola "Parlo Italiano". 
     Il tuo tono è empatico, incoraggiante. Rivolgiti per ogni informazione o correzione sempre in russo.
@@ -212,36 +271,14 @@ async function checkSentencesWithAI() {
     2. Ogni singola spiegazione o frase di incoraggiamento DEVE essere in russo.
     
     QUESTA È LA TUA BASE DI CONOSCENZA (LA VERITÀ) SULLA BASE DEL SEGUENTE TESTO CHE HA LETTO ANCHE LO STUDENTE:
-La scuola "Parlo Italiano" è ad Almaty, in Kazakistan.
-È una scuola moderna, perfetta per studenti russofoni perché è online.
-Chi sono gli studenti della scuola “Parlo Italiano"?
-
-
-Aigerim è una studentessa. È kazaka.
-È casalinga.
-Studia l'italiano perché ama la cucina italiana.
-
-
-Kirill è uno studente della scuola.
-Kirill è russo; è programmatore.
-Studia l'italiano perché lavora in una compagnia italiana.
-
-
-Zarina è una studentessa della scuola.
-Zarina è uzbeka; è infermiera.
-Studia l'italiano perché sogna di visitare Roma.
-
-
-Bekzat è uno studente della scuola.
-Bekzat è kazako; è cuoco.
-Studia l'italiano perché lavora in un ristorante italiano.
-
-
-Antonio Marini è l'insegnante della scuola "Parlo Italiano".
-È sposato e ha due figlie.
-È un bravo insegnante perché è paziente e sempre disponibile con gli studenti. 😉
-
-
+    La scuola "Parlo Italiano" è ad Almaty, in Kazakistan.
+    È una scuola moderna, perfetta per studenti russofoni perché è online.
+    Chi sono gli studenti della scuola “Parlo Italiano"?
+    Aigerim è una studentessa. È kazaka. È casalinga. Studia l'italiano perché ama la cucina italiana.
+    Kirill è uno studente della scuola. Kirill è russo; è programmatore. Studia l'italiano perché lavora in una compagnia italiana.
+    Zarina è una studentessa della scuola. Zarina è uzbeka; è infermiera. Studia l'italiano perché sogna di visitare Roma.
+    Bekzat è uno studente della scuola. Bekzat è kazako; è cuoco. Studia l'italiano perché lavora in un ristorante italiano.
+    Antonio Marini è l'insegnante della scuola "Parlo Italiano". È sposato e ha due figlie. È un bravo insegnante perché è paziente e sempre disponibile con gli studenti. 😉
 
     COMPITO DELLO STUDENTE:
     Lo studente deve correggere delle affermazioni false usando la struttura negativa/affermativa.
@@ -276,26 +313,9 @@ Antonio Marini è l'insegnante della scuola "Parlo Italiano".
     4. ${s4}
     `;
     
-    try {
-        const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${API_KEY}`
-            },
-            body: JSON.stringify({
-                model: "llama-3.3-70b-versatile",
-                messages: [{ role: "user", content: prompt }],
-                temperature: 0.7
-            })
-        });
-
-        const data = await response.json();
-        if (data.error) throw new Error(data.error.message);
-        responseText.innerHTML = data.choices[0].message.content.replace(/\n/g, '<br>');
-    } catch (error) {
-        responseText.innerHTML = "<span style='color:red'>Errore: " + error.message + "</span>";
-    } finally {
-        loader.style.display = 'none';
-    }
+    allAI(prompt, document.getElementById('ai-response-text'), document.getElementById('ai-loader-sent'));
 }
+
+
+
+
