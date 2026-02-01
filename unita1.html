@@ -674,52 +674,46 @@
             </div>
         </div>
 
-        <div id="sec-storia" class="section-block">
-            <div class="card" style="border: 2px solid #f39c12; background: #fffcf5;">
-                <header style="background: #fffcf5; border-bottom: 1px dashed #f39c12;">
-                    <div class="header-course">Produzione Scritta</div>
-                    <h1 class="header-main-title" style="color: #d35400;">Racconta la storia <span class="ru-block">(Расскажи историю)</span></h1>
-                </header>
-                
-                <div class="content">
-                    <div class="text-box" style="text-align: center; margin-bottom: 30px;">
-                        <img src="img/racconta_storia.jpg" alt="Raccontami una storia" style="max-width: 100%; height: auto; border-radius: 10px; margin-bottom: 20px;">
-                        
-                        <div style="text-align: left; background: white; padding: 20px; border-radius: 10px; border: 1px solid #eee;">
-                            <p style="font-size: 0.95rem; color: #4a5568; line-height: 1.6;">
-                                <strong>Задание:</strong> Напиши небольшую историю о школе и людях, которых ты встретил в уроке. Используй глагол <b>essere</b> (sono, è, sono...).<br>
-                                <em>Цель — чтобы тебя поняли. Не бойся делать ошибки!</em>
-                            </p>
-                        </div>
-                    </div>
+       <div id="sec-storia" class="section-block">
+    <div class="card" style="border: 2px solid #f39c12; background: #fffcf5;">
+        <header>
+            <div class="header-course">Produzione Scritta</div>
+            <h1 class="header-main-title">Racconta la storia</h1>
+            <div class="ru-block">Расскажи историю</div>
+        </header>
 
-                    <div style="background: white; padding: 30px; border-radius: 15px; border: 2px dashed #f39c12;">
-                        <h3 style="margin-top:0; color:#d35400;">✍️ Scrivi qui <span class="ru-text" style="display:inline; border:none; padding:0;">(Напиши здесь):</span></h3>
-                        
-                        <div class="exercise-template" style="background: #fdfcf0; padding: 15px; border-radius: 8px; margin-bottom: 15px; font-style: italic; color: #7f8c8d; border: 1px solid #f9ebea;">
-                            Ciao, ti presento la mia scuola di italiano… (Привет, представляю тебе мою школу итальянского.)<br>
-                            La scuola è ________<br>
-                            Aigerim è ________<br>
-                            Anche Kirill è ________<br>
-                            Zarina e Bekzat sono ________<br>
-                            Antonio è ________, è molto bravo!
-                        </div>
+        <div class="content">
+            <div class="instruction">
+                ✍️ Scrivi qui <span class="ru-text">(Напиши здесь)</span>
+            </div>
 
-                        <textarea id="ai-story-input" class="ai-input" rows="8" 
-                            placeholder="Ciao! La scuola è online. Aigerim è..." 
-                            style="width: 100%; padding: 15px; border-radius: 10px; border: 1px solid #ccc; font-family: 'Montserrat', sans-serif; font-size: 1rem;"></textarea>
-                        
-                        <div style="text-align: center; margin-top: 20px;">
-                            <button class="btn-nav" style="background-color: #8e44ad; width: auto; padding: 12px 30px;" onclick="checkStoryWithAI()">
-                                VERIFICA COMPRENSIBILITÀ ➔
-                            </button>
-                        </div>
+            <div class="exercise-template" style="background: white; padding: 20px; border-radius: 10px; border: 1px solid #f39c12; margin-bottom: 20px;">
+                <p style="margin-bottom: 10px;"><b>Usa questo schema:</b></p>
+                <p style="line-height: 1.8; color: #2c3e50;">
+                    Ciao, ti presento la mia scuola di italiano… <br>
+                    <small class="ru-text" style="display:inline;">(Привет, представляю тебе мою школу итальянского.)</small><br>
+                    La scuola è ________<br>
+                    Aigerim è ________<br>
+                    Anche Kirill è ________<br>
+                    Zarina e Bekzat sono ________<br>
+                    Antonio è ________, è molto bravo!
+                </p>
+            </div>
 
-                        <div id="ai-feedback-story" style="display:none; margin-top: 20px; background: #f4f0f8; padding: 15px; border-radius: 10px; border-left: 5px solid #8e44ad;">
-                            <div id="ai-loader-story" style="display:none; text-align:center;">🤖 Учитель читает твою историю...</div>
-                            <div id="ai-response-story" style="white-space: pre-wrap; line-height: 1.5;"></div>
-                        </div>
-                    </div>
+            <textarea id="ai-story-input" class="ai-input" rows="8" placeholder="Scrivi la tua storia qui..."></textarea>
+
+            <div style="text-align: center; margin-top: 20px;">
+                <button class="btn-nav" style="background-color: #8e44ad; width: auto; padding: 15px 30px;" onclick="checkStoryWithAI()">
+                    VERIFICA COMPRENSIBILITÀ ➔
+                </button>
+            </div>
+
+            <div id="ai-feedback-container" style="display:none; margin-top: 20px; padding: 15px; border-radius: 10px; border-left: 5px solid #8e44ad; background: #f4f0f8;">
+                <p id="ai-feedback-text"></p>
+            </div>
+        </div>
+    </div>
+</div>
 
                     <div class="nav-buttons-container" style="margin-top: 40px;">
                         <button class="btn-nav btn-back" onclick="showSection('sec-testo')">
