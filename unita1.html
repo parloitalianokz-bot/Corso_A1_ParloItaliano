@@ -700,7 +700,7 @@
                 </p>
             </div>
 
-            <textarea id="ai-story-input" class="ai-input" rows="8" placeholder="Scrivi la tua storia qui..."></textarea>
+            <textarea id="ai-story-input" class="ai-input" rows="8" placeholder="Scrivi la tua storia qui..." style="width: 100%; box-sizing: border-box;"></textarea>
 
             <div style="text-align: center; margin-top: 20px;">
                 <button class="btn-nav" style="background-color: #8e44ad; width: auto; padding: 15px 30px;" onclick="checkStoryWithAI()">
@@ -708,25 +708,20 @@
                 </button>
             </div>
 
-            <div id="ai-feedback-story" style="display:none;">
-                <div id="ai-loader-story" style="display:none;">🤖 Antonio sta leggendo...</div>
-                <div id="ai-response-story"></div>
+            <div id="ai-feedback-story" style="display:none; margin-top: 20px; background: #f4f0f8; padding: 15px; border-radius: 10px; border-left: 5px solid #8e44ad;">
+                <div id="ai-loader-story" style="display:none; text-align:center;">🤖 Antonio sta leggendo...</div>
+                <div id="ai-response-story" style="white-space: pre-wrap; line-height: 1.5;"></div>
             </div>
-        </div>
-    </div>
-</div>
 
-                    <div class="nav-buttons-container" style="margin-top: 40px;">
-                        <button class="btn-nav btn-back" onclick="showSection('sec-testo')">
-                            ⬅ Torna al Testo
-                        </button>
-                        <button class="btn-nav btn-next" onclick="showSection('sec-negativa')">
-                            Avanti: La Frase Negativa ➔
-                        </button>
-                    </div>
-                </div>
+            <div class="nav-buttons-container" style="margin-top: 40px;">
+                <button class="btn-nav btn-back" onclick="showSection('sec-testo')">
+                    ⬅ Torna al Testo
+                </button>
+                <button class="btn-nav btn-next" onclick="showSection('sec-negativa')">
+                    Avanti: La Frase Negativa ➔
+                </button>
             </div>
-        </div>
+        </div> </div> </div>
 
         <div id="sec-negativa" class="section-block">
             
