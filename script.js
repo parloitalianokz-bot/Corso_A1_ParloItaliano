@@ -240,7 +240,7 @@ async function checkStoryWithAI() {
     
         REGOLE:
         1. Se il messaggio è comprensibile per un italiano, sii entusiasta!
-        2. Non correggere ogni piccolo errore grammaticale (es. se scrive "scuola online" invece di "la scuola è online", va bene).
+        2. Non punire ogni piccolo errore grammaticale (es. se scrive "scuola online" invece di "la scuola è online", fai presente e correggi ma spiega che nn inficia la comprensione).
         3. Spiega eventuali correzioni solo se l'errore cambia il senso della frase o la rende poco comprensibile
         4. Verifica la corrsipondenza di quanto scritto dallo studente con la verità del testo
         5. Rispondi SEMPRE in russo per le spiegazioni e i complimenti.
