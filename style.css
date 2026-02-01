@@ -166,14 +166,12 @@
         .it-text { color: #2c3e50; font-size: 1rem; font-weight: 600; }
 
         /* TESTO RUSSO */ 
-        .ru-text { 
-            display: block; 
-            color: #4a5568; 
-            font-size: 0.9rem; 
+        .ru-text {
+            color: #4a5568; /* Un grigio antracite molto più scuro e nitido */
+            font-size: 0.9rem;
+            font-style: italic;
+            display: block; /* Va a capo sotto l'italiano, migliorando l'ordine */
             margin-top: 4px;
-            padding-left: 8px; 
-            border-left: 3px solid var(--primary); /* Cambiato da grigio a verde per dare enfasi */
-            font-family: 'Montserrat', sans-serif; 
                 }
 
         /* PULSANTI */
