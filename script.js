@@ -313,7 +313,7 @@ async function checkSentencesWithAI() {
     4. ${s4}
     `;
     
-    allAI(prompt, document.getElementById('ai-response-text'), document.getElementById('ai-loader-sent'));
+    callAI(prompt, document.getElementById('ai-response-text'), document.getElementById('ai-loader-sent'));
 }
 
 
