@@ -43,7 +43,15 @@
             font-weight: 600;
         }
         .sidebar a:hover, .sidebar a.active { background-color: #f0f7f4; color: var(--primary); border-left: 5px solid var(--primary); }
-        .ru-menu { display: block; font-size: 0.75rem; color: #999; font-weight: normal; margin-top: 3px; }
+
+ /* --- MENU RUSSO --- */
+        .ru-menu { 
+            display: block; 
+            font-size: 0.8rem; 
+            color: #4a5568; 
+            font-weight: 500; 
+            margin-top: 3px; 
+                }
 
         /* --- CONTENUTO PRINCIPALE --- */
         #main-wrapper { width: 100%; max-width: 900px; margin: 80px 20px 40px; }
@@ -62,7 +70,14 @@
         header { padding: 40px 30px; text-align: center; border-bottom: 2px solid #f0f0f0; background: #fff; }
         .header-course { font-size: 0.9rem; color: var(--grey); font-weight: bold; text-transform: uppercase; letter-spacing: 2px; }
         .header-main-title { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--primary); margin: 10px 0; line-height: 1.2; }
-        .ru-block { display: block; color: #999; font-size: 0.6em; font-weight: normal; margin-top: 5px; font-family: 'Montserrat', sans-serif; }
+        .ru-block { 
+            display: block; 
+            color: #4a5568; /* Grigio scuro leggibile */
+            font-size: 0.85rem; /* Leggermente più grande */
+            font-weight: 500; 
+            margin-top: 5px; 
+            font-family: 'Montserrat', sans-serif; 
+                }
 
         .content { padding: 40px; color: var(--text); line-height: 1.6; }
         
@@ -101,14 +116,15 @@
         
         .question { font-weight: bold; margin-bottom: 15px; font-size: 1.1rem; color: var(--text); margin-top: 30px; }
         
+       /* DOMANDE QUIZ IN RUSSO */
         .ru-question {
-            display: block;       /* Va a capo automaticamente */
-            font-size: 0.9rem;    /* Un po' più piccolo */
-            color: #7f8c8d;       /* Grigio, meno invadente */
-            font-weight: normal;  /* Non grassetto */
+            display: block;
+            font-size: 0.9rem;
+            color: #4a5568;
+            font-weight: 500;
             margin-top: 2px;
             font-style: italic;
-        }
+                }
         
         .option { 
             display: block; background: #fff; padding: 15px; margin: 10px 0; border-radius: 15px; cursor: pointer; 
@@ -148,10 +164,17 @@
         .transcript-row { margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px dashed #e0e0e0; line-height: 1.5; }
         .speaker { font-size: 0.95rem; font-weight: 800; color: var(--primary); margin-right: 5px; }
         .it-text { color: #2c3e50; font-size: 1rem; font-weight: 600; }
+
+        /* TESTO RUSSO */ 
         .ru-text { 
-            display: block; color: #1a1a1a; font-size: 0.9rem; margin-top: 4px;
-            padding-left: 8px; border-left: 3px solid #ccc; font-family: 'Montserrat', sans-serif; 
-        }
+            display: block; 
+            color: #4a5568; 
+            font-size: 0.9rem; 
+            margin-top: 4px;
+            padding-left: 8px; 
+            border-left: 3px solid var(--primary); /* Cambiato da grigio a verde per dare enfasi */
+            font-family: 'Montserrat', sans-serif; 
+                }
 
         /* PULSANTI */
         .btn-nav {
