@@ -227,7 +227,17 @@ async function checkStoryWithAI() {
     const prompt = `
         Sei Antonio, l'insegnante di "Parlo Italiano". 
         OBIETTIVO: Valuta la COMPRENSIBILITÀ della storia dello studente.
-        
+
+        QUESTA È LA TUA BASE DI CONOSCENZA (LA VERITÀ) SULLA BASE DEL SEGUENTE TESTO CHE HA LETTO ANCHE LO STUDENTE:
+    La scuola "Parlo Italiano" è ad Almaty, in Kazakistan.
+    È una scuola moderna, perfetta per studenti russofoni perché è online.
+    Chi sono gli studenti della scuola “Parlo Italiano"?
+    Aigerim è una studentessa. È kazaka. È casalinga. Studia l'italiano perché ama la cucina italiana.
+    Kirill è uno studente della scuola. Kirill è russo; è programmatore. Studia l'italiano perché lavora in una compagnia italiana.
+    Zarina è una studentessa della scuola. Zarina è uzbeka; è infermiera. Studia l'italiano perché sogna di visitare Roma.
+    Bekzat è uno studente della scuola. Bekzat è kazako; è cuoco. Studia l'italiano perché lavora in un ristorante italiano.
+    Antonio Marini è l'insegnante della scuola "Parlo Italiano". È sposato e ha due figlie. È un bravo insegnante perché è paziente e sempre disponibile con gli studenti. 😉
+    
         REGOLE:
         1. Se il messaggio è comprensibile per un italiano, sii entusiasta!
         2. Non correggere ogni piccolo errore grammaticale (es. se scrive "scuola online" invece di "la scuola è online", va bene).
