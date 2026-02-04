@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html lang="it">
+    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unità 1 - Parlo Italiano</title>
+
     <script>
+        // Controllo accesso semplice
         if (sessionStorage.getItem("accesso_effettuato") !== "true") {
             window.location.href = "index.html";
         }
     </script>
+    
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
     <div id="menuBtn" class="menu-btn" onclick="toggleMenu()">☰</div>
@@ -19,15 +24,31 @@
 
     <div id="mySidebar" class="sidebar">
         <a href="javascript:void(0)" class="close-btn" onclick="toggleMenu()">×</a>
-        <a href="index.html" style="background-color: #f1f1f1; border-bottom: 1px solid #ddd;">⬅ Torna alla Dashboard</a>
+        <a href="index.html" style="background-color: #f1f1f1; border-bottom: 1px solid #ddd;">
+            ⬅ Torna alla Dashboard
+        </a>
+
         <h3>UNITA' 1</h3>
         <p>Indice lezione / План урока</p>
-        <a onclick="showSection('sec-pres')" id="link-pres" class="active">👋 Presentazione <span class="ru-menu">Введение</span></a>
-        <a onclick="showSection('sec-dial')" id="link-dial">🎬 Dialoghi <span class="ru-menu">Диалоги</span></a>
-        <a onclick="showSection('sec-testo')" id="link-testo">📖 Testo <span class="ru-menu">Текст</span></a>
-        <a onclick="showSection('sec-storia')" id="link-storia">✍️ Racconto <span class="ru-menu">История</span></a>
-        <a onclick="showSection('sec-negativa')" id="link-gramm">📐 Grammatica <span class="ru-menu">Грамматика</span></a>
-        <a onclick="showSection('sec-eser')" id="link-eser">🗣️ Esercizi <span class="ru-menu">Упражнения</span></a>
+        
+        <a onclick="showSection('sec-pres')" id="link-pres" class="active">
+            👋 Presentazione <span class="ru-menu">Введение</span>
+        </a>
+        <a onclick="showSection('sec-dial')" id="link-dial">
+            🎬 Dialoghi <span class="ru-menu">Диалоги</span>
+        </a>
+        <a onclick="showSection('sec-testo')" id="link-testo">
+            📖 Testo <span class="ru-menu">Текст</span>
+        </a>
+        <a onclick="showSection('sec-storia')" id="link-storia">
+            ✍️ Racconto <span class="ru-menu">История</span>
+        </a>
+        <a onclick="showSection('sec-negativa')" id="link-gramm">
+            📐 Grammatica <span class="ru-menu">Грамматика</span>
+        </a>
+        <a onclick="showSection('sec-eser')" id="link-eser">
+            🗣️ Esercizi <span class="ru-menu">Упражнения</span>
+        </a>
     </div>
 
     <div id="main-wrapper">
@@ -44,75 +65,30 @@
                         <p><strong>Дорогие студенты!</strong> Погружение в итальянский стартует прямо сейчас.<br>
                         <strong>Помните:</strong> ошибки — это нормально, главное — ваше желание говорить!</p>
                     </div>
+
                     <div style="text-align: center; margin-bottom: 40px;">
-                        <a onclick="showSection('sec-dial')" class="btn-nav btn-start">INIZIA LA LEZIONE ➔<br><span style="font-size: 0.8rem; font-weight: normal;">(НАЧАТЬ УРОК)</span></a>
+                        <a onclick="showSection('sec-dial')" class="btn-nav btn-start">
+                            INIZIA LA LEZIONE ➔
+                            <br><span style="font-size: 0.8rem; font-weight: normal;">(НАЧАТЬ УРОК)</span>
+                        </a>
                     </div>
-                </div>
-            </div>
-        </div>
 
-        <div id="sec-dial" class="section-block">
-            <div class="card">
-                <header>
-                    <div class="header-course">Dialoghi</div>
-                    <h1 class="header-main-title">Dialogo 1 <span class="ru-block">(Диалог 1)</span></h1>
-                </header>
-                <div class="content">
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/UT5tYRPrMoY" frameborder="0" allowfullscreen></iframe>
+                    <div class="competencies-box">
+                        <h3>🎯 Cosa impareremo: <span style="font-size:0.9rem; font-weight:normal;">(Чему мы научимся?)</span></h3>
+                        <ul>
+                            <li><strong>Знакомство (Saluti):</strong><br>Как здороваться и представляться.</li>
+                            <li><strong>Профессии (Lavoro):</strong><br>Слова и фразы, чтобы рассказать о своей работе.</li>
+                            <li><strong>Verbo Essere (Глагол Essere):</strong><br>Главный глагол "быть" и его основные формы.</li>
+                        </ul>
                     </div>
-                    <div style="text-align: center; margin: 20px 0;">
-                        <button class="btn-nav btn-secondary" onclick="toggleTranscript('trans1')">📜 Leggi Trascrizione (Текст диалога)</button>
-                    </div>
-                    <div id="trans1" class="transcript-box" style="display:none;">
-                        <div class="transcript-row"><span class="speaker">Antonio:</span> <span class="it-text">Buongiorno a tutti! Io sono Antonio.</span> <span class="ru-text">Всем добрый день! Я Антонио.</span></div>
-                        <div class="transcript-row"><span class="speaker">Aigerim:</span> <span class="it-text">Buongiorno, signor Antonio. Io sono Aigerim.</span> <span class="ru-text">Добрый день, синьор Антонио. Я Айгерим.</span></div>
-                        <div class="transcript-row"><span class="speaker">Kirill:</span> <span class="it-text">Io sono Kirill, sono di Almaty.</span> <span class="ru-text">Я Кирилл, я из Алматы.</span></div>
-                    </div>
-                    <div class="nav-buttons-container">
-                        <button class="btn-nav btn-back" onclick="showSection('sec-pres')">⬅ Intro</button>
-                        <button class="btn-nav btn-next" onclick="showSection('sec-dial2')">Dialogo 2 ➔</button>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <div id="sec-dial2" class="section-block">
-            <div class="card">
-                <header>
-                    <div class="header-course">Dialoghi</div>
-                    <h1 class="header-main-title">Dialogo 2 <span class="ru-block">(Диалог 2)</span></h1>
-                </header>
-                <div class="content">
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/iFQhfdwgNtA" frameborder="0" allowfullscreen></iframe>
-                    </div>
-                    <div class="nav-buttons-container">
-                        <button class="btn-nav btn-back" onclick="showSection('sec-dial')">⬅ Dialogo 1</button>
-                        <button class="btn-nav btn-next" onclick="showSection('sec-testo')">Testo ➔</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="sec-testo" class="section-block">
-            <div class="card">
-                <header>
-                    <div class="header-course">Lettura</div>
-                    <h1 class="header-main-title">I Nostri Studenti <span class="ru-block">(Наши студенты)</span></h1>
-                </header>
-                <div class="content">
-                    <div class="profile-card">
-                        <div class="profile-text">
-                            <p><strong>Aigerim</strong> è kazaka, è casalinga. Studia perché ama la cucina.</p>
-                            <p><strong>Kirill</strong> è russo, è programmatore. Studia per lavoro.</p>
-                            <p><strong>Zarina</strong> è uzbeka, è infermiera. Sogna Roma.</p>
-                            <p><strong>Bekzat</strong> è kazako, è cuoco. Lavora in un ristorante italiano.</p>
-                        </div>
-                    </div>
-                    <div class="nav-buttons-container">
-                        <button class="btn-nav btn-back" onclick="showSection('sec-dial2')">⬅ Dialoghi</button>
-                        <button class="btn-nav btn-next" onclick="showSection('sec-storia')">Racconto ➔</button>
+                    <div class="tips-box">
+                        <h3>💡 Consigli: <span style="font-size:0.9rem; font-weight:normal;">(Советы для учебы)</span></h3>
+                        <ul>
+                            <li><strong>Говорите без страха:</strong><br>Не бойтесь делать ошибки.</li>
+                            <li><strong>Учитесь с душой:</strong><br>Найдите то, что вам нравится в языке.</li>
+                            <li><strong>Практикуйте ежедневно:</strong><br>Даже 5 минут в день имеют значение.</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -125,133 +101,52 @@
                     <h1 class="header-main-title">Racconta la storia</h1>
                     <div class="ru-block">Расскажи историю</div>
                 </header>
+
                 <div class="content">
+                    <div class="instruction">
+                        ✍️ Scrivi qui <span class="ru-text">(Напиши здесь)</span>
+                    </div>
+
                     <div class="exercise-template" style="background: white; padding: 20px; border-radius: 10px; border: 1px solid #f39c12; margin-bottom: 20px;">
-                        <p><b>Usa questo schema:</b></p>
-                        <p>Ciao, ti presento la mia scuola... La scuola è ________<br>Aigerim è ________<br>Kirill è ________... ecc.</p>
+                        <p style="margin-bottom: 10px;"><b>Usa questo schema:</b></p>
+                        <p style="line-height: 1.8; color: #2c3e50;">
+                            Ciao, ti presento la mia scuola di italiano… <br>
+                            <small class="ru-text" style="display:inline;">(Привет, представляю тебе мою школу итальянского.)</small><br>
+                            La scuola è ________<br>
+                            Aigerim è ________<br>
+                            Anche Kirill è ________<br>
+                            Zarina e Bekzat sono ________<br>
+                            Antonio è ________, è molto bravo!
+                        </p>
                     </div>
-                    <textarea id="ai-story-input" class="ai-input" rows="8" placeholder="Scrivi qui..." style="width: 100%; box-sizing: border-box;"></textarea>
+
+                    <textarea id="ai-story-input" class="ai-input" rows="8" placeholder="Scrivi la tua storia qui..." style="width: 100%; box-sizing: border-box;"></textarea>
+
                     <div style="text-align: center; margin-top: 20px;">
-                        <button class="btn-nav" style="background-color: #8e44ad; width: auto; padding: 15px 30px;" onclick="checkStoryWithAI()">VERIFICA COMPRENSIBILITÀ ➔</button>
+                        <button class="btn-nav" style="background-color: #8e44ad; width: auto; padding: 15px 30px;" onclick="checkStoryWithAI()">
+                            VERIFICA COMPRENSIBILITÀ ➔
+                        </button>
                     </div>
+
                     <div id="ai-feedback-story" style="display:none; margin-top: 20px; background: #f4f0f8; padding: 15px; border-radius: 10px; border-left: 5px solid #8e44ad;">
                         <div id="ai-loader-story" style="display:none; text-align:center;">🤖 Antonio sta leggendo...</div>
-                        <div id="ai-response-story"></div>
+                        <div id="ai-response-story" style="white-space: pre-wrap; line-height: 1.5;"></div>
                     </div>
+
                     <div class="nav-buttons-container" style="margin-top: 40px;">
-                        <button class="btn-nav btn-back" onclick="showSection('sec-testo')">⬅ Testo</button>
-                        <button class="btn-nav btn-next" onclick="showSection('sec-negativa')">Grammatica ➔</button>
+                        <button class="btn-nav btn-back" onclick="showSection('sec-testo')">
+                            ⬅ Torna al Testo
+                        </button>
+                        <button class="btn-nav btn-next" onclick="showSection('sec-negativa')">
+                            Avanti: La Frase Negativa ➔
+                        </button>
                     </div>
-                </div>
+                </div> 
             </div>
         </div>
 
-        <div id="sec-negativa" class="section-block">
-            <div class="card">
-                <header>
-                    <div class="header-course">Passo 1: Pratica Intensiva</div>
-                    <h1 class="header-main-title">Sfida di Scrittura <span class="ru-block">(Письменное задание)</span></h1>
-                </header>
-                <div class="content">
-                    <div class="context-box" style="background: #fff0f0; border-left-color: #e74c3c;">
-                        <p>👉 <strong>Completa le frasi in forma negativa:</strong></p>
-                    </div>
-
-                    <div class="exercises-list">
-                        <div class="neg-item">1. Kirill è uzbeko? <br> Kirill <input type="text" class="input-inline short" data-answer="non"> è uzbeko. Kirill è <input type="text" class="input-inline medium" data-answer="russo">.</div>
-                        <div class="neg-item">2. Zarina è kazaka? <br> Zarina <input type="text" class="input-inline short" data-answer="non"> è <input type="text" class="input-inline medium" data-answer="kazaka">. Zarina è <input type="text" class="input-inline medium" data-answer="uzbeka">.</div>
-                        <div class="neg-item">3. Bekzat è italiano? <br> Bekzat <input type="text" class="input-inline short" data-answer="non"> è <input type="text" class="input-inline long" data-answer="italiano">. Bekzat è <input type="text" class="input-inline medium" data-answer="kazako">.</div>
-                        <div class="neg-item">4. Aigerim è cuoca? <br> Aigerim <input type="text" class="input-inline short" data-answer="non"> è cuoca. Aigerim <input type="text" class="input-inline long" data-answer="è casalinga">.</div>
-                        <div class="neg-item">5. Kirill è cuoco? <br> Kirill <input type="text" class="input-inline short" data-answer="non"> è cuoco. Kirill è <input type="text" class="input-inline long" data-answer="programmatore">.</div>
-                        <div class="neg-item">6. Zarina è casalinga? <br> Zarina <input type="text" class="input-inline short" data-answer="non"> è casalinga. Zarina è <input type="text" class="input-inline medium" data-answer="infermiera">.</div>
-                        <div class="neg-item">7. Bekzat è dentista? <br> Bekzat <input type="text" class="input-inline short" data-answer="non"> è dentista. Bekzat è <input type="text" class="input-inline medium" data-answer="cuoco">.</div>
-                        <div class="neg-item">8. Aigerim studia perché lavora in un ristorante? <br> Aigerim <input type="text" class="input-inline short" data-answer="non"> studia l'italiano perché lavora in un <input type="text" class="input-inline medium" data-answer="ristorante">.</div>
-                        <div class="neg-item">9. Kirill studia perché ama la cucina? <br> Kirill <input type="text" class="input-inline short" data-answer="non"> studia perché ama la <input type="text" class="input-inline medium" data-answer="cucina">.</div>
-                        <div class="neg-item">10. Zarina studia perché lavora con italiani? <br> Zarina <input type="text" class="input-inline short" data-answer="non"> studia perché lavora con italiani.</div>
-                        <div class="neg-item">11. Bekzat studia l'italiano per turismo? <br> No, Bekzat <input type="text" class="input-inline short" data-answer="non"> studia per turismo.</div>
-                        <div class="neg-item">12. Antonio è il direttore della scuola? <br> No, <input type="text" class="input-inline short" data-answer="non"> è il direttore, è l' <input type="text" class="input-inline medium" data-answer="insegnante">.</div>
-                        <div class="neg-item">13. La scuola è a Milano? <br> No, <input type="text" class="input-inline short" data-answer="non"> è a Milano, è ad <input type="text" class="input-inline medium" data-answer="almaty">.</div>
-                        <div class="neg-item">14. Antonio è single? <br> No, Antonio <input type="text" class="input-inline short" data-answer="non"> è single, è sposato.</div>
-                        <div class="neg-item">15. Antonio è un cattivo insegnante? <br> Antonio <input type="text" class="input-inline short" data-answer="non"> è un cattivo insegnante, è un <input type="text" class="input-inline medium" data-answer="bravo"> insegnante.</div>
-                    </div>
-
-                    <div style="text-align: center; margin-top: 30px;">
-                        <button class="btn-nav btn-check" onclick="checkWrittenExercises()">Controlla Risposte 📝</button>
-                        <p id="written-feedback"></p>
-                    </div>
-
-                    <hr style="margin: 40px 0;">
-
-                    <div class="logic-game-section">
-                        <h2 style="text-align:center; color:#2980b9;">🧩 Mettiamo in ordine!</h2>
-                        <div id="word-pool" class="chips-container">
-                            <div class="chip" onclick="selectChip(this)" data-val="prog">Programmatore</div>
-                            <div class="chip" onclick="selectChip(this)" data-val="kazaka">Kazaka</div>
-                            <div class="chip" onclick="selectChip(this)" data-val="roma">Sogna Roma</div>
-                            <div class="chip" onclick="selectChip(this)" data-val="cuoco">Cuoco</div>
-                            <div class="chip" onclick="selectChip(this)" data-val="russo">Russo</div>
-                            <div class="chip" onclick="selectChip(this)" data-val="cucina">Ama la cucina</div>
-                            <div class="chip" onclick="selectChip(this)" data-val="kazako">Kazako</div>
-                            <div class="chip" onclick="selectChip(this)" data-val="lavoro_it">Compagnia italiana</div>
-                            <div class="chip" onclick="selectChip(this)" data-val="uzbeka">Uzbeka</div>
-                            <div class="chip" onclick="selectChip(this)" data-val="ristorante">Ristorante italiano</div>
-                            <div class="chip" onclick="selectChip(this)" data-val="casalinga">Casalinga</div>
-                            <div class="chip" onclick="selectChip(this)" data-val="infermiera">Infermiera</div>
-                        </div>
-                        <table class="puzzle-table">
-                            <thead><tr><th>Studente</th><th>Nazionalità</th><th>Professione</th><th>Motivo</th></tr></thead>
-                            <tbody>
-                                <tr><td>Aigerim</td><td class="drop-zone" onclick="placeChip(this)" data-correct="kazaka"></td><td class="drop-zone" onclick="placeChip(this)" data-correct="casalinga"></td><td class="drop-zone" onclick="placeChip(this)" data-correct="cucina"></td></tr>
-                                <tr><td>Kirill</td><td class="drop-zone" onclick="placeChip(this)" data-correct="russo"></td><td class="drop-zone" onclick="placeChip(this)" data-correct="prog"></td><td class="drop-zone" onclick="placeChip(this)" data-correct="lavoro_it"></td></tr>
-                                <tr><td>Zarina</td><td class="drop-zone" onclick="placeChip(this)" data-correct="uzbeka"></td><td class="drop-zone" onclick="placeChip(this)" data-correct="infermiera"></td><td class="drop-zone" onclick="placeChip(this)" data-correct="roma"></td></tr>
-                                <tr><td>Bekzat</td><td class="drop-zone" onclick="placeChip(this)" data-correct="kazako"></td><td class="drop-zone" onclick="placeChip(this)" data-correct="cuoco"></td><td class="drop-zone" onclick="placeChip(this)" data-correct="ristorante"></td></tr>
-                            </tbody>
-                        </table>
-                        <div style="text-align: center; margin-top: 20px;">
-                            <button class="btn-nav btn-check" onclick="checkPuzzle()">Controlla Tabella 🧩</button>
-                        </div>
-                    </div>
-
-                    <hr style="margin: 40px 0;">
-
-                    <div id="writing-challenge-ai" style="background: #fdfefe; border: 2px solid #8e44ad; border-radius: 15px; padding: 20px;">
-                        <h3 style="color: #8e44ad; text-align: center;">✍️ Ora scrivi tu!</h3>
-                        <div class="input-group-ai"><label>1. Aigerim è russa. ❌</label><input type="text" id="sent-aig" class="ai-input" placeholder="Aigerim non è russa, è..."></div>
-                        <div class="input-group-ai"><label>2. Kirill è cuoco. ❌</label><input type="text" id="sent-kir" class="ai-input" placeholder="Kirill non è..."></div>
-                        <div class="input-group-ai"><label>3. Zarina è inglese. ❌</label><input type="text" id="sent-zar" class="ai-input" placeholder="Zarina non è..."></div>
-                        <div class="input-group-ai"><label>4. Bekzat studia per turismo. ❌</label><input type="text" id="sent-bek" class="ai-input" placeholder="Bekzat non studia..."></div>
-                        <div style="text-align: center; margin-top: 20px;">
-                            <button class="btn-nav" style="background-color: #8e44ad;" onclick="checkSentencesWithAI()">✨ Verifica con AI</button>
-                        </div>
-                        <div id="ai-sentence-feedback" style="display:none; margin-top: 20px; background: #f4f6f7; padding: 15px; border-radius: 10px; border-left: 5px solid #8e44ad;">
-                            <div id="ai-loader-sent" style="display:none; text-align:center;">🤖 Controllo...</div>
-                            <div id="ai-response-text"></div>
-                        </div>
-                    </div>
-
-                    <div class="text-box" style="margin-top: 40px; border: 2px solid #27ae60; text-align: center;">
-                        <h3 style="color: #27ae60;">La Frase Negativa: NON + VERBO</h3>
-                        <p>Per dire "NO", mettiamo <strong>NON</strong> prima del verbo.</p>
-                        <ul style="text-align: left; display: inline-block;">
-                            <li>Io <strong>non sono</strong> italiano.</li>
-                            <li>Lui <strong>non è</strong> russo.</li>
-                        </ul>
-                    </div>
-
-                    <div class="nav-buttons-container">
-                        <button class="btn-nav btn-back" onclick="showSection('sec-storia')">⬅ Indietro</button>
-                        <button class="btn-nav btn-next" onclick="showSection('sec-eser')">Fine ➔</button>
-                    </div>
-                </div> </div> </div> <div id="sec-eser" class="section-block">
-            <div class="card">
-                <header><h1 class="header-main-title">Lezione Completata! 🎉</h1></header>
-                <div class="content" style="text-align: center;">
-                    <p>Ottimo lavoro nell'Unità 1.</p>
-                    <a href="index.html" class="btn-nav">Torna alla Dashboard</a>
-                </div>
-            </div>
         </div>
 
-    </div> <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
