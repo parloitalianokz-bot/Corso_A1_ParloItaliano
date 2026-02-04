@@ -1,22 +1,17 @@
 <!DOCTYPE html>
 <html lang="it">
-    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unità 1 - Parlo Italiano</title>
-
     <script>
-        // Controllo accesso semplice
         if (sessionStorage.getItem("accesso_effettuato") !== "true") {
             window.location.href = "index.html";
         }
     </script>
-    
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 </head>
-
 <body>
 
     <div id="menuBtn" class="menu-btn" onclick="toggleMenu()">☰</div>
@@ -24,9 +19,7 @@
 
     <div id="mySidebar" class="sidebar">
         <a href="javascript:void(0)" class="close-btn" onclick="toggleMenu()">×</a>
-        <a href="index.html" style="background-color: #f1f1f1; border-bottom: 1px solid #ddd;">
-            ⬅ Torna alla Dashboard
-        </a>
+        <a href="index.html" style="background-color: #f1f1f1; border-bottom: 1px solid #ddd;">⬅ Torna alla Dashboard</a>
         <h3>UNITA' 1</h3>
         <p>Indice lezione / План урока</p>
         <a onclick="showSection('sec-pres')" id="link-pres" class="active">👋 Presentazione <span class="ru-menu">Введение</span></a>
@@ -38,7 +31,6 @@
     </div>
 
     <div id="main-wrapper">
-        
         <div id="sec-pres" class="section-block active">
             <div class="card">
                 <header>
@@ -48,21 +40,10 @@
                 </header>
                 <div class="content">
                     <div class="welcome-text" style="text-align: center; margin-bottom: 30px;">
-                        <p><strong>Дорогие студенты!</strong> Погружение в итальянский стартует прямо сейчас.<br>
-                        <strong>Помните:</strong> ошибки — это нормально, главное — ваше желание говорить!</p>
+                        <p><strong>Дорогие студенты!</strong> Погружение в итальянский стартует прямо сейчас.</p>
                     </div>
                     <div style="text-align: center; margin-bottom: 40px;">
-                        <a onclick="showSection('sec-dial')" class="btn-nav btn-start">
-                            INIZIA LA LEZIONE ➔<br><span style="font-size: 0.8rem; font-weight: normal;">(НАЧАТЬ УРОК)</span>
-                        </a>
-                    </div>
-                    <div class="competencies-box">
-                        <h3>🎯 Cosa impareremo:</h3>
-                        <ul>
-                            <li><strong>Знакомство (Saluti):</strong> Как здороваться и представляться.</li>
-                            <li><strong>Профессии (Lavoro):</strong> Слова и фразы о работе.</li>
-                            <li><strong>Verbo Essere:</strong> Главный глагол "быть".</li>
-                        </ul>
+                        <a onclick="showSection('sec-dial')" class="btn-nav btn-start">INIZIA LA LEZIONE ➔<br><span style="font-size: 0.8rem;">(НАЧАТЬ УРОК)</span></a>
                     </div>
                 </div>
             </div>
@@ -70,21 +51,10 @@
 
         <div id="sec-dial" class="section-block">
             <div class="card">
-                <header>
-                    <div class="header-course">Dialoghi</div>
-                    <h1 class="header-main-title">Dialogo 1 <span class="ru-block">(Диалог 1)</span></h1>
-                </header>
+                <header><h1 class="header-main-title">Dialogo 1</h1></header>
                 <div class="content">
                     <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/UT5tYRPrMoY?rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
-                    </div>
-                    <div style="text-align: center; margin: 20px 0;">
-                        <button class="btn-nav btn-secondary" onclick="toggleTranscript('trans1')">📜 Leggi Trascrizione (Текст диалога)</button>
-                    </div>
-                    <div id="trans1" class="transcript-box">
-                        <div class="transcript-row"><span class="speaker">Antonio:</span> <span class="it-text">Buongiorno a tutti! Io sono Antonio.</span> <span class="ru-text">Всем добрый день! Я Антонио.</span></div>
-                        <div class="transcript-row"><span class="speaker">Aigerim:</span> <span class="it-text">Buongiorno, signor Antonio. Io sono Aigerim.</span> <span class="ru-text">Добрый день, синьор Антонио. Я Айгерим.</span></div>
-                        <div class="transcript-row"><span class="speaker">Kirill:</span> <span class="it-text">Io sono Kirill, sono di Almaty.</span> <span class="ru-text">Я Кирилл, я из Алматы.</span></div>
+                        <iframe src="https://www.youtube.com/embed/UT5tYRPrMoY" frameborder="0" allowfullscreen></iframe>
                     </div>
                     <div class="nav-buttons-container">
                         <button class="btn-nav btn-next" onclick="showSection('sec-dial2')">Dialogo 2 ➔</button>
@@ -95,50 +65,22 @@
 
         <div id="sec-dial2" class="section-block">
             <div class="card">
-                <header><h1 class="header-main-title">Dialogo 2 <span class="ru-block">(Диалог 2)</span></h1></header>
+                <header><h1 class="header-main-title">Dialogo 2</h1></header>
                 <div class="content">
                     <div class="video-container">
                         <iframe src="https://www.youtube.com/embed/iFQhfdwgNtA" frameborder="0" allowfullscreen></iframe>
                     </div>
-                    <div class="nav-buttons-container">
-                        <button class="btn-nav btn-back" onclick="showSection('sec-dial')">⬅ Indietro</button>
-                        <button class="btn-nav btn-next" onclick="showSection('sec-testo')">Testo ➔</button>
-                    </div>
+                    <button class="btn-nav btn-next" onclick="showSection('sec-testo')">Testo ➔</button>
                 </div>
             </div>
         </div>
 
         <div id="sec-testo" class="section-block">
             <div class="card">
-                <header><h1 class="header-main-title">I Nostri Studenti <span class="ru-block">(Наши студенты)</span></h1></header>
+                <header><h1 class="header-main-title">I Nostri Studenti</h1></header>
                 <div class="content">
-                    <div class="profile-card">
-                        <img src="img/Aigerim_Testo_2.jpg" class="profile-img">
-                        <div class="profile-text">
-                            <p><strong>Aigerim</strong> è kazaka, è casalinga. Studia perché ama la cucina italiana.</p>
-                        </div>
-                    </div>
-                    <div class="profile-card">
-                        <img src="img/Kirill_Testo_3.jpg" class="profile-img">
-                        <div class="profile-text">
-                            <p><strong>Kirill</strong> è russo, è programmatore. Lavora per una compagnia italiana.</p>
-                        </div>
-                    </div>
-                    <div class="profile-card">
-                        <img src="img/Zarina_Testo_4.jpg" class="profile-img">
-                        <div class="profile-text">
-                            <p><strong>Zarina</strong> è uzbeka, è infermiera. Sogna di visitare Roma.</p>
-                        </div>
-                    </div>
-                    <div class="profile-card">
-                        <img src="img/Bekzat_Testo_5.jpg" class="profile-img">
-                        <div class="profile-text">
-                            <p><strong>Bekzat</strong> è kazako, è cuoco. Lavora in un ristorante italiano.</p>
-                        </div>
-                    </div>
-                    <div class="nav-buttons-container">
-                        <button class="btn-nav btn-next" onclick="showSection('sec-storia')">Racconto ➔</button>
-                    </div>
+                    <p>La scuola "Parlo Italiano" è ad Almaty. È una scuola moderna.</p>
+                    <button class="btn-nav btn-next" onclick="showSection('sec-storia')">Racconto ➔</button>
                 </div>
             </div>
         </div>
@@ -146,20 +88,14 @@
         <div id="sec-storia" class="section-block">
             <div class="card" style="border: 2px solid #f39c12; background: #fffcf5;">
                 <header>
-                    <div class="header-course">Produzione Scritta</div>
-                    <h1 class="header-main-title" style="color: #d35400;">Raccontami una storia <span class="ru-block">(Расскажи историю)</span></h1>
+                    <h1 class="header-main-title" style="color: #d35400;">Raccontami una storia</h1>
                 </header>
                 <div class="content">
-                    <div class="exercise-template" style="background: white; padding: 20px; border-radius: 10px; border: 1px solid #f39c12; margin-bottom: 20px;">
-                        <p><b>Usa questo schema:</b> Ciao, ti presento la mia scuola... La scuola è... Aigerim è... Kirill è...</p>
-                    </div>
-                    
+                    <p><b>Usa questo schema:</b> Ciao, ti presento la mia scuola... La scuola è... Aigerim è... Kirill è...</p>
                     <textarea id="ai-story-input" class="ai-input" rows="8" placeholder="Scrivi qui il tuo racconto..." style="width: 100%; box-sizing: border-box;"></textarea>
                     
                     <div style="text-align: center; margin-top: 20px;">
-                        <button class="btn-nav" style="background-color: #8e44ad;" onclick="checkStoryWithAI()">
-                            ✨ Antonio, correggi il mio testo!
-                        </button>
+                        <button class="btn-nav" style="background-color: #8e44ad;" onclick="checkStoryWithAI()">✨ Antonio, correggi il mio testo!</button>
                     </div>
 
                     <div id="ai-feedback-story" style="display:none; margin-top: 20px; background: white; padding: 15px; border-radius: 10px; border-left: 5px solid #8e44ad;">
@@ -168,7 +104,6 @@
                     </div>
 
                     <div class="nav-buttons-container" style="margin-top: 40px;">
-                        <button class="btn-nav btn-back" onclick="showSection('sec-testo')">⬅ Testo</button>
                         <button class="btn-nav btn-next" onclick="showSection('sec-negativa')">Grammatica ➔</button>
                     </div>
                 </div>
@@ -179,26 +114,18 @@
             <div class="card">
                 <header><h1 class="header-main-title">La Frase Negativa</h1></header>
                 <div class="content">
-                    <div class="exercises-list">
+                    <div id="ex-negativa-container" class="exercises-list">
                         <div class="neg-item">1. Kirill è uzbeko? <br> Kirill <input type="text" class="input-inline short" data-answer="non"> è uzbeko. Kirill è <input type="text" class="input-inline medium" data-answer="russo">.</div>
-                        <div class="neg-item">2. Zarina è kazaka? <br> Zarina <input type="text" class="input-inline short" data-answer="non"> è kazaka. Zarina è <input type="text" class="input-inline medium" data-answer="uzbeka">.</div>
-                        <div class="neg-item">15. Antonio è un cattivo insegnante? <br> Antonio <input type="text" class="input-inline short" data-answer="non"> è un cattivo insegnante, è un <input type="text" class="input-inline medium" data-answer="bravo"> insegnante.</div>
                     </div>
-
-                    <div style="text-align: center; margin: 30px 0;">
-                        <button class="btn-nav btn-check" onclick="checkWrittenExercises()">Controlla Risposte 📝</button>
-                    </div>
+                    <button class="btn-nav btn-check" onclick="checkWrittenExercises()">Controlla Risposte 📝</button>
 
                     <div id="writing-challenge-ai" style="background: #fdfefe; border: 2px solid #8e44ad; border-radius: 15px; padding: 20px; margin-top: 40px;">
                         <h3 style="color: #8e44ad; text-align: center;">✍️ Ora scrivi tu!</h3>
-                        <div class="input-group-ai">
-                            <label>1. Aigerim è russa. ❌</label>
-                            <input type="text" id="sent-aig" class="ai-input" placeholder="Aigerim non è russa, è...">
-                        </div>
-                        <div class="input-group-ai">
-                            <label>2. Kirill è studente. ❌</label>
-                            <input type="text" id="sent-kir" class="ai-input" placeholder="Kirill non è studente, è...">
-                        </div>
+                        <div class="input-group-ai"><label>1. Aigerim è russa. ❌</label><input type="text" id="sent-aig" class="ai-input" placeholder="Aigerim non è russa, è..."></div>
+                        <div class="input-group-ai"><label>2. Kirill è studente. ❌</label><input type="text" id="sent-kir" class="ai-input" placeholder="Kirill non è studente, è..."></div>
+                        <div class="input-group-ai"><label>3. Zarina è inglese. ❌</label><input type="text" id="sent-zar" class="ai-input" placeholder="Zarina non è inglese, è..."></div>
+                        <div class="input-group-ai"><label>4. Bekzat studia per turismo. ❌</label><input type="text" id="sent-bek" class="ai-input" placeholder="Bekzat non studia per turismo..."></div>
+                        
                         <div style="text-align: center; margin-top: 20px;">
                             <button class="btn-nav" style="background-color: #8e44ad;" onclick="checkSentencesWithAI()">✨ Verifica con AI</button>
                         </div>
@@ -207,26 +134,15 @@
                             <div id="ai-response-text"></div>
                         </div>
                     </div>
-
-                    <div class="nav-buttons-container">
-                        <button class="btn-nav btn-next" onclick="showSection('sec-eser')">Fine ➔</button>
-                    </div>
+                    <button class="btn-nav btn-next" onclick="showSection('sec-eser')">Fine ➔</button>
                 </div>
             </div>
         </div>
 
         <div id="sec-eser" class="section-block">
-            <div class="card">
-                <div class="content" style="text-align: center;">
-                    <h2>🎉 Lezione Completata!</h2>
-                    <p>Ottimo lavoro nell'Unità 1.</p>
-                    <a href="index.html" class="btn-nav">Torna alla Dashboard</a>
-                </div>
-            </div>
+            <div class="card"><div class="content" style="text-align: center;"><h2>🎉 Lezione Completata!</h2><a href="index.html" class="btn-nav">Dashboard</a></div></div>
         </div>
-
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
