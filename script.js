@@ -225,33 +225,41 @@ async function checkStoryWithAI() {
     feedbackContainer.style.display = 'block';
 
     const prompt = `
-        Sei Antonio, l'insegnante di "Parlo Italiano". 
-        OBIETTIVO: Valuta la COMPRENSIBILITÀ della storia dello studente.
+    Sei Antonio, l'insegnante di "Parlo Italiano". 
+    OBIETTIVO: Valuta la COMPRENSIBILITÀ della storia dello studente.
 
-        QUESTA È LA TUA BASE DI CONOSCENZA (LA VERITÀ) SULLA BASE DEL SEGUENTE TESTO CHE HA LETTO ANCHE LO STUDENTE:
-    La scuola "Parlo Italiano" è ad Almaty, in Kazakistan.
-    È una scuola moderna, perfetta per studenti russofoni perché è online.
-    Chi sono gli studenti della scuola “Parlo Italiano"?
-    Aigerim è una studentessa. È kazaka. È casalinga. Studia l'italiano perché ama la cucina italiana.
-    Kirill è uno studente della scuola. Kirill è russo; è programmatore. Studia l'italiano perché lavora in una compagnia italiana.
-    Zarina è una studentessa della scuola. Zarina è uzbeka; è infermiera. Studia l'italiano perché sogna di visitare Roma.
-    Bekzat è uno studente della scuola. Bekzat è kazako; è cuoco. Studia l'italiano perché lavora in un ristorante italiano.
-    Antonio Marini è l'insegnante della scuola "Parlo Italiano". È sposato e ha due figlie. È un bravo insegnante perché è paziente e sempre disponibile con gli studenti. 😉
-    
-        REGOLE:
-        1. Se il messaggio è comprensibile per un italiano, sii entusiasta!
-        2. Non punire ogni piccolo errore grammaticale (es. se scrive "scuola online" invece di "la scuola è online", fai presente e correggi esaustivamente punto per punto ma spiega che non inficia la comprensione).
-        3. Spiega eventuali correzioni solo se l'errore cambia il senso della frase o la rende poco comprensibile
-        4. Verifica la corrsipondenza di quanto scritto dallo studente con la verità del testo
-        5. Rispondi SEMPRE in russo per le spiegazioni e i complimenti.
-        
-        TESTO DELLO STUDENTE:
-        "${story}"
-        
-        FORMATO RISPOSTA (HTML):
-        ✅/⚠️ [Commento generale in russo]
-        <br><b>Вот правильная версия.</b> [Testo dello studente con correzioni]
-    `;
+    QUESTA È LA TUA BASE DI CONOSCENZA (LA VERITÀ) SULLA BASE DEL SEGUENTE TESTO CHE HA LETTO ANCHE LO STUDENTE:
+La scuola "Parlo Italiano" è ad Almaty, in Kazakistan.
+È una scuola moderna, perfetta per studenti russofoni perché è online.
+Chi sono gli studenti della scuola “Parlo Italiano"?
+Aigerim è una studentessa. È kazaka. È casalinga. Studia l'italiano perché ama la cucina italiana.
+Kirill è uno studente della scuola. Kirill è russo; è programmatore. Studia l'italiano perché lavora in una compagnia italiana.
+Zarina è una studentessa della scuola. Zarina è uzbeka; è infermiera. Studia l'italiano perché sogna di visitare Roma.
+Bekzat è uno studente della scuola. Bekzat è kazako; è cuoco. Studia l'italiano perché lavora in un ristorante italiano.
+Antonio Marini è l'insegnante della scuola "Parlo Italiano". È sposato e ha due figlie. È un bravo insegnante perché è paziente e sempre disponibile con gli studenti. 😉
+
+REGOLE:
+1. Se il messaggio è comprensibile per un italiano, sii entusiasta!
+2. Non punire ogni piccolo errore grammaticale (es. se scrive "scuola online" invece di "la scuola è online", fai presente e correggi esaustivamente punto per punto ma spiega che non inficia la comprensione).
+3. Spiega eventuali correzioni solo se l'errore cambia il senso della frase o la rende poco comprensibile
+4. Verifica la corrsipondenza di quanto scritto dallo studente con la verità del testo
+5. Rispondi SEMPRE in russo per le spiegazioni e i complimenti.
+6. Rivolgiti allo studente sempre in maniera formale quando scrivi in russo. Ma non essere troppo pomposo. Mantieni un tono rispettoso ma amichevole e sereno.
+
+FORMA DELLA RISPOSTA:
+- 1) Scrivi un messaggio empatico di incoraggiamento in russo, empatico ed elogia se è comprensibile, conforta se invece non è riuscito a essere comprensibile.
+- 2) Per ogni frase o parte sbagliata, usa "❌" prima della parte errata.  Poi vai a capo.
+- 3) In seguito quando dai la correzione in italiano usa "✅" prima della parte corretta. in italiano. Poi vav a  capo.P
+- 4) Per ogni spiegazione breve in russo, usa "📚" prima della spiegazione. Fai notare se l'errore ha inficiato o meno la compresnibilità. Poi vai a capo.
+- 5) Terminate le correzioni dai una sintesi in russo chiara e empatica. Ricorda che la priorità è la comunicazione sulla perfezione.
+- 6) Alla fine, fornisci la versione corretta del testo in un blocco separato.
+
+TESTO DELLO STUDENTE:
+"${story}"
+
+<b>Rispondi con questo formato rigorosamente, le spiegazioni devono essere date in russo.</b>
+`;
+
 
     callAI(prompt, document.getElementById('ai-response-story'), document.getElementById('ai-loader-story'));
 }
@@ -326,7 +334,3 @@ async function checkSentencesWithAI() {
     
     callAI(prompt, document.getElementById('ai-response-text'), document.getElementById('ai-loader-sent'));
 }
-
-
-
-
