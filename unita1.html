@@ -7,13 +7,10 @@
     <title>Unità 1 - Parlo Italiano</title>
 
     <script>
-        // Controllo accesso semplice
-        if (sessionStorage.getItem("accesso_effettuato") !== "true") {
-            window.location.href = "index.html";
-        }
+  
     </script>
     
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
 
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 </head>
@@ -674,43 +671,42 @@
             </div>
         </div>
 
+       <!-- SESSIONE - RACCONTAMI UNA STORIA -->
+        
        <div id="sec-storia" class="section-block">
     <div class="card" style="border: 2px solid #f39c12; background: #fffcf5;">
         <header>
             <div class="header-course">Produzione Scritta</div>
-            <h1 class="header-main-title">Racconta la storia</h1>
-            <div class="ru-block">Расскажи историю</div>
+            <h1 class="header-main-title">Racconta la storia <span class="ru-block">(Задания по письму)</span></h1>
         </header>
 
         <div class="content">
-            <div class="instruction">
-                ✍️ Scrivi qui <span class="ru-text">(Напиши здесь)</span>
-            </div>
-
-            <div class="exercise-template" style="background: white; padding: 20px; border-radius: 10px; border: 1px solid #f39c12; margin-bottom: 20px;">
-                <p style="margin-bottom: 10px;"><b>Usa questo schema:</b></p>
-                <p style="line-height: 1.8; color: #2c3e50;">
-                    Ciao, ti presento la mia scuola di italiano… <br>
-                    <small class="ru-text" style="display:inline;">(Привет, представляю тебе мою школу итальянского.)</small><br>
-                    La scuola è ________<br>
-                    Aigerim è ________<br>
-                    Anche Kirill è ________<br>
-                    Zarina e Bekzat sono ________<br>
-                    Antonio è ________, è molto bravo!
+            <div class="context-box" style="border-left-color: #f39c12; background-color: #fff9eb;">
+                <p style="margin-top: 0;"><strong>Описание задания:</strong> Представьте, что рассказываете другу-итальянцу, не говорящему по-русски, о школе и её учениках, используя изученную лексику и грамматику.</p>
+                
+                <p style="font-weight: bold; margin-bottom: 10px;">Общие инструкции для выполнения задания:</p>
+                <ul style="margin-bottom: 15px;">
+                    <li style="margin-bottom: 8px;">Во всех предложениях используйте глагол <strong>essere</strong> («быть») для идентификации и описания субъектов.</li>
+                    <li style="margin-bottom: 8px;">Используйте форму <strong>è</strong> (единственное число, 3-е лицо), когда говорите об одном объекте (школа, Айгерим, Кирилл, Антонио).</li>
+                    <li style="margin-bottom: 8px;">Используйте форму <strong>sono</strong> (множественное число, 3-е лицо), когда говорите о двух и более людях (Зарина и Бекзат).</li>
+                    <li style="margin-bottom: 8px;">Для каждого человека или пары укажите их роль (студент/преподаватель), национальность, профессию и причину изучения итальянского языка (мотивацию).</li>
+                </ul>
+                <p style="margin-bottom: 0; font-style: italic; color: var(--primary-dark);">
+                    💡 Не бойтесь ошибок. Главное — общение и то, чтобы Ваш друг Вас понял.
                 </p>
             </div>
 
-            <textarea id="ai-story-input" class="ai-input" rows="8" placeholder="Scrivi la tua storia qui..." style="width: 100%; box-sizing: border-box;"></textarea>
+            <textarea id="ai-story-input" class="ai-input" rows="8" placeholder="Scrivi la tua storia qui... (Пишите вашу историю здесь...)"></textarea>
 
             <div style="text-align: center; margin-top: 20px;">
-                <button class="btn-nav" style="background-color: #8e44ad; width: auto; padding: 15px 30px;" onclick="checkStoryWithAI()">
-                    VERIFICA COMPRENSIBILITÀ ➔
-                </button>
+              <button class="btn-nav" style="background-color: #8e44ad; width: auto; padding: 15px 30px;" onclick="checkStoryWithAI()">
+                VERIFICA CON IA (Проверка с ИИ) ➔
+              </button>
             </div>
 
             <div id="ai-feedback-story" style="display:none; margin-top: 20px; background: #f4f0f8; padding: 15px; border-radius: 10px; border-left: 5px solid #8e44ad;">
-                <div id="ai-loader-story" style="display:none; text-align:center;">🤖 Antonio sta leggendo...</div>
-                <div id="ai-response-story" style="white-space: pre-wrap; line-height: 1.5;"></div>
+              <div id="ai-loader-story" style="display:none; text-align:center;">🤖 Antonio sta leggendo...</div>
+              <div id="ai-response-story" style="white-space: pre-wrap; line-height: 1.5;"></div>
             </div>
 
             <div class="nav-buttons-container" style="margin-top: 40px;">
@@ -721,9 +717,10 @@
                     Avanti: La Frase Negativa ➔
                 </button>
             </div>
-        </div> 
-    </div> 
+        </div> </div> </div>
 
+        <!-- SESSIONE - LA FRASE NEGATIVA -->
+        
         <div id="sec-negativa" class="section-block">
             
             <div class="card">
