@@ -20,7 +20,9 @@ function showSection(sectionId) {
     if(sectionId === 'sec-dial' || sectionId === 'sec-dial2') document.getElementById('link-dial').classList.add('active');
     if(sectionId === 'sec-testo') document.getElementById('link-testo').classList.add('active');
     if(sectionId === 'sec-storia') document.getElementById('link-storia').classList.add('active');
-    if(sectionId === 'sec-gramm' || sectionId === 'sec-negativa') document.getElementById('link-gramm').classList.add('active');
+    if(sectionId === 'sec-gramm') document.getElementById('link-gramm').classList.add('active');
+    if(sectionId === 'sec-negativa') document.getElementById('link-negativa').classList.add('active');
+    if(sectionId === 'sec-riordino') document.getElementById('link-riordino').classList.add('active');
     if(sectionId === 'sec-eser') document.getElementById('link-eser').classList.add('active');
 
     const sidebar = document.getElementById("mySidebar");
@@ -57,14 +59,25 @@ function checkQuiz(quizId, resultId) {
         }
     });
 
-    const score = Math.round((correctCount / containers.length) * 100);
-    const res = document.getElementById(resultId);
-    res.style.display = 'block';
-    res.querySelector('.score-text').innerText = "Risultato: " + score + "%";
-    const feedTxt = res.querySelector('.feedback-text');
-    feedTxt.innerText = score === 100 ? "Eccellente! (Отлично!)" : "Riprova! (Попробуйте еще раз)";
-    res.style.borderColor = score === 100 ? "var(--primary)" : "var(--secondary)";
+const score = Math.round((correctCount / containers.length) * 100);
+const res = document.getElementById(resultId);
+res.style.display = 'block';
+res.querySelector('.score-text').innerText = "Risultato: " + score + "% (Результат)";
+const feedTxt = res.querySelector('.feedback-text');
+
+if (score === 100) {
+    feedTxt.innerText = "Eccellente! (Отлично!) 🌟";
+    res.style.borderColor = "var(--primary)";
+} else if (score >= 50) {
+    feedTxt.innerText = "Bravo! Quasi perfetto. (Молодец! Почти идеально.) 👍";
+    res.style.borderColor = "#f1c40f"; // colore incoraggiante
+} else {
+    feedTxt.innerText = "Riprova! Puoi fare di meglio. (Попробуйте еще раз! Вы можете лучше.) 🔄";
+    res.style.borderColor = "var(--secondary)";
 }
+  
+}
+
 
 function toggleTranscript(id) {
     const el = document.getElementById(id);
@@ -403,6 +416,12 @@ function checkDialogues() {
         }
     });
 
+    const feedback = document.getElementById('dialogue-feedback');
+    feedback.innerText = allCorrect ? "🎉 Bravissimo! Dialoghi perfetti!" : "⚠️ Qualcosa non torna. Controlla i riquadri rossi!";
+    feedback.style.color = allCorrect ? "#27ae60" : "#e74c3c";
+}
+
+
 // Dati per il gioco di abbinamento
 const matchingData = [
     { id: 1, it: "Aigerim è kazaka", ru: "Айгерим — казашка" },
@@ -523,8 +542,4 @@ function checkMatch() {
 
 // Avvia il gioco quando la pagina è caricata
 document.addEventListener('DOMContentLoaded', initMatchingGame);
-    const feedback = document.getElementById('dialogue-feedback');
-    feedback.innerText = allCorrect ? "🎉 Bravissimo! Dialoghi perfetti!" : "⚠️ Qualcosa non torna. Controlla i riquadri rossi!";
-    feedback.style.color = allCorrect ? "#27ae60" : "#e74c3c";
-}
 
