@@ -11,27 +11,54 @@ function toggleMenu() {
 }
 
 function showSection(sectionId) {
+    // 1. Nascondi tutte le sezioni e mostra quella richiesta
     document.querySelectorAll('.section-block').forEach(sec => sec.classList.remove('active'));
-    document.getElementById(sectionId).classList.add('active');
     
-    document.querySelectorAll('.sidebar a').forEach(link => link.classList.remove('active'));
-    
-    if(sectionId === 'sec-pres') document.getElementById('link-pres').classList.add('active');
-    if(sectionId === 'sec-dial' || sectionId === 'sec-dial2') document.getElementById('link-dial').classList.add('active');
-    if(sectionId === 'sec-testo') document.getElementById('link-testo').classList.add('active');
-    if(sectionId === 'sec-storia') document.getElementById('link-storia').classList.add('active');
-    if(sectionId === 'sec-gramm') document.getElementById('link-gramm').classList.add('active');
-    if(sectionId === 'sec-negativa') document.getElementById('link-negativa').classList.add('active');
-    if(sectionId === 'sec-riordino') document.getElementById('link-riordino').classList.add('active');
-    if(sectionId === 'sec-eser') document.getElementById('link-eser').classList.add('active');
-
-    const sidebar = document.getElementById("mySidebar");
-    if (window.innerWidth < 800 && sidebar.style.left === "0px") {
-        toggleMenu();
+    const target = document.getElementById(sectionId);
+    if (target) {
+        target.classList.add('active');
     }
+
+    // 2. Resetta tutti i link del menu (spegni tutto)
+    document.querySelectorAll('.sidebar a').forEach(link => link.classList.remove('active'));
+
+    // 3. Logica di abbinamento (Sezione -> Voce Menu)
+    
+    if(sectionId === 'sec-pres') 
+        document.getElementById('link-pres').classList.add('active');
+
+    if(sectionId === 'sec-dial' || sectionId === 'sec-dial2') 
+        document.getElementById('link-dial').classList.add('active');
+
+    if(sectionId === 'sec-testo' || sectionId === 'sec-storia') 
+        document.getElementById('link-testo').classList.add('active');
+
+    if(sectionId === 'sec-negativa' || sectionId === 'sec-gramm_non') 
+        document.getElementById('link-negativa').classList.add('active');
+
+    if(sectionId === 'sec-riordino' || sectionId === 'sec-gramm_TuLei') 
+        document.getElementById('link-riordino').classList.add('active');
+
+    if(sectionId === 'sec-gramm_essere') 
+        document.getElementById('link-essere').classList.add('active');
+
+    if(sectionId === 'sec-eser') 
+        document.getElementById('link-eser').classList.add('active');
+
+
+    // 4. CHIUSURA MENU SU MOBILE (Corretta)
+    // Controlliamo l'overlay: se è visibile, significa che il menu è aperto.
+    const overlay = document.getElementById("overlayBg");
+    
+    if (window.innerWidth < 992) { // < 992px copre cellulari e tablet verticali
+        if (overlay && overlay.style.display === "block") {
+            toggleMenu(); // Chiude il menu simulando il click sullo sfondo
+        }
+    }
+    
+    // 5. Torna in cima alla pagina
     window.scrollTo(0,0);
 }
-
 function checkQuiz(quizId, resultId) {
     const quizContainer = document.getElementById(quizId);
     const containers = quizContainer.querySelectorAll('.options');
@@ -542,4 +569,109 @@ function checkMatch() {
 
 // Avvia il gioco quando la pagina è caricata
 document.addEventListener('DOMContentLoaded', initMatchingGame);
+
+
+// --- LOGICA TABELLA VERBO ESSERE (Click & Place) ---
+
+let currentVerbChip = null;
+
+function selectVerbChip(el) {
+    // Se clicco su uno già usato, ignora
+    if (el.classList.contains('used')) return;
+
+    // Deseleziona precedenti
+    document.querySelectorAll('.vm-chip').forEach(c => c.classList.remove('selected'));
+
+    // Se clicco lo stesso, deseleziona
+    if (currentVerbChip === el) {
+        currentVerbChip = null;
+        return;
+    }
+
+    // Seleziona nuovo
+    currentVerbChip = el;
+    el.classList.add('selected');
+}
+
+function placeVerbChip(slot) {
+    // Se non ho selezionato nulla, avvisa o esci
+    if (!currentVerbChip) {
+        // Se lo slot è pieno, svuotalo (rimetti chip in gioco)
+        if (slot.classList.contains('filled')) {
+            const val = slot.textContent;
+            slot.textContent = '';
+            slot.classList.remove('filled', 'correct', 'error');
+            
+            // Riabilita una chip con quel valore
+            const chips = document.querySelectorAll('.vm-chip.used');
+            for (let chip of chips) {
+                if (chip.dataset.val === val) {
+                    chip.classList.remove('used');
+                    break; 
+                }
+            }
+        }
+        return;
+    }
+
+    // Se lo slot è già pieno, prima svuotalo (swap logico semplificato: sovrascrivi)
+    if (slot.classList.contains('filled')) {
+        const oldVal = slot.textContent;
+        // Riabilita vecchia chip
+        const usedChips = document.querySelectorAll('.vm-chip.used');
+        for (let chip of usedChips) {
+            if (chip.dataset.val === oldVal) {
+                chip.classList.remove('used');
+                break;
+            }
+        }
+    }
+
+    // Inserisci valore
+    slot.textContent = currentVerbChip.dataset.val;
+    slot.classList.add('filled');
+    
+    // Segna chip come usata
+    currentVerbChip.classList.remove('selected');
+    currentVerbChip.classList.add('used');
+    currentVerbChip = null;
+}
+
+function checkVerbTable() {
+    const slots = document.querySelectorAll('.vm-slot');
+    let errors = 0;
+    let filled = 0;
+
+    slots.forEach(slot => {
+        if (!slot.classList.contains('filled')) return;
+        
+        filled++;
+        const userVal = slot.textContent.trim();
+        const correctVal = slot.dataset.correct;
+
+        // Reset classi
+        slot.classList.remove('correct', 'error');
+
+        if (userVal === correctVal) {
+            slot.classList.add('correct');
+        } else {
+            slot.classList.add('error');
+            errors++;
+        }
+    });
+
+    const feedback = document.getElementById('vm-feedback');
+    
+    if (filled < slots.length) {
+        feedback.textContent = "⚠️ Completa tutta la tabella prima! (Заполните всю таблицу!)";
+        feedback.style.color = "#d35400";
+    } else if (errors === 0) {
+        feedback.innerHTML = "🌟 Perfetto! Bravissimo! (Идеально! Молодец!)";
+        feedback.style.color = "#27ae60";
+    } else {
+        feedback.textContent = `⚠️ Ci sono ${errors} errori. Riprova! (Есть ошибки. Попробуйте еще раз!)`;
+        feedback.style.color = "#e74c3c";
+    }
+}
+
 
