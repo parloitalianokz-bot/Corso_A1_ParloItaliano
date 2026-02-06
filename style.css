@@ -455,6 +455,77 @@
     cursor: pointer;
 }
 
+
+.matching-game-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.match-item {
+    background: white;
+    border: 2px solid #ddd;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+    text-align: center;
+    user-select: none; /* Evita che il testo venga selezionato mentre si clicca */
+}
+
+.match-item:hover {
+    background-color: #f0f8ff;
+    border-color: #3498db;
+}
+
+/* Stato Selezionato (Blu) */
+.match-item.selected {
+    background-color: #3498db;
+    color: white;
+    border-color: #2980b9;
+    transform: scale(1.02);
+}
+
+/* Stato Corretto (Verde) */
+.match-item.solved {
+    background-color: #27ae60;
+    color: white;
+    border-color: #2ecc71;
+    opacity: 0.6;
+    pointer-events: none; /* Non cliccabile */
+}
+
+/* Stato Errore (Rosso) */
+.match-item.error {
+    background-color: #e74c3c;
+    color: white;
+    border-color: #c0392b;
+    animation: shake 0.4s;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* Per schermi piccoli (cellulari) */
+@media (max-width: 600px) {
+    .matching-game-container {
+        flex-direction: column;
+    }
+}
+
+
 .slot.correct { border: 2px solid #27ae60; background: #eafaf1; }
 .slot.wrong { border: 2px solid #e74c3c; background: #fdedec; }
 
