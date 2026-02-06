@@ -43,7 +43,10 @@
       📖 Testo <span class="ru-menu">Текст</span>
     </a>
     <a onclick="showSection('sec-negativa')" id="link-negativa">
-      🎙️ frase negativa <span class="ru-menu">Отрицательное предложени)</span>
+      🎙️Frase negativa <span class="ru-menu">Отрицательное предложени)</span>
+    </a>
+    <a onclick="showSection('sec-riordino')" id="link-riordino">
+      🤝 Tu, Lei e Voi <span class="ru-menu">Ты или Вы</span>
     </a>
     <!-- Voce Grammatica rimossa per ora -->
     <a onclick="showSection('sec-eser')" id="link-eser">
@@ -1004,11 +1007,152 @@
 
             <div class="nav-buttons-container">
                 <button class="btn-nav btn-back" onclick="showSection('sec-gramm_non')">⬅ Indietro</button>
-                <button class="btn-nav btn-next" onclick="showSection('sec-eser')">Avanti ➔</button>
+                <button class="btn-nav btn-next" onclick="showSection('sec-gramm_TuLei')">Avanti ➔</button>
             </div>
         </div>
     </div>
 </div>
+
+
+<!-- Induzione Tu, Lei e Voi -->
+
+<div id="sec-gramm_TuLei" class="section-block">
+    <div class="card" style="border: 2px solid #27ae60; background-color: #f0fdf4;">
+        <header style="background-color: #f0fdf4;">
+            <div class="header-course">Passo 4: Scopri la regola</div>
+            <h1 class="header-main-title" style="color: #219150;">Riflessione sulla lingua <span class="ru-block">(Размышление о языке)</span></h1>
+        </header>
+
+        <div class="content">
+            <div class="instruction">
+                📖 Guarda la tabella e rispondi alle domande per scoprire come funziona il verbo <b>essere</b>.
+            </div>
+
+            <div class="card" style="margin-top: 40px; border: 2px solid var(--primary);">
+                <header style="padding: 30px;">
+                    <h2 style="font-family: 'Playfair Display', serif; color: var(--primary); margin: 0;">
+                        Sintesi: Il Verbo Essere <span class="ru-block">(Итог: Глагол Essere)</span>
+                    </h2>
+                </header>
+                
+                <div class="content" style="padding: 20px;">
+                    <p style="text-align: center; margin-bottom: 25px;">
+                        Ecco come usiamo il verbo <b>essere</b> per presentarci e conoscere gli altri:
+                    </p>
+
+                    <table class="grammar-table" style="width: 100%; text-align: center;">
+                        <thead>
+                            <tr>
+                                <th style="width: 33%; text-align: center; background-color: #eafaf1; color: var(--primary-dark);">
+                                    Aigerim <br><small>(Dialogo 1 - TU)</small>
+                                </th>
+                                <th style="width: 33%; text-align: center; background-color: #fff; color: var(--text);">
+                                    Kirill <br><small>(Dialogo 2 - LEI)</small>
+                                </th>
+                                <th style="width: 33%; text-align: center; background-color: #fffcf5; color: #d35400;">
+                                    Zarina e Bekzat <br><small>(Dialogo 3 - VOI)</small>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="background-color: #f9fdfb; border-right: 1px solid #eee;">
+                                    <b>Tu sei</b> russa?
+                                </td>
+                                <td style="border-right: 1px solid #eee;">
+                                    <b>Lei è</b> italiano?
+                                </td>
+                                <td style="background-color: #fffdf9;">
+                                    <b>Voi siete</b> stranieri?
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="background-color: #f9fdfb; border-right: 1px solid #eee; padding: 20px;">
+                                    No, <b>io sono</b> kazaka.
+                                </td>
+                                <td style="border-right: 1px solid #eee; padding: 20px;">
+                                    No, <b>io sono</b> russo.
+                                </td>
+                                <td style="background-color: #fffdf9; padding: 20px;">
+                                    Sì, <b>noi siamo</b> stranieri.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="tips-box" style="margin-top: 30px; border-color: var(--accent);">
+                        <h4 style="margin-top: 0; color: #d35400;">💡 Ricorda (Запомните):</h4>
+                        <ul style="font-size: 0.9rem; line-height: 1.6;">
+                            <li>
+                                Usiamo <b>TU</b> con gli amici o i giovani.<br>
+                                <span class="ru-block" style="color: #7f8c8d;">(Мы используем <b>TU</b> с друзьями или молодыми людьми — как «ты»).</span>
+                            </li>
+                            <li style="margin-top: 10px;">
+                                Usiamo <b>LEI</b> per essere gentili e formali.<br>
+                                <span class="ru-block" style="color: #7f8c8d;">(Мы используем <b>LEI</b> для вежливого и формального обращения к одному человеку — как вежливое «Вы»).</span>
+                            </li>
+                            <li style="margin-top: 10px;">
+                                Usiamo <b>VOI</b> quando parliamo con due o più persone.<br>
+                                <span class="ru-block" style="color: #7f8c8d;">(Мы используем <b>VOI</b>, когда обращаемся к двум или более людям — как «вы» во множественном числе).</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="quiz-induttivo" style="margin-top: 40px;">
+                <div class="question">1. Какую форму глагола «essere» и какое местоимение были использованы, чтобы <b>неформально</b> познакомиться con Aigerim?</div>
+                <div class="options" data-correct="a">
+                    <label class="option"><input type="radio" name="ind_1" value="a"> TU SEI</label>
+                    <label class="option"><input type="radio" name="ind_1" value="b"> LEI È</label>
+                    <label class="option"><input type="radio" name="ind_1" value="c"> VOI SIETE</label>
+                </div>
+
+                <div class="question">2. Какую форму глагола «essere» использовали для <b>формального</b> знакомства (Kirill)?</div>
+                <div class="options" data-correct="b">
+                    <label class="option"><input type="radio" name="ind_2" value="a"> TU SEI</label>
+                    <label class="option"><input type="radio" name="ind_2" value="b"> LEI È</label>
+                    <label class="option"><input type="radio" name="ind_2" value="c"> VOI SIETE</label>
+                </div>
+
+                <div class="question">3. Какую форму использовали при обращении к <b>паре</b> (Zarina e Bekzat)?</div>
+                <div class="options" data-correct="c">
+                    <label class="option"><input type="radio" name="ind_3" value="a"> TU SEI</label>
+                    <label class="option"><input type="radio" name="ind_3" value="b"> LEI È</label>
+                    <label class="option"><input type="radio" name="ind_3" value="c"> VOI SIETE</label>
+                </div>
+
+                <div class="question">4. Что говорит Aigerim или Kirill, когда представляют <b>себя</b>?</div>
+                <div class="options" data-correct="a">
+                    <label class="option"><input type="radio" name="ind_4" value="a"> IO SONO</label>
+                    <label class="option"><input type="radio" name="ind_4" value="b"> NOI SIAMO</label>
+                </div>
+
+                <div class="question">5. Что говорят Zarina и Bekzat, отвечая как <b>пара</b>?</div>
+                <div class="options" data-correct="b">
+                    <label class="option"><input type="radio" name="ind_5" value="a"> IO SONO</label>
+                    <label class="option"><input type="radio" name="ind_5" value="b"> NOI SIAMO</label>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="btn-nav btn-check" onclick="checkQuiz('quiz-induttivo', 'res-induttivo')">Verifica Scoperte (Проверить) ✓</button>
+            </div>
+
+            <div id="res-induttivo" class="result-container">
+                <h3 class="score-text"></h3>
+                <p class="feedback-text"></p>
+            </div>
+
+            <div class="nav-buttons-container" style="margin-top: 40px;">
+                <button class="btn-nav btn-back" onclick="showSection('sec-riordino')">⬅ Indietro (Назад)</button>
+                <button class="btn-nav btn-next" onclick="showSection('sec-eser')">Avanti (Вперед) ➔</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 
 
