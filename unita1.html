@@ -22,37 +22,35 @@
     <div id="menuBtn" class="menu-btn" onclick="toggleMenu()">☰</div>
     <div id="overlayBg" class="overlay-bg" onclick="toggleMenu()"></div>
 
-    <div id="mySidebar" class="sidebar">
-        <a href="javascript:void(0)" class="close-btn" onclick="toggleMenu()">×</a>
-        
-        <a href="index.html" style="background-color: #f1f1f1; border-bottom: 1px solid #ddd;">
-            ⬅ Torna alla Dashboard
-        </a>
+<!-- MENU LATERALE -->
+<div id="mySidebar" class="sidebar">
+    <a href="javascript:void(0)" class="close-btn" onclick="toggleMenu()">×</a>
+    
+    <a href="index.html" style="background-color: #f1f1f1; border-bottom: 1px solid #ddd;">
+        ⬅ Torna alla Dashboard
+    </a>
 
-        <h3>UNITA' 1</h3>
-        <p>Indice lezione / План урока</p>
-        
-        <a onclick="showSection('sec-pres')" id="link-pres" class="active">
-            👋 Presentazione <span class="ru-menu">Введение</span>
-        </a>
-        <a onclick="showSection('sec-dial')" id="link-dial">
-            🎬 Dialoghi <span class="ru-menu">Диалоги</span>
-        </a>
-        <a onclick="showSection('sec-testo')" id="link-testo">
-            📖 Testo <span class="ru-menu">Текст</span>
-        </a>
-        
-        <a onclick="showSection('sec-storia')" id="link-storia">
-            ✍️ Racconto <span class="ru-menu">История</span>
-        </a>
-        
-        <a onclick="showSection('sec-negativa')" id="link-gramm">
-            📐 Grammatica <span class="ru-menu">Грамматика</span>
-        </a>
-        <a onclick="showSection('sec-eser')" id="link-eser">
-            🗣️ Esercizi <span class="ru-menu">Упражнения</span>
-        </a>
-    </div>
+    <h3>UNITA' 1</h3>
+    <p>Indice lezione / План урока</p>
+    
+    <a onclick="showSection('sec-pres')" id="link-pres" class="active">
+      👋 Presentazione <span class="ru-menu">Введение</span>
+    </a>
+    <a onclick="showSection('sec-dial')" id="link-dial">
+      🎬 Dialoghi <span class="ru-menu">Диалоги</span>
+    </a>
+    <a onclick="showSection('sec-testo')" id="link-testo">
+      📖 Testo <span class="ru-menu">Текст</span>
+    </a>
+    <a onclick="showSection('sec-negativa')" id="link-negativa">
+      🎙️ frase negativa <span class="ru-menu">Отрицательное предложени)</span>
+    </a>
+    <!-- Voce Grammatica rimossa per ora -->
+    <a onclick="showSection('sec-eser')" id="link-eser">
+      🗣️ Esercizi <span class="ru-menu">Упражнения</span>
+    </a>
+</div>
+
 
     <div id="main-wrapper">
         
@@ -662,10 +660,10 @@
 
                         <div class="nav-buttons-container" style="margin-top: 40px;">
                             <button class="btn-nav btn-back" onclick="showSection('sec-dial2')">
-                                ⬅ Dialogo 2
+                                ⬅ Dialogo 2 (Диалог 2)
                             </button>
                             <button class="btn-nav btn-next" onclick="showSection('sec-storia')">
-                                Avanti: Racconto ➔
+                                Racconto (Написать рассказ) ➔
                             </button>
                         </div>
                     </div> 
@@ -713,10 +711,10 @@
 
             <div class="nav-buttons-container" style="margin-top: 40px;">
                 <button class="btn-nav btn-back" onclick="showSection('sec-testo')">
-                    ⬅ Torna al Testo
+                    ⬅ Torna al Testo (К тексту)
                 </button>
                 <button class="btn-nav btn-next" onclick="showSection('sec-negativa')">
-                    Avanti: La Frase Negativa ➔
+                    La Frase Negativa (Отрицательное предложение) ➔
                 </button>
             </div>
         </div> </div> </div>
@@ -800,17 +798,90 @@
         </div>
       </div>
 
+      <!-- Esercizio tabella negativa -->
+
+        <div class="logic-game-section">
+          <h2 style="text-align:center; color:#2980b9;">🧩 Mettiamo in ordine! <span class="ru-block">(Наведем порядок!)</span></h2>
+          <p style="text-align:center; margin-bottom: 30px;">
+          Ecco i dati alla rinfusa. Tocca una parola e poi tocca la casella giusta.<br>
+          <span class="ru-block" style="color:#7f8c8d;">(Данные перемешаны. Нажмите на слово, а затем на правильную ячейку в таблице.)</span>
+          </p>
+
+        <div id="word-pool" class="chips-container" style="background: #eaf2f8; border-color: #3498db;">
+          <div class="chip" onclick="selectChip(this)" data-val="prog">Programmatore</div>
+          <div class="chip" onclick="selectChip(this)" data-val="kazaka">Kazaka</div>
+          <div class="chip" onclick="selectChip(this)" data-val="roma">Sogna Roma</div>
+          <div class="chip" onclick="selectChip(this)" data-val="cuoco">Cuoco</div>
+          <div class="chip" onclick="selectChip(this)" data-val="russo">Russo</div>
+          <div class="chip" onclick="selectChip(this)" data-val="cucina">Ama la cucina</div>
+          <div class="chip" onclick="selectChip(this)" data-val="kazako">Kazako</div>
+          <div class="chip" onclick="selectChip(this)" data-val="lavoro_it">Compagnia italiana</div>
+          <div class="chip" onclick="selectChip(this)" data-val="uzbeka">Uzbeka</div>
+          <div class="chip" onclick="selectChip(this)" data-val="ristorante">Ristorante italiano</div>
+          <div class="chip" onclick="selectChip(this)" data-val="casalinga">Casalinga</div>
+          <div class="chip" onclick="selectChip(this)" data-val="infermiera">Infermiera</div>
+        </div>
+
+        <table class="puzzle-table">
+          <thead>
+            <tr>
+                <th style="background:#34495e;">Studente</th>
+                <th style="background:#34495e;">Nazionalità 🌍</th>
+                <th style="background:#34495e;">Professione 🛠️</th>
+                <th style="background:#34495e;">Motivo 🎯</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="background:#f4f6f7; font-weight:bold;">Aigerim</td>
+                <td class="drop-zone" onclick="placeChip(this)" data-correct="kazaka"></td>
+                <td class="drop-zone" onclick="placeChip(this)" data-correct="casalinga"></td>
+                <td class="drop-zone" onclick="placeChip(this)" data-correct="cucina"></td>
+            </tr>
+            <tr>
+                <td style="background:#f4f6f7; font-weight:bold;">Kirill</td>
+                <td class="drop-zone" onclick="placeChip(this)" data-correct="russo"></td>
+                <td class="drop-zone" onclick="placeChip(this)" data-correct="prog"></td>
+                <td class="drop-zone" onclick="placeChip(this)" data-correct="lavoro_it"></td>
+            </tr>
+            <tr>
+                <td style="background:#f4f6f7; font-weight:bold;">Zarina</td>
+                <td class="drop-zone" onclick="placeChip(this)" data-correct="uzbeka"></td>
+                <td class="drop-zone" onclick="placeChip(this)" data-correct="infermiera"></td>
+                <td class="drop-zone" onclick="placeChip(this)" data-correct="roma"></td>
+            </tr>
+            <tr>
+                <td style="background:#f4f6f7; font-weight:bold;">Bekzat</td>
+                <td class="drop-zone" onclick="placeChip(this)" data-correct="kazako"></td>
+                <td class="drop-zone" onclick="placeChip(this)" data-correct="cuoco"></td>
+                <td class="drop-zone" onclick="placeChip(this)" data-correct="ristorante"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div style="text-align: center; margin-top: 20px;">
+        <button class="btn-nav btn-check" onclick="checkPuzzle()">
+            Controlla Tabella (Проверить) 🧩
+        </button>
+        <p id="puzzle-feedback" style="margin-top:10px; font-weight:bold;"></p>
+    </div>
+</div>
+
+
+
+
       <div class="nav-buttons-container" style="margin-top: 40px;">
-        <button class="btn-nav btn-back" onclick="showSection('sec-storia')">⬅ Torna al Testo</button>
-        <button class="btn-nav btn-next" onclick="showSection('sec-grammatica')">Avanti: La Regola ➔</button>
+        <button class="btn-nav btn-back" onclick="showSection('sec-storia')">⬅ Torna al Testo (К тексту)</button>
+        <button class="btn-nav btn-next" onclick="showSection('sec-gramm_non')">La Regola (К правилу) ➔</button>
       </div>
 
     </div>
   </div>
 </div>
 
+<!-- SESSIONE GRAMMATICA DEL NON -->
 
-<div id="sec-grammatica" class="section-block">
+<div id="sec-gramm_non" class="section-block">
   <div class="card">
     <header>
       <div class="header-course">Passo 2: La Regola</div>
@@ -836,12 +907,107 @@
       </div>
 
       <div class="nav-buttons-container" style="margin-top: 40px;">
-        <button class="btn-nav btn-back" onclick="showSection('sec-negativa')">⬅ Torna agli Esercizi</button>
-        <button class="btn-nav btn-next" onclick="showSection('sec-eser')">Avanti: Esercizi Finali ➔</button>
+        <button class="btn-nav btn-back" onclick="showSection('sec-negativa')">⬅ Indietro (Назад)</button>
+<button class="btn-nav btn-next" onclick="showSection('sec-riordino')">Avanti (Вперед) ➔</button>
       </div>
 
     </div>
   </div>
+</div>
+
+<!-- SEZIONE RIORDINO DIALOGHI -->
+
+<div id="sec-riordino" class="section-block">
+    <div class="card" style="border: 2px solid #3498db;">
+        <header>
+            <div class="header-course">Passo 3: Logica del Dialogo</div>
+            <h1 class="header-main-title">Metti in ordine <span class="ru-block">(Расставьте по порядку)</span></h1>
+        </header>
+
+        <div class="content">
+            <div class="instruction">
+                👉 Расставьте реплики в диалогах в правильном порядке. <br>
+                <small>Tocca una frase a sinistra e poi la posizione corretta a destra.</small>
+            </div>
+
+            <div class="dialogue-order-container" id="dial-order-1">
+                <h3 style="color:#2980b9;">Dialogo 1 (Informale - Tu)</h3>
+                <div class="order-layout">
+                    <div class="phrases-pool" id="pool-1">
+                        <div class="chip-phrase" onclick="pickPhrase(this)" data-order="3"><strong>Sono</strong> casalinga. Lavoro a casa.</div>
+                        <div class="chip-phrase" onclick="pickPhrase(this)" data-order="1">No, <strong>io non sono</strong> russa; <strong>sono</strong> kazaka.</div>
+                        <div class="chip-phrase" onclick="pickPhrase(this)" data-order="5"><strong>Io</strong> studio l’italiano perché amo la cucina italiana.</div>
+                        <div class="chip-phrase" onclick="pickPhrase(this)" data-order="4">Perché <strong>tu</strong> studi l’italiano?</div>
+                        <div class="chip-phrase" onclick="pickPhrase(this)" data-order="2">Ah, <strong>sei</strong> Kazaka. <strong>Tu</strong> lavori o studi?</div>
+                    </div>
+                    <div class="slots-area">
+                        <div class="slot fixed"><b>1.</b> Ciao Aigerim! <strong>Tu sei</strong> russa?</div>
+                        <div class="slot drop-target" onclick="placePhrase(this)" data-rank="1"></div>
+                        <div class="slot drop-target" onclick="placePhrase(this)" data-rank="2"></div>
+                        <div class="slot drop-target" onclick="placePhrase(this)" data-rank="3"></div>
+                        <div class="slot drop-target" onclick="placePhrase(this)" data-rank="4"></div>
+                        <div class="slot drop-target" onclick="placePhrase(this)" data-rank="5"></div>
+                    </div>
+                </div>
+            </div>
+
+            <hr style="margin: 40px 0; border: 1px dashed #eee;">
+
+            <div class="dialogue-order-container" id="dial-order-2">
+                <h3 style="color:#2980b9;">Dialogo 2 (Formale - Lei)</h3>
+                <div class="order-layout">
+                    <div class="phrases-pool" id="pool-2">
+                        <div class="chip-phrase" onclick="pickPhrase(this)" data-order="5">Perché lavoro in una compagnia italiana.</div>
+                        <div class="chip-phrase" onclick="pickPhrase(this)" data-order="1">No. <strong>Non sono</strong> italiano. <strong>Io sono</strong> russo.</div>
+                        <div class="chip-phrase" onclick="pickPhrase(this)" data-order="4">E perché <strong>Lei</strong> studia l’italiano?</div>
+                        <div class="chip-phrase" onclick="pickPhrase(this)" data-order="2">Ah, <strong>Lei è</strong> russo. E che lavoro fa? <strong>Lei è</strong> ingegnere?</div>
+                        <div class="chip-phrase" onclick="pickPhrase(this)" data-order="3">No, <strong>non sono</strong> ingegnere. <strong>Io sono</strong> programmatore.</div>
+                    </div>
+                    <div class="slots-area">
+                        <div class="slot fixed"><b>1.</b> Buongiorno signor Kirill, <strong>Lei è</strong> italiano?</div>
+                        <div class="slot drop-target" onclick="placePhrase(this)" data-rank="1"></div>
+                        <div class="slot drop-target" onclick="placePhrase(this)" data-rank="2"></div>
+                        <div class="slot drop-target" onclick="placePhrase(this)" data-rank="3"></div>
+                        <div class="slot drop-target" onclick="placePhrase(this)" data-rank="4"></div>
+                        <div class="slot drop-target" onclick="placePhrase(this)" data-rank="5"></div>
+                    </div>
+                </div>
+            </div>
+
+            <hr style="margin: 40px 0; border: 1px dashed #eee;">
+
+            <div class="dialogue-order-container" id="dial-order-3">
+                <h3 style="color:#2980b9;">Dialogo 3 (Plurale - Voi)</h3>
+                <div class="order-layout">
+                    <div class="phrases-pool" id="pool-3">
+                        <div class="chip-phrase" onclick="pickPhrase(this)" data-order="1">Sì, <strong>noi siamo</strong> stranieri. Io sono uzbeka e lui è kazako.</div>
+                        <div class="chip-phrase" onclick="pickPhrase(this)" data-order="5">Io studio l’italiano per viaggiare. Lui per lavoro.</div>
+                        <div class="chip-phrase" onclick="pickPhrase(this)" data-order="4">Perché <strong>voi</strong> studiate l’italiano?</div>
+                        <div class="chip-phrase" onclick="pickPhrase(this)" data-order="2">Ah, <strong>siete</strong> stranieri. <strong>Voi siete</strong> studenti della scuola “Parlo Italiano”?</div>
+                        <div class="chip-phrase" onclick="pickPhrase(this)" data-order="3">Sì, <strong>noi siamo</strong> studenti della scuola “Parlo Italiano”.</div>
+                    </div>
+                    <div class="slots-area">
+                        <div class="slot fixed"><b>1.</b> Buongiorno Zarina e Bekzat <strong>voi siete</strong> stranieri?</div>
+                        <div class="slot drop-target" onclick="placePhrase(this)" data-rank="1"></div>
+                        <div class="slot drop-target" onclick="placePhrase(this)" data-rank="2"></div>
+                        <div class="slot drop-target" onclick="placePhrase(this)" data-rank="3"></div>
+                        <div class="slot drop-target" onclick="placePhrase(this)" data-rank="4"></div>
+                        <div class="slot drop-target" onclick="placePhrase(this)" data-rank="5"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="btn-nav btn-check" onclick="checkDialogues()">Verifica Ordine (Проверить) ✓</button>
+                <p id="dialogue-feedback" style="margin-top: 15px; font-weight: bold;"></p>
+            </div>
+
+            <div class="nav-buttons-container">
+                <button class="btn-nav btn-back" onclick="showSection('sec-gramm_non')">⬅ Indietro</button>
+                <button class="btn-nav btn-next" onclick="showSection('sec-eser')">Avanti ➔</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 
