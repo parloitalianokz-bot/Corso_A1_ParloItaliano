@@ -529,4 +529,125 @@
 }
 
 
+/* STILE TABELLA VERBO ESSERE (Verb Match) */
+.verb-match-table {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.vm-row {
+    display: grid;
+    grid-template-columns: 60px 1fr 1.5fr; /* Colonne: Pronome | Slot | Contesto */
+    gap: 10px;
+    align-items: center;
+}
+
+/* Colonna 1: Pronomi (Giallo come nell'immagine) */
+.vm-pronoun {
+    background-color: #ffeaa7;
+    border: 2px solid #f1c40f;
+    border-radius: 20px;
+    padding: 10px 5px;
+    text-align: center;
+    font-weight: bold;
+    color: #5d4037;
+}
+
+/* Colonna 2: Slot vuoto (Bianco arrotondato) */
+.vm-slot {
+    height: 45px;
+    background-color: #fff;
+    border: 2px dashed #bdc3c7;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-weight: bold;
+    color: #2c3e50;
+    transition: all 0.2s;
+}
+
+.vm-slot:hover {
+    border-color: #3498db;
+    background-color: #f0f8ff;
+}
+
+.vm-slot.filled {
+    border-style: solid;
+    border-color: #3498db;
+    background-color: #eaf2f8;
+}
+
+.vm-slot.correct {
+    background-color: #d4efdf;
+    border-color: #27ae60;
+    color: #27ae60;
+}
+
+.vm-slot.error {
+    background-color: #fadbd8;
+    border-color: #e74c3c;
+    animation: shake 0.4s;
+}
+
+/* Colonna 3: Contesto (Verde/Azzurro come immagine) */
+.vm-context {
+    background-color: #d1f2eb;
+    border: 2px solid #a2d9ce;
+    border-radius: 10px; /* Più rettangolare */
+    padding: 8px 15px;
+    font-size: 0.9rem;
+    line-height: 1.2;
+    color: #145a32;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.vm-context small {
+    color: #555;
+    font-style: italic;
+    font-size: 0.8rem;
+}
+
+/* Chips da cliccare */
+.vm-chip {
+    background: white;
+    border: 2px solid #3498db;
+    color: #3498db;
+    font-weight: bold;
+    padding: 8px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.2s;
+}
+
+.vm-chip.selected {
+    background: #3498db;
+    color: white;
+    transform: scale(1.1);
+    box-shadow: 0 4px 10px rgba(52, 152, 219, 0.4);
+}
+
+.vm-chip.used {
+    opacity: 0.3;
+    pointer-events: none;
+    border-color: #ccc;
+    background: #eee;
+}
+
+@media (max-width: 400px) {
+    .vm-row {
+        grid-template-columns: 50px 1fr 1fr;
+        font-size: 0.9rem;
+    }
+}
+
+        
+
         
