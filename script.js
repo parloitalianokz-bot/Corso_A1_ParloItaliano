@@ -23,7 +23,6 @@ function showSection(sectionId) {
     document.querySelectorAll('.sidebar a').forEach(link => link.classList.remove('active'));
 
     // 3. Logica di abbinamento (Sezione -> Voce Menu)
-    
     if(sectionId === 'sec-pres') 
         document.getElementById('link-pres').classList.add('active');
 
@@ -47,12 +46,13 @@ function showSection(sectionId) {
 
 
     // 4. CHIUSURA MENU SU MOBILE (Corretta)
-    // Controlliamo l'overlay: se è visibile, significa che il menu è aperto.
     const overlay = document.getElementById("overlayBg");
     
-    if (window.innerWidth < 992) { // < 992px copre cellulari e tablet verticali
-        if (overlay && overlay.style.display === "block") {
-            toggleMenu(); // Chiude il menu simulando il click sullo sfondo
+    // Controlliamo se siamo su uno schermo piccolo
+    if (window.innerWidth < 992) {
+        // Usa window.getComputedStyle per vedere se l'overlay è DAVVERO visibile (anche via CSS)
+        if (overlay && window.getComputedStyle(overlay).display === "block") {
+            toggleMenu(); 
         }
     }
     
