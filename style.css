@@ -455,6 +455,9 @@
     cursor: pointer;
 }
 
+.slot.correct { border: 2px solid #27ae60; background: #eafaf1; }
+.slot.wrong { border: 2px solid #e74c3c; background: #fdedec; }
+
 
 .matching-game-container {
     display: flex;
@@ -525,8 +528,5 @@
     }
 }
 
-
-.slot.correct { border: 2px solid #27ae60; background: #eafaf1; }
-.slot.wrong { border: 2px solid #e74c3c; background: #fdedec; }
 
         
