@@ -59,6 +59,8 @@ function showSection(sectionId) {
     // 5. Torna in cima alla pagina
     window.scrollTo(0,0);
 }
+
+
 function checkQuiz(quizId, resultId) {
     const quizContainer = document.getElementById(quizId);
     const containers = quizContainer.querySelectorAll('.options');
