@@ -403,6 +403,126 @@ function checkDialogues() {
         }
     });
 
+// Dati per il gioco di abbinamento
+const matchingData = [
+    { id: 1, it: "Aigerim è kazaka", ru: "Айгерим — казашка" },
+    { id: 2, it: "Tu sei Bekzat?", ru: "Ты Бекзат?" },
+    { id: 3, it: "Io sono Zarina", ru: "Я Зарина" },
+    { id: 4, it: "Noi siamo studenti", ru: "Мы — студенты школы" }, // Accorciato per leggibilità su mobile
+    { id: 5, it: "Voi siete studenti?", ru: "Вы студенты школы?" },
+    { id: 6, it: "Io non sono italiana", ru: "Я не итальянка" },
+    { id: 7, it: "Zarina e Bekzat sono sposati", ru: "Зарина и Бекзат — женаты" },
+    { id: 8, it: "Kirill è russo", ru: "Кирилл — русский" }
+];
+
+let selectedIt = null;
+let selectedRu = null;
+
+// Funzione per inizializzare il gioco
+function initMatchingGame() {
+    const colIt = document.getElementById('col-it');
+    const colRu = document.getElementById('col-ru');
+    
+    // Se non trova gli elementi (magari siamo in un'altra pagina), esce
+    if (!colIt || !colRu) return;
+
+    colIt.innerHTML = '';
+    colRu.innerHTML = '';
+
+    // Mischiamo solo l'array per la colonna Russa
+    // Creiamo una copia per non rovinare l'originale
+    const ruList = [...matchingData].sort(() => Math.random() - 0.5);
+    
+    // Generiamo colonna Italiana (ordine fisso o random, qui fisso da array originale)
+    matchingData.forEach(item => {
+        const btn = document.createElement('div');
+        btn.className = 'match-item';
+        btn.textContent = item.it;
+        btn.dataset.id = item.id;
+        btn.dataset.type = 'it';
+        btn.onclick = () => handleMatchClick(btn);
+        colIt.appendChild(btn);
+    });
+
+    // Generiamo colonna Russa (ordine mischiato)
+    ruList.forEach(item => {
+        const btn = document.createElement('div');
+        btn.className = 'match-item';
+        btn.textContent = item.ru;
+        btn.dataset.id = item.id;
+        btn.dataset.type = 'ru';
+        btn.onclick = () => handleMatchClick(btn);
+        colRu.appendChild(btn);
+    });
+}
+
+function handleMatchClick(el) {
+    // Se è già risolto, ignora
+    if (el.classList.contains('solved')) return;
+
+    const type = el.dataset.type;
+
+    // Gestione selezione
+    if (type === 'it') {
+        if (selectedIt) selectedIt.classList.remove('selected');
+        selectedIt = el;
+        el.classList.add('selected');
+    } else {
+        if (selectedRu) selectedRu.classList.remove('selected');
+        selectedRu = el;
+        el.classList.add('selected');
+    }
+
+    // Se entrambi sono selezionati, controlla
+    if (selectedIt && selectedRu) {
+        checkMatch();
+    }
+}
+
+function checkMatch() {
+    const idIt = selectedIt.dataset.id;
+    const idRu = selectedRu.dataset.id;
+    const feedback = document.getElementById('match-feedback');
+
+    if (idIt === idRu) {
+        // MATCH CORRETTO
+        selectedIt.classList.remove('selected');
+        selectedRu.classList.remove('selected');
+        
+        selectedIt.classList.add('solved');
+        selectedRu.classList.add('solved');
+
+        selectedIt = null;
+        selectedRu = null;
+        
+        feedback.textContent = "✨ Corretto! (Правильно!)";
+        feedback.style.color = "#27ae60";
+
+        // Controlla se tutti sono risolti
+        const allSolved = document.querySelectorAll('.match-item.solved').length;
+        if (allSolved === matchingData.length * 2) {
+            feedback.innerHTML = "🎉 Bravissimo! Hai completato tutto! <br> (Отлично! Вы все выполнили!)";
+        }
+
+    } else {
+        // MATCH ERRATO
+        selectedIt.classList.add('error');
+        selectedRu.classList.add('error');
+        feedback.textContent = "❌ No, riprova... (Нет, попробуйте еще раз...)";
+        feedback.style.color = "#e74c3c";
+
+        setTimeout(() => {
+            selectedIt.classList.remove('error', 'selected');
+            selectedRu.classList.remove('error', 'selected');
+            selectedIt = null;
+            selectedRu = null;
+            feedback.textContent = "";
+        }, 800);
+    }
+}
+
+// Avvia il gioco quando la pagina è caricata
+document.addEventListener('DOMContentLoaded', initMatchingGame);
     const feedback = document.getElementById('dialogue-feedback');
     feedback.innerText = allCorrect ? "🎉 Bravissimo! Dialoghi perfetti!" : "⚠️ Qualcosa non torna. Controlla i riquadri rossi!";
     feedback.style.color = allCorrect ? "#27ae60" : "#e74c3c";
