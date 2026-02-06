@@ -151,6 +151,23 @@ function placeChip(cell) {
     selectedChipElement = null;
 }
 
+/* --- CONTROLLA ESERCIZIO TABELLA NEGATIVI --- */
+function resetPuzzle() {
+    // Riporta tutte le chip nel pool
+    const wordPool = document.getElementById('word-pool');
+    // Prendi tutte le chip dentro la tabella e spostale nel pool
+    document.querySelectorAll('.drop-zone .chip').forEach(chip => {
+        wordPool.appendChild(chip);
+    });
+    // Rimuovi classi di feedback dalle drop-zone
+    document.querySelectorAll('.drop-zone').forEach(zone => {
+        zone.classList.remove('correct', 'wrong');
+    });
+    // Pulisci feedback
+    const feedback = document.getElementById('puzzle-feedback');
+    feedback.innerHTML = '';
+}
+
 function checkPuzzle() {
     let correctCount = 0;
     const dropZones = document.querySelectorAll('.drop-zone');
@@ -166,17 +183,15 @@ function checkPuzzle() {
         }
     });
     const feedback = document.getElementById('puzzle-feedback');
-    feedback.innerHTML = correctCount === dropZones.length ? "🎉 Bravissimo!" : `⚠️ Hai indovinato ${correctCount} su ${dropZones.length}`;
+    if (correctCount === dropZones.length) {
+        feedback.innerHTML = "🎉 Bravissimo! Отлично!";
+    } else {
+        feedback.innerHTML = `⚠️ Hai indovinato ${correctCount} su ${dropZones.length}.<br>Вы угадали ${correctCount} из ${dropZones.length}. <br>` +
+            `<button onclick="resetPuzzle()" style="margin-top:10px; padding: 6px 14px; font-weight: 600; cursor: pointer; border-radius: 8px; background-color: #f39c12; color: white; border:none;">Попробуйте еще раз</button>`;
+    }
 }
 
-window.onload = function() {
-    const pool = document.getElementById('word-pool');
-    if(pool) {
-        for (let i = pool.children.length; i >= 0; i--) {
-            pool.appendChild(pool.children[Math.random() * i | 0]);
-        }
-    }
-};
+
 
 
 
@@ -270,67 +285,126 @@ TESTO DELLO STUDENTE:
 
 
 /* --- LOGICA IA FRASI NEGATIVE--- */
-async function checkSentencesWithAI() {
-    const s1 = document.getElementById('sent-aig').value;
-    const s2 = document.getElementById('sent-kir').value;
-    const s3 = document.getElementById('sent-zar').value;
-    const s4 = document.getElementById('sent-bek').value;
-    
-    if (s1.length < 3) { alert("Scrivi almeno la prima frase!"); return; }
+async function checkFullSentencesWithAI() {
+  const s1 = document.getElementById('full-sent1').value;
+  const s2 = document.getElementById('full-sent2').value;
+  const s3 = document.getElementById('full-sent3').value;
 
-    const feedbackBox = document.getElementById('ai-sentence-feedback');
-    feedbackBox.style.display = 'block';
-    
-    const prompt = `
-    Sei Antonio, l'insegnante della scuola "Parlo Italiano". 
-    Il tuo tono è empatico, incoraggiante. Rivolgiti per ogni informazione o correzione sempre in russo.
+  if (s1.length < 3 || s2.length < 3 || s3.length < 3) {
+    alert("Per favore, completa tutte le frasi. Пожалуйста, заполните все предложения.");
+    return;
+  }
 
-    REGOLE DI LINGUA E GENERE:
-    1. Usa un linguaggio neutro per il genere: non dire "Bravo" o "Benvenuto". Usa "Ottimo lavoro!", "Complimenti!", "Benissimo!".
-    2. Ogni singola spiegazione o frase di incoraggiamento DEVE essere in russo.
-    
-    QUESTA È LA TUA BASE DI CONOSCENZA (LA VERITÀ) SULLA BASE DEL SEGUENTE TESTO CHE HA LETTO ANCHE LO STUDENTE:
-    La scuola "Parlo Italiano" è ad Almaty, in Kazakistan.
-    È una scuola moderna, perfetta per studenti russofoni perché è online.
-    Chi sono gli studenti della scuola “Parlo Italiano"?
-    Aigerim è una studentessa. È kazaka. È casalinga. Studia l'italiano perché ama la cucina italiana.
-    Kirill è uno studente della scuola. Kirill è russo; è programmatore. Studia l'italiano perché lavora in una compagnia italiana.
-    Zarina è una studentessa della scuola. Zarina è uzbeka; è infermiera. Studia l'italiano perché sogna di visitare Roma.
-    Bekzat è uno studente della scuola. Bekzat è kazako; è cuoco. Studia l'italiano perché lavora in un ristorante italiano.
-    Antonio Marini è l'insegnante della scuola "Parlo Italiano". È sposato e ha due figlie. È un bravo insegnante perché è paziente e sempre disponibile con gli studenti. 😉
+  const feedbackBox = document.getElementById('ai-full-neg-feedback');
+  const loader = document.getElementById('ai-loader-neg');
+  const response = document.getElementById('ai-response-neg');
 
-    COMPITO DELLO STUDENTE:
-    Lo studente deve correggere delle affermazioni false usando la struttura negativa/affermativa.
-    Esempio richiesto: "Aigerim non è russa, è kazaka."
+  feedbackBox.style.display = 'block';
+  loader.style.display = 'block';
+  response.innerHTML = '';
 
-    COSA DEVI VERIFICARE:
-    1. Correttezza dei dati: Lo studente dice la verità basata sui profili sopra?
-    2. Correttezza grammaticale: Uso di "non", coniugazione del verbo essere (è/sono), articoli.
-    3. Correttezza ortografica: Accenti (è vs e), doppie, nomi propri.
-    4. Coerenza: Ha risposto a ciò che è stato chiesto?
+  const prompt = `
+Sei Antonio, l'insegnante della scuola "Parlo Italiano". Usa un tono empatico e spiega in russo gli errori.
+Lo studente ha scritto queste frasi da correggere:
 
-    COME DEVI RISPONDERE: 
-    1. Per ogni frase dello studente:
-       - Se corretta: ✅ + complimenti in russp
-       - Se c'è un errore: ❌ + Spiegazione in russo + Frase corretta in GRASSETTO.
-    2. Se lo studente dimentica "Non è... è...", digli in russo che deve usare quella struttura.
-    3. Mai usare termini troppo tecnici o scolastici come "sostantivo femminile" o "struttura negativa-affermativa". Parla come un amico che aiuta.   
+1) ${s1}
+2) ${s2}
+3) ${s3}
 
+Verifica che la struttura negativa sia corretta, soprattutto l'uso di "non" prima del verbo.
 
-    FORMATTAZIONE HTML:
-    <br><b>Frase corretta in italiano</b>
-    <br>Commento breve bilingue o solo russo.
-    <hr>
+Per ogni frase:
+- Se giusta, metti ✅ prima e fai complimenti in russo.
+- Se sbagliata, metti ❌ prima, spiega in russo e dai la versione corretta in italiano formattata.
 
-    CONCLUSIONE:
-    Deve essere incoraggiante e rigorosamente in russo.
+Rispondi SOLO in russo ed italiano, sii chiaro e incoraggiante.
+`;
 
-    TESTI DELLO STUDENTE:
-    1. ${s1}
-    2. ${s2}
-    3. ${s3}
-    4. ${s4}
-    `;
-    
-    callAI(prompt, document.getElementById('ai-response-text'), document.getElementById('ai-loader-sent'));
+  await callAI(prompt, response, loader);
 }
+
+
+
+function checkSimpleNegation() {
+  const inputs = document.querySelectorAll('#sec-negativa .context-box input.input-inline.short');
+  let allCorrect = true;
+  let errorCount = 0;
+
+  inputs.forEach(input => {
+    const val = input.value.trim().toLowerCase();
+    const correct = input.getAttribute('data-answer').toLowerCase();
+    if (val === '') {
+      input.classList.remove('input-correct', 'input-wrong');
+      allCorrect = false;
+    } else if (val === correct) {
+      input.classList.add('input-correct');
+      input.classList.remove('input-wrong');
+    } else {
+      input.classList.add('input-wrong');
+      input.classList.remove('input-correct');
+      allCorrect = false;
+      errorCount++;
+    }
+  });
+
+  const feedback = document.getElementById('simple-neg-feedback');
+  if (allCorrect) {
+    feedback.style.color = 'var(--primary)';
+    feedback.textContent = "Ben fatto! Hai inserito 'non' correttamente. Отлично!";
+  } else if (errorCount > 0) {
+    feedback.style.color = 'var(--secondary)';
+    feedback.textContent = `Ci sono ${errorCount} errori. Попробуйте еще раз.`;
+  } else {
+    feedback.textContent = '';
+  }
+}
+
+let currentSelectedPhrase = null;
+
+
+/* FUNZIONE RIORDINO DIALOGHI */
+
+function pickPhrase(el) {
+    document.querySelectorAll('.chip-phrase').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+    currentSelectedPhrase = el;
+}
+
+function placePhrase(slot) {
+    if (!currentSelectedPhrase) return;
+    
+    // Se lo slot è già occupato, rimetti la vecchia frase nel pool
+    if (slot.children.length > 0) {
+        const oldPhrase = slot.children[0];
+        const poolId = slot.closest('.dialogue-order-container').querySelector('.phrases-pool').id;
+        document.getElementById(poolId).appendChild(oldPhrase);
+    }
+
+    slot.appendChild(currentSelectedPhrase);
+    currentSelectedPhrase.classList.remove('selected');
+    currentSelectedPhrase = null;
+}
+
+function checkDialogues() {
+    let allCorrect = true;
+    const slots = document.querySelectorAll('.slot.drop-target');
+    
+    slots.forEach(slot => {
+        const rank = slot.getAttribute('data-rank');
+        const phrase = slot.querySelector('.chip-phrase');
+        
+        slot.classList.remove('correct', 'wrong');
+        
+        if (phrase && phrase.getAttribute('data-order') === rank) {
+            slot.classList.add('correct');
+        } else {
+            slot.classList.add('wrong');
+            allCorrect = false;
+        }
+    });
+
+    const feedback = document.getElementById('dialogue-feedback');
+    feedback.innerText = allCorrect ? "🎉 Bravissimo! Dialoghi perfetti!" : "⚠️ Qualcosa non torna. Controlla i riquadri rossi!";
+    feedback.style.color = allCorrect ? "#27ae60" : "#e74c3c";
+}
+
