@@ -427,8 +427,8 @@ const matchingData = [
     { id: 1, it: "Aigerim è kazaka", ru: "Айгерим — казашка" },
     { id: 2, it: "Tu sei Bekzat?", ru: "Ты Бекзат?" },
     { id: 3, it: "Io sono Zarina", ru: "Я Зарина" },
-    { id: 4, it: "Noi siamo studenti", ru: "Мы — студенты школы" }, // Accorciato per leggibilità su mobile
-    { id: 5, it: "Voi siete studenti?", ru: "Вы студенты школы?" },
+    { id: 4, it: "Noi siamo studenti", ru: "Мы — студенты" }, // Accorciato per leggibilità su mobile
+    { id: 5, it: "Voi siete studenti?", ru: "Вы студенты?" },
     { id: 6, it: "Io non sono italiana", ru: "Я не итальянка" },
     { id: 7, it: "Zarina e Bekzat sono sposati", ru: "Зарина и Бекзат — женаты" },
     { id: 8, it: "Kirill è russo", ru: "Кирилл — русский" }
