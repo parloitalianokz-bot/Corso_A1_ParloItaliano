@@ -43,12 +43,16 @@
       📖 Testo <span class="ru-menu">Текст</span>
     </a>
     <a onclick="showSection('sec-negativa')" id="link-negativa">
-      🎙️Frase negativa <span class="ru-menu">Отрицательное предложени)</span>
+      🎙️ Frase negativa <span class="ru-menu">Отрицательное предлож.</span>
     </a>
     <a onclick="showSection('sec-riordino')" id="link-riordino">
       🤝 Tu, Lei e Voi <span class="ru-menu">Ты или Вы</span>
     </a>
-    <!-- Voce Grammatica rimossa per ora -->
+    
+    <a onclick="showSection('sec-gramm_essere')" id="link-essere">
+      🧩 Verbo Essere <span class="ru-menu">Глагол Essere</span>
+    </a>
+
     <a onclick="showSection('sec-eser')" id="link-eser">
       🗣️ Esercizi <span class="ru-menu">Упражнения</span>
     </a>
@@ -1165,13 +1169,110 @@
 
             <div class="nav-buttons-container" style="margin-top: 40px;">
                 <button class="btn-nav btn-back" onclick="showSection('sec-riordino')">⬅ Indietro (Назад)</button>
-                <button class="btn-nav btn-next" onclick="showSection('sec-eser')">Avanti (Вперед) ➔</button>
+                <button class="btn-nav btn-next" onclick="showSection('sec-gramm_essere')">Avanti (Вперед) ➔</button>
             </div>
         </div>
     </div>
 </div>
 
 
+<!-- Sessione Verbo Essere -->
+
+<div id="sec-gramm_essere" class="section-block">
+    <div class="card" style="border: 2px solid #f1c40f; background-color: #fffcf5;">
+        <header style="background-color: #fffcf5;">
+            <div class="header-course">Passo 5: Grammatica Attiva</div>
+            <h1 class="header-main-title" style="color: #d35400;">Costruisci le frasi <span class="ru-block">(Постройте фразы)</span></h1>
+        </header>
+
+        <div class="content">
+            <div class="instruction">
+                🧩 Tocca una forma del verbo <b>essere</b> (in alto) e poi tocca lo spazio vuoto corretto nella tabella.
+                <br><span class="ru-instruction">(Нажмите на форму глагола "essere" вверху, а затем на правильное пустое место в таблице.)</span>
+            </div>
+
+            <div id="verb-pool" class="chips-container" style="justify-content: center; margin-bottom: 30px; background: #eee; padding: 15px; border-radius: 10px;">
+                <div class="chip vm-chip" onclick="selectVerbChip(this)" data-val="sono">sono</div>
+                <div class="chip vm-chip" onclick="selectVerbChip(this)" data-val="è">è</div>
+                <div class="chip vm-chip" onclick="selectVerbChip(this)" data-val="siamo">siamo</div>
+                <div class="chip vm-chip" onclick="selectVerbChip(this)" data-val="sei">sei</div>
+                <div class="chip vm-chip" onclick="selectVerbChip(this)" data-val="siete">siete</div>
+                <div class="chip vm-chip" onclick="selectVerbChip(this)" data-val="è">è</div>
+                <div class="chip vm-chip" onclick="selectVerbChip(this)" data-val="sono">sono</div>
+            </div>
+
+            <div class="verb-match-table">
+                <div class="vm-row">
+                    <div class="vm-pronoun">IO</div>
+                    <div class="vm-slot" onclick="placeVerbChip(this)" data-correct="sono"></div>
+                    <div class="vm-context">
+                        Aigerim <br><small>(Я Айгерим)</small>
+                    </div>
+                </div>
+
+                <div class="vm-row">
+                    <div class="vm-pronoun">TU</div>
+                    <div class="vm-slot" onclick="placeVerbChip(this)" data-correct="sei"></div>
+                    <div class="vm-context">
+                        kazako <br><small>(ты казах)</small>
+                    </div>
+                </div>
+
+                <div class="vm-row">
+                    <div class="vm-pronoun">LUI</div>
+                    <div class="vm-slot" onclick="placeVerbChip(this)" data-correct="è"></div>
+                    <div class="vm-context">
+                        Antonio <br><small>(он Антонио)</small>
+                    </div>
+                </div>
+
+                <div class="vm-row">
+                    <div class="vm-pronoun">LEI</div>
+                    <div class="vm-slot" onclick="placeVerbChip(this)" data-correct="è"></div>
+                    <div class="vm-context">
+                        italiana <br><small>(она итальянка)</small>
+                    </div>
+                </div>
+
+                <div class="vm-row">
+                    <div class="vm-pronoun">NOI</div>
+                    <div class="vm-slot" onclick="placeVerbChip(this)" data-correct="siamo"></div>
+                    <div class="vm-context">
+                        a Roma <br><small>(мы в Риме)</small>
+                    </div>
+                </div>
+
+                <div class="vm-row">
+                    <div class="vm-pronoun">VOI</div>
+                    <div class="vm-slot" onclick="placeVerbChip(this)" data-correct="siete"></div>
+                    <div class="vm-context">
+                        studenti <br><small>(вы студенты)</small>
+                    </div>
+                </div>
+
+                <div class="vm-row">
+                    <div class="vm-pronoun">LORO</div>
+                    <div class="vm-slot" onclick="placeVerbChip(this)" data-correct="sono"></div>
+                    <div class="vm-context">
+                        amici <br><small>(они друзья)</small>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="btn-nav btn-check" onclick="checkVerbTable()">Verifica (Проверить) 🧩</button>
+                <p id="vm-feedback" style="margin-top: 15px; font-weight: bold; min-height: 20px;"></p>
+            </div>
+
+            <div class="nav-buttons-container" style="margin-top: 40px;">
+                <button class="btn-nav btn-back" onclick="showSection('sec-gramm_TuLei')">⬅ Indietro</button>
+                <button class="btn-nav btn-next" onclick="showSection('sec-eser')">Avanti ➔</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+        
 
 
 
