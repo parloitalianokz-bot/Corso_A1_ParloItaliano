@@ -60,7 +60,6 @@ function showSection(sectionId) {
     window.scrollTo(0,0);
 }
 
-
 function checkQuiz(quizId, resultId) {
     const quizContainer = document.getElementById(quizId);
     const containers = quizContainer.querySelectorAll('.options');
@@ -675,5 +674,6 @@ function checkVerbTable() {
         feedback.style.color = "#e74c3c";
     }
 }
+
 
 
