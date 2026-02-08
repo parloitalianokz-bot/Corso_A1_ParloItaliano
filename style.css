@@ -703,4 +703,48 @@
     }
 }
 
+
+/* --- OTTIMIZZAZIONE TABELLE SU MOBILE (FINALE) --- */
+
+/* 1. Contenitore per lo scroll (Indispensabile per evitare sbordamenti) */
+.table-scroll-container {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 20px;
+    border: 1px solid #eee;
+    background: #fff;
+}
+
+/* 2. Forza la larghezza minima per attivare lo scroll */
+.table-scroll-container table {
+    min-width: 600px; /* Sotto i 600px apparirà la barra di scorrimento */
+}
+
+/* 3. Stile compatto per schermi piccoli */
+@media (max-width: 600px) {
+    /* Riduci padding e font */
+    .grammar-table th, 
+    .grammar-table td {
+        padding: 6px 4px;       /* Meno spazio interno */
+        font-size: 0.85rem;     /* Testo più piccolo */
+        line-height: 1.3;
+        white-space: normal;    /* FONDAMENTALE: permette al testo di andare a capo */
+        vertical-align: middle; /* Allinea verticalmente al centro */
+    }
+
+    /* Riduci la scritta piccola (Dialogo 1, ecc.) */
+    .grammar-table small {
+        font-size: 0.7rem;
+        display: block;
+        margin-top: 2px;
+        opacity: 0.8;
+    }
+
+    /* Gestione larghezza colonne */
+    .grammar-table th {
+        width: auto !important; /* Ignora il 33% fisso dell'HTML */
+        min-width: 90px;        /* Larghezza minima per evitare colonne troppo strette */
+    }
+}
         
