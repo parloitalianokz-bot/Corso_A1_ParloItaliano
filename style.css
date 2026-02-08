@@ -648,4 +648,187 @@
     }
 }
 
-        
+      
+/* --- STILE GRIGLIA CONIUGAZIONE --- */
+.conjugation-grid {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.conj-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    padding: 0;
+    overflow: hidden;
+    flex: 1;
+    min-width: 250px;
+    border: 1px solid #eee;
+}
+
+.conj-title {
+    background: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.conj-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 20px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.conj-row:last-child {
+    border-bottom: none;
+}
+
+.pronoun {
+    color: #7f8c8d;
+    font-weight: 600;
+}
+
+.verb {
+    color: #e74c3c; /* Rosso per il verbo */
+    font-weight: 800;
+    font-size: 1.1rem;
+}
+
+/* --- STILE NOTE MORFOLOGIA --- */
+.morphology-note {
+    background-color: #eaf2f8;
+    border-left: 5px solid #3498db;
+    padding: 15px;
+    border-radius: 5px;
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+}
+
+.note-icon {
+    font-size: 1.5rem;
+}
+
+/* --- STILE FORMALE/INFORMALE --- */
+.fb-grid {
+    display: flex;
+    gap: 15px;
+}
+
+.fb-item {
+    flex: 1;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.fb-item.informal {
+    background-color: #eafaf1;
+    color: #27ae60;
+}
+
+.fb-item.formal {
+    background-color: #fef9e7;
+    color: #f39c12;
+}
+
+/* --- STILE USI DEL VERBO (3 CARD) --- */
+.usage-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.usage-card {
+    background: #fff;
+    border: 2px solid #eee;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+.usage-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.usage-icon {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.ru-label {
+    display: block;
+    color: #95a5a6;
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+}
+
+.formula {
+    background: #f8f9fa;
+    padding: 5px;
+    border-radius: 5px;
+    font-weight: bold;
+    color: #2c3e50;
+    display: inline-block;
+}
+
+/* Lista pulita */
+.examples {
+    list-style: none;       /* Via i pallini standard */
+    padding: 0;
+    margin-top: 15px;
+}
+
+/* Elemento della lista */
+.examples li {
+    position: relative;     /* Punto di riferimento per il pallino */
+    padding-left: 25px;     /* <--- SPAZIO RISERVATO PER IL PALLINO */
+    padding-bottom: 10px;   /* Spazio sotto ogni voce */
+    margin-bottom: 10px;    /* Distanza tra le voci */
+    border-bottom: 1px dashed #eee;
+    line-height: 1.4;       /* Altezza riga leggibile */
+}
+
+/* Il pallino personalizzato */
+.examples li::before {
+    content: "•";           /* Il simbolo */
+    position: absolute;     /* Lo stacchiamo dal flusso del testo */
+    left: 0;                /* Lo incolliamo a sinistra */
+    top: -2px;              /* Lo allineiamo verticalmente con la prima riga */
+    color: var(--primary);  /* Verde */
+    font-size: 1.5rem;      /* Grandezza */
+    font-weight: bold;
+}
+
+/* Colore per le parole in grassetto */
+.examples li strong {
+    color: var(--primary);
+}
+
+/* Mobile fix */
+@media (max-width: 600px) {
+    .fb-grid {
+        flex-direction: column;
+    }
+}        
+
+
+.ru-example {
+    color: #95a5a6; /* Grigio medio */
+    font-size: 0.85rem;
+    font-style: italic;
+    display: block; /* Va a capo automaticamente */
+    margin-top: 2px;
+}
+
+
