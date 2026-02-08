@@ -181,16 +181,72 @@ function selectChip(element) {
     selectedChipElement = element;
 }
 
+// Nuova funzione per gestire il clic su chip posizionate (in tabella)
+function chipClickedInTable(chip) {
+    // Deseleziona chip se selezionata
+    if (selectedChipElement === chip) {
+        chip.classList.remove('selected');
+        selectedChipElement = null;
+        return;
+    }
+    // Se selezioniamo un'altra chip, deselect vecchia
+    document.querySelectorAll('.chip').forEach(c => c.classList.remove('selected'));
+    chip.classList.add('selected');
+    selectedChipElement = chip;
+}
+
+// Modifica il posto di aggiunta dei listener:
+// Per ogni chip, aggiungi onclick sia nella pool che in tabella:
+
+document.querySelectorAll('.chip').forEach(chip => {
+    chip.onclick = function() {
+        if (chip.parentElement.classList.contains('drop-zone')) {
+            // Se la chip è già in tabella, cliccandoci sopra la rimetti nel pool
+            document.getElementById('word-pool').appendChild(chip);
+            chip.classList.remove('selected');
+            if (selectedChipElement === chip) {
+                selectedChipElement = null;
+            }
+        } else {
+            // Chip nel pool: seleziona/deseleziona per posizionarla
+            if (selectedChipElement === chip) {
+                chip.classList.remove('selected');
+                selectedChipElement = null;
+            } else {
+                document.querySelectorAll('.chip').forEach(c => c.classList.remove('selected'));
+                chip.classList.add('selected');
+                selectedChipElement = chip;
+            }
+        }
+    };
+});
+
 function placeChip(cell) {
     if (!selectedChipElement) return;
     if (cell.children.length > 0) {
+        // Sposta chip esistente nel pool
         const oldChip = cell.children[0];
         document.getElementById('word-pool').appendChild(oldChip);
     }
+    // Sposta chip selezionata nella cella cliccata
     selectedChipElement.classList.remove('selected');
     cell.appendChild(selectedChipElement);
     selectedChipElement = null;
 }
+
+// Aggiungi questo, per togliere la chip dal cell cliccata e rimetterla nel pool
+function removeChipFromCell(chip) {
+    if (selectedChipElement === chip) {
+        chip.classList.remove('selected');
+        selectedChipElement = null;
+        return;
+    }
+    // Seleziona la chip per spostarla
+    document.querySelectorAll('.chip').forEach(c => c.classList.remove('selected'));
+    chip.classList.add('selected');
+    selectedChipElement = chip;
+}
+
 
 /* --- CONTROLLA ESERCIZIO TABELLA NEGATIVI --- */
 function resetPuzzle() {
