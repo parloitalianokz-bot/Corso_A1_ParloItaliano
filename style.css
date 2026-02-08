@@ -360,6 +360,17 @@
     background-color: #ecf0f1;
 }
 
+@media (max-width: 600px) {
+  .puzzle-table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+  }
+}
+
+
+
 /* Quando la risposta è giusta/sbagliata */
 .drop-zone.correct {
     background-color: #d4edda;
