@@ -302,6 +302,18 @@
   }
 }
 
+@media (max-width: 600px) {
+  .grammar-table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+  }
+}
+
+
+
 
 /* GIOCO DELLA TABELLA */
 .chips-container {
@@ -689,4 +701,3 @@
 }
 
         
-
