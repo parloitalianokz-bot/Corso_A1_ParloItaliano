@@ -290,26 +290,22 @@
         }
 
 
-/* TUTTE LE TABELLE SU MOBILE OTTIMIZZATE */
+/* --- TABELLE RESPONSIVE SU MOBILE (OTTIMIZZATE) --- */
 @media (max-width: 600px) {
-  table {
-    display: block;
-    width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch; /* scorrimento fluido su iOS */
-    white-space: nowrap; /* evita che le celle vadano a capo */
-    border-collapse: separate; /* per evitare problemi di overflow */
-  }
-}
+    table, .grammar-table {
+        display: block;        /* Trasforma la tabella in un blocco per attivare lo scroll */
+        width: 100%;           /* Larghezza massima disponibile */
+        overflow-x: auto;      /* Aggiunge la barra di scorrimento orizzontale se serve */
+        -webkit-overflow-scrolling: touch; /* Scorrimento fluido su iPhone/iPad */
+        border-collapse: collapse; /* Mantiene i bordi uniti e puliti */
+    }
 
-@media (max-width: 600px) {
-  .grammar-table {
-    display: block;
-    width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    white-space: nowrap;
-  }
+    /* Impedisce al testo di andare a capo, forzando lo scroll orizzontale */
+    table th, table td, 
+    .grammar-table th, .grammar-table td {
+        white-space: nowrap;   
+        padding: 10px 5px;     /* Un po' di spazio extra per la lettura */
+    }
 }
 
 
