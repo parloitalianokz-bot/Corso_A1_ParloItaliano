@@ -290,24 +290,31 @@
         }
 
 
-/* --- TABELLE RESPONSIVE SU MOBILE (OTTIMIZZATE) --- */
-@media (max-width: 600px) {
-    table, .grammar-table {
-        display: block;        /* Trasforma la tabella in un blocco per attivare lo scroll */
-        width: 100%;           /* Larghezza massima disponibile */
-        overflow-x: auto;      /* Aggiunge la barra di scorrimento orizzontale se serve */
-        -webkit-overflow-scrolling: touch; /* Scorrimento fluido su iPhone/iPad */
-        border-collapse: collapse; /* Mantiene i bordi uniti e puliti */
-    }
 
-    /* Impedisce al testo di andare a capo, forzando lo scroll orizzontale */
-    table th, table td, 
-    .grammar-table th, .grammar-table td {
-        white-space: nowrap;   
-        padding: 10px 5px;     /* Un po' di spazio extra per la lettura */
-    }
+/* Contenitore per rendere le tabelle scorrevoli su mobile */
+.table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;       /* Attiva lo scroll orizzontale */
+    -webkit-overflow-scrolling: touch; /* Scroll fluido su iOS */
+    margin-bottom: 15px;
+    border: 1px solid #eee; /* Opzionale: per vedere i limiti */
 }
 
+/* Assicura che la tabella dentro non si restringa troppo */
+.table-responsive table, 
+.table-responsive .grammar-table {
+    width: 100%;
+    min-width: 600px; /* Forza una larghezza minima: se lo schermo è più piccolo, SCORRE */
+    border-collapse: collapse;
+}
+
+/* Mantiene il testo leggibile senza andare a capo */
+.table-responsive th, 
+.table-responsive td {
+    white-space: nowrap;
+    padding: 8px;
+}
 
 
 
