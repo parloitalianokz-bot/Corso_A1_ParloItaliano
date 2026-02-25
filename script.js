@@ -447,7 +447,7 @@ function checkSimpleNegation() {
   const feedback = document.getElementById('simple-neg-feedback');
   if (allCorrect) {
     feedback.style.color = 'var(--primary)';
-    feedback.textContent = "Ben fatto! Hai inserito 'non' correttamente. Отлично!";
+    feedback.textContent = "Ben fatto! Hai inserito 'non' correttamente. Отлично! (Молодец! Вы правильно использовали 'non'.)";
   } else if (errorCount > 0) {
     feedback.style.color = 'var(--secondary)';
     feedback.textContent = `Ci sono ${errorCount} errori. Попробуйте еще раз.`;
@@ -456,16 +456,9 @@ function checkSimpleNegation() {
   }
 }
 
-let currentSelectedPhrase = null;
-
-
 /* FUNZIONE RIORDINO DIALOGHI */
 
-function pickPhrase(el) {
-    document.querySelectorAll('.chip-phrase').forEach(c => c.classList.remove('selected'));
-    el.classList.add('selected');
-    currentSelectedPhrase = el;
-}
+let currentSelectedPhrase = null;
 
 function placePhrase(slot) {
     if (!currentSelectedPhrase) return;
@@ -473,13 +466,48 @@ function placePhrase(slot) {
     // Se lo slot è già occupato, rimetti la vecchia frase nel pool
     if (slot.children.length > 0) {
         const oldPhrase = slot.children[0];
-        const poolId = slot.closest('.dialogue-order-container').querySelector('.phrases-pool').id;
-        document.getElementById(poolId).appendChild(oldPhrase);
+        const pool = slot.closest('.order-layout').querySelector('.phrases-pool');
+        pool.appendChild(oldPhrase);
     }
 
+    // Aggiungi la nuova frase allo slot
     slot.appendChild(currentSelectedPhrase);
     currentSelectedPhrase.classList.remove('selected');
     currentSelectedPhrase = null;
+    
+    // Rimuovi i bordi rossi/verdi se si sta correggendo
+    slot.classList.remove('wrong', 'correct');
+}
+
+function pickPhrase(el) {
+    // 1. BLOCCA L'EVENTO: impedisce che il click "rimbalzi"
+    if (window.event) {
+        window.event.stopPropagation();
+    }
+
+    // 2. SE LA FRASE È GIA' NELLO SLOT -> Torna indietro nel pool
+    if (el.parentElement.classList.contains('slot')) {
+        const pool = el.closest('.order-layout').querySelector('.phrases-pool');
+        pool.appendChild(el); 
+        el.classList.remove('selected');
+        
+        if (currentSelectedPhrase === el) {
+            currentSelectedPhrase = null;
+        }
+        
+        el.parentElement.classList.remove('wrong', 'correct');
+        return; 
+    }
+
+    // 3. SE LA FRASE È NEL POOL
+    if (currentSelectedPhrase === el) {
+        el.classList.remove('selected');
+        currentSelectedPhrase = null;
+    } else {
+        document.querySelectorAll('.chip-phrase').forEach(c => c.classList.remove('selected'));
+        el.classList.add('selected');
+        currentSelectedPhrase = el;
+    }
 }
 
 function checkDialogues() {
@@ -505,7 +533,6 @@ function checkDialogues() {
     feedback.style.color = allCorrect ? "#27ae60" : "#e74c3c";
 }
 
-
 // Dati per il gioco di abbinamento
 const matchingData = [
     { id: 1, it: "Aigerim è kazaka", ru: "Айгерим — казашка" },
@@ -526,38 +553,37 @@ function initMatchingGame() {
     const colIt = document.getElementById('col-it');
     const colRu = document.getElementById('col-ru');
     
-    // Se non trova gli elementi (magari siamo in un'altra pagina), esce
     if (!colIt || !colRu) return;
 
     colIt.innerHTML = '';
     colRu.innerHTML = '';
 
-    // Mischiamo solo l'array per la colonna Russa
-    // Creiamo una copia per non rovinare l'originale
-    const ruList = [...matchingData].sort(() => Math.random() - 0.5);
-    
-    // Generiamo colonna Italiana (ordine fisso o random, qui fisso da array originale)
+    // Mischiamo l'array per la colonna Italiana (ora a destra)
+    const itList = [...matchingData].sort(() => Math.random() - 0.5);
+
+    // Per la colonna sinistra (ora russo), usiamo l'ordine originale fisso
     matchingData.forEach(item => {
         const btn = document.createElement('div');
         btn.className = 'match-item';
-        btn.textContent = item.it;
+        btn.textContent = item.ru;     // metti russo a sinistra
         btn.dataset.id = item.id;
-        btn.dataset.type = 'it';
+        btn.dataset.type = 'ru';
         btn.onclick = () => handleMatchClick(btn);
         colIt.appendChild(btn);
     });
 
-    // Generiamo colonna Russa (ordine mischiato)
-    ruList.forEach(item => {
+    // Generiamo colonna destra con italiano disordinato
+    itList.forEach(item => {
         const btn = document.createElement('div');
         btn.className = 'match-item';
-        btn.textContent = item.ru;
+        btn.textContent = item.it;     // metti italiano a destra
         btn.dataset.id = item.id;
-        btn.dataset.type = 'ru';
+        btn.dataset.type = 'it';
         btn.onclick = () => handleMatchClick(btn);
         colRu.appendChild(btn);
     });
 }
+
 
 function handleMatchClick(el) {
     // Se è già risolto, ignora
