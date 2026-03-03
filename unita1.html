@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unità 1 - Parlo Italiano</title>
 
-    <script>
-  (sessionStorage.getItem("accesso_effettuato") !== "true") {
+<script>
+  if (sessionStorage.getItem("accesso_effettuato") !== "true") {
     window.location.href = "index.html";
-}
-    </script>
+  }
+</script>
     
     <link rel="stylesheet" href="style.css">
 
